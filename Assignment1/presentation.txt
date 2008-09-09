@@ -1,0 +1,8 @@
+flow of program - entry point, process args, process input, factory, command execution
+
+factory design
+-why needed?
+-hash map / dictionary (key, why needed?)
+
+command design
+-command history for undo, redo not possible since calculation history is kept

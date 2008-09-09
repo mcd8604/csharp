@@ -7,7 +7,7 @@ namespace Xcel
 {
     public class XcelMean : XcelCommand
     {
-        protected double _mean;
+        protected double? _mean = null;
 
         protected override string CommandName
         {
@@ -26,7 +26,10 @@ namespace Xcel
 
         public override void Execute()
         {
-            _mean = _args.Average();
+            if (!_mean.HasValue)
+            {
+                _mean = _args.Average();
+            }
 
         }
 
@@ -34,7 +37,7 @@ namespace Xcel
 
         public override string ToString()
         {
-            return _mean.ToString("0.###");
+            return _mean.Value.ToString("0.###");
         }
     }
 }

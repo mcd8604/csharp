@@ -7,7 +7,7 @@ namespace Xcel
 {
     public class XcelMax : XcelCommand
     {
-        protected int _max;
+        protected int? _max = null;
 
         protected override string CommandName
         {
@@ -20,7 +20,10 @@ namespace Xcel
 
         public override void Execute()
         {
-            _max = _args.Max();
+            if (!_max.HasValue)
+            {
+                _max = _args.Max();
+            }
         }
 
         #endregion

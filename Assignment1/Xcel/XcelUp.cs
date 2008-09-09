@@ -7,7 +7,7 @@ namespace Xcel
 {
     public class XcelUp : XcelCommand
     {
-        protected int[] _up;
+        protected int[] _up = null;
 
         protected override string CommandName
         {
@@ -20,9 +20,12 @@ namespace Xcel
 
         public override void Execute()
         {
-            _up = new int[_args.Length];
-            _args.CopyTo(_up, 0);
-            Array.Sort<int>(_up);
+            if (_up == null)
+            {
+                _up = new int[_args.Length];
+                _args.CopyTo(_up, 0);
+                Array.Sort<int>(_up);
+            }
         }
 
         #endregion

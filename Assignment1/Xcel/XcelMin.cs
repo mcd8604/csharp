@@ -7,7 +7,7 @@ namespace Xcel
 {
     public class XcelMin : XcelCommand
     {
-        protected int _min;
+        protected int? _min = null;
 
         protected override string CommandName
         {
@@ -20,7 +20,10 @@ namespace Xcel
 
         public override void Execute()
         {
-            _min = _args.Min();
+            if (!_min.HasValue)
+            {
+                _min = _args.Min();
+            }
         }
 
         #endregion

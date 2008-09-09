@@ -7,7 +7,7 @@ namespace Xcel
 {
     public class XcelSum : XcelCommand
     {
-        protected int _sum;
+        protected int? _sum = null;
 
         protected override string CommandName
         {
@@ -20,7 +20,10 @@ namespace Xcel
 
         public override void Execute()
         {
-            _sum = _args.Sum();
+            if (!_sum.HasValue)
+            {
+                _sum = _args.Sum();
+            }
         }
 
         #endregion

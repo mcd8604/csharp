@@ -35,7 +35,7 @@ namespace Xcel
                     return;
 
                 // Process input command
-                xcelCmd = XcelCommandFactory.GetCommand(inputCmd);
+                xcelCmd = XcelCommandFactory.GetCommand(inputCmd, intArgs);
 
                 if (xcelCmd != null)
                 {
@@ -45,9 +45,14 @@ namespace Xcel
                         xcelCmd.Execute();
                         Console.WriteLine(xcelCmd);
                     }
-                    catch (ArgumentException e)
+                    catch (ArgumentException ae)
+                    {
+                        Console.Error.WriteLine(ae.Message);
+                    }
+                    catch (Exception e)
                     {
                         Console.Error.WriteLine(e.Message);
+                        Console.Error.WriteLine(e.StackTrace);
                     }
                 }
             }

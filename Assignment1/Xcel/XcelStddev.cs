@@ -7,7 +7,7 @@ namespace Xcel
 {
     public class XcelStdDev : XcelCommand
     {
-        protected double _stdDev;
+        protected double? _stdDev = null;
 
         protected override string CommandName
         {
@@ -20,27 +20,30 @@ namespace Xcel
 
         public override void Execute()
         {
-            //mean
-            double mean = _args.Average();
-
-            //deviations
-            double[] deviationsSquared = new double[_args.Length];
-            for (int i = 0; i < _args.Length; ++i)
+            if (!_stdDev.HasValue)
             {
-                deviationsSquared[i] = (_args[i] - mean) * (_args[i] - mean);
+                //mean
+                double mean = _args.Average();
+
+                //deviations
+                double[] deviationsSquared = new double[_args.Length];
+                for (int i = 0; i < _args.Length; ++i)
+                {
+                    deviationsSquared[i] = (_args[i] - mean) * (_args[i] - mean);
+                }
+
+                //variance
+                double variance = deviationsSquared.Average();
+
+                _stdDev = Math.Pow(variance, 0.5);
             }
-
-            //variance
-            double variance = deviationsSquared.Average();
-
-            _stdDev = Math.Pow(variance, 0.5);
         }
 
         #endregion
 
         public override string ToString()
         {
-            return _stdDev.ToString("0.###");
+            return _stdDev.Value.ToString("0.###");
         }
     }
 }
