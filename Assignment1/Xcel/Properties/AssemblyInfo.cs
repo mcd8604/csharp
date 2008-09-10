@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Xcel")]
+[assembly: AssemblyTitle("TerryAndMike.Xcel")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Decision Lens")]
-[assembly: AssemblyProduct("Xcel")]
+[assembly: AssemblyProduct("TerryAndMike.Xcel")]
 [assembly: AssemblyCopyright("Copyright © Decision Lens 2008")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
