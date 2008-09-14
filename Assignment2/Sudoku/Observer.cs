@@ -2,7 +2,7 @@
 using Axel.Sudoku;
 using BitArray = System.Collections.BitArray;
 
-namespace TerryAndMike.Soduko
+namespace TerryAndMike.Sudoku
 {
     /// <summary>
     /// An Observer which prints information about the messages it receives. 
