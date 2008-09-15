@@ -22,9 +22,9 @@ namespace TerryAndMike.Sudoku
         public Board(string[] boardData)
         {
             observers = new List<IObserver>();
-
-            // TODO: Process board data
-            //cells = new Cell[81];
+            
+            // Process board data
+            cells = new Cell[boardData.Length * boardData[0].Length]; ;
         }
 
         #region IBoard Members

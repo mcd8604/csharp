@@ -1,6 +1,7 @@
 ﻿using System;
 using Axel.Sudoku;
 using BitArray = System.Collections.BitArray;
+using StringBuilder = System.Text.StringBuilder;
 
 namespace TerryAndMike.Sudoku
 {
@@ -18,7 +19,13 @@ namespace TerryAndMike.Sudoku
 
         public void Possible(int cell, BitArray digits)
         {
-            throw new NotImplementedException();
+            StringBuilder sb = new StringBuilder("Possible " + cell + " ");
+            for(int i = 0; i < digits.Length; ++i)
+            {
+                if (digits[i])
+                    sb.Append(i + " ");
+            }
+            Console.WriteLine(sb);
         }
 
         #endregion
