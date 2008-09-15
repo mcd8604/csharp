@@ -24,7 +24,8 @@ namespace TerryAndMike.Sudoku
             observers = new List<IObserver>();
             
             // Process board data
-            cells = new Cell[boardData.Length * boardData[0].Length]; ;
+            cells = new Cell[boardData.Length * boardData[0].Length];
+            
         }
 
         #region IBoard Members
