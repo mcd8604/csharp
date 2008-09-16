@@ -1,6 +1,7 @@
 ﻿using System;
 using Axel.Sudoku;
 using IEnumerable = System.Collections.IEnumerable;
+using Enumerable = System.Linq.Enumerable;
 using BitArray = System.Collections.BitArray;
 using System.Collections.Generic;
 
@@ -16,7 +17,9 @@ namespace TerryAndMike.Sudoku
 
         private List<IObserver> observers;
 
-        private int[,] board;
+        private int dimension;
+
+        private int[] shapes;
 
         private Cell[] cells;
 
@@ -27,20 +30,20 @@ namespace TerryAndMike.Sudoku
             observers = new List<IObserver>();
             
             // Process board data
-            board = new int[boardData.Length, boardData.Length];
+            dimension = boardData.Length;
 
-            string[] seperator = {string.Empty};
+            shapes = new int[dimension * dimension];
 
-            for(int i = 0; i < boardData.Length; ++i)
+            for (int i = 0; i < dimension; ++i)
             {
                 for (int k = 0; k < boardData[i].Length; ++k)
                 {
-                    board[i,k] = int.Parse(boardData[i][k].ToString());
+                    shapes[(i * dimension) + k] = int.Parse(boardData[i][k].ToString());
                 }
             }
 
             // Create each cell
-            cells = new Cell[boardData.Length * boardData[0].Length];
+            cells = new Cell[dimension * dimension];
             for (int i = 0; i < cells.Length; ++i)
                 cells[i] = new Cell(i);
 
@@ -70,6 +73,10 @@ namespace TerryAndMike.Sudoku
             if (digit != 0 && cell >= 0 && cell <= 80)
             {
                 cells[cell].Set(digit);
+                foreach (int i in Context(cell))
+                {
+                    cells[i].RemoveCandidate(digit);
+                }
 
                 foreach (IObserver o in observers)
                 {
@@ -84,22 +91,60 @@ namespace TerryAndMike.Sudoku
 
         public IEnumerable Row(int cell)
         {
-            return cells;
+            int[] rowIndices = new int[dimension - 1];
+
+            int startIndex = cell - (cell % dimension);
+            int curIndex;
+
+            for (int i = 0; i < rowIndices.Length; ++i)
+            {
+                curIndex = startIndex + i;
+                if (curIndex != cell)
+                    rowIndices[i] = curIndex;
+            }
+            
+            return rowIndices;
         }
 
         public IEnumerable Column(int cell)
         {
-            return cells;
+            int[] columnIndices = new int[dimension - 1];
+
+            int colIndex = cell % dimension;
+            int curIndex;
+
+            for (int i = 0; i < columnIndices.Length; ++i)
+            {
+                curIndex = colIndex + (i * dimension);
+                if (curIndex != cell)
+                    columnIndices[i] = curIndex;
+            }
+
+            return columnIndices;
         }
 
         public IEnumerable Shape(int cell)
         {
-            return cells;
+            int[] shapeIndices = new int[dimension - 1];
+            int shapeID = shapes[cell];
+            
+            int curIndex = -1;
+
+            for(int i = 0; i < shapes.Length; ++i)
+            {
+                if (i != cell && shapes[i] == shapeID)
+                    shapeIndices[++curIndex] = i;
+
+                if (shapeIndices.Length - curIndex - 1 > 0)
+                    break;
+            }
+
+            return shapeIndices;
         }
 
         public IEnumerable Context(int cell)
         {
-            return cells;
+            return Enumerable.Union(Enumerable.Union(Row(cell) as IEnumerable<int>, Column(cell) as IEnumerable<int>), Shape(cell) as IEnumerable<int>); 
         }
 
         #endregion

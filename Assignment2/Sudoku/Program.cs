@@ -39,6 +39,11 @@ namespace TerryAndMike.Sudoku
                 int digit = int.Parse(line[1]);
                 testBoard.Set(cell, digit);
             }
+
+            System.Console.WriteLine("Press Enter to exit");
+
+            System.Console.ReadLine();
+
         }
     }
 }

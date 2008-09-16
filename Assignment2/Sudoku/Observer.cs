@@ -23,7 +23,7 @@ namespace TerryAndMike.Sudoku
             for(int i = 0; i < digits.Length; ++i)
             {
                 if (digits[i])
-                    sb.Append(i + " ");
+                    sb.Append(i + 1 + " ");
             }
             Console.WriteLine(sb);
         }

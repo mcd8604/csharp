@@ -45,5 +45,10 @@ namespace TerryAndMike.Sudoku
             candidates.SetAll(false);
             candidates.Set(digit - 1, true);
         }
+
+        public void RemoveCandidate(int digit)
+        {
+            candidates.Set(digit - 1, false);
+        }
     }
 }
