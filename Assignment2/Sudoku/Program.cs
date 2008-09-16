@@ -23,6 +23,8 @@ namespace TerryAndMike.Sudoku
             Array.Copy(allLines, 0, boardLines, 0, boardLines.Length);
 
             Board testBoard = new Board(boardLines);
+            Observer observer = new Observer();
+            testBoard.AddObserver(observer);
 
             //reads Set  parameters, i.e., lines with a cell index and a digit separated by white space, and sends them to the Board.
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using Axel.Sudoku;
 using IEnumerable = System.Collections.IEnumerable;
+using BitArray = System.Collections.BitArray;
 using System.Collections.Generic;
 
 namespace TerryAndMike.Sudoku
@@ -15,6 +16,8 @@ namespace TerryAndMike.Sudoku
 
         private List<IObserver> observers;
 
+        private int[,] board;
+
         private Cell[] cells;
 
         #endregion
@@ -24,8 +27,23 @@ namespace TerryAndMike.Sudoku
             observers = new List<IObserver>();
             
             // Process board data
+            board = new int[boardData.Length, boardData.Length];
+
+            string[] seperator = {string.Empty};
+
+            for(int i = 0; i < boardData.Length; ++i)
+            {
+                for (int k = 0; k < boardData[i].Length; ++k)
+                {
+                    board[i,k] = int.Parse(boardData[i][k].ToString());
+                }
+            }
+
+            // Create each cell
             cells = new Cell[boardData.Length * boardData[0].Length];
-            
+            for (int i = 0; i < cells.Length; ++i)
+                cells[i] = new Cell(i);
+
         }
 
         #region IBoard Members
@@ -54,28 +72,34 @@ namespace TerryAndMike.Sudoku
                 cells[cell].Set(digit);
 
                 foreach (IObserver o in observers)
+                {
                     o.Set(cell, digit);
+                    foreach (int i in Context(cell))
+                    {
+                        o.Possible(i, cells[i].Candidates);
+                    }
+                }
             }
         }
 
         public IEnumerable Row(int cell)
         {
-            throw new NotImplementedException();
+            return cells;
         }
 
         public IEnumerable Column(int cell)
         {
-            throw new NotImplementedException();
+            return cells;
         }
 
         public IEnumerable Shape(int cell)
         {
-            throw new NotImplementedException();
+            return cells;
         }
 
         public IEnumerable Context(int cell)
         {
-            throw new NotImplementedException();
+            return cells;
         }
 
         #endregion

@@ -14,7 +14,7 @@ namespace TerryAndMike.Sudoku
 
         public void Set(int cell, int digit)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Set " + cell + " " + digit);
         }
 
         public void Possible(int cell, BitArray digits)

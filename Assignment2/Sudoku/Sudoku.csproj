@@ -46,6 +46,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Board.cs" />
+    <Compile Include="Cell.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Observer.cs" />
     <Compile Include="IBoard.cs" />
     <Compile Include="IObserver.cs" />
