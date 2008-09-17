@@ -8,8 +8,7 @@ using System.Collections.Generic;
 namespace TerryAndMike.Sudoku
 {
     /// <summary>
-    /// A Board where the constructor uses a string array such as the one at the beginning of 
-    /// board.txt to define the board size and the shapes -- equal digits define a shape.
+    /// A Sudoku board Model (MVC paradigm) implementation.
     /// </summary>
     class Board : IBoard
     {
@@ -25,6 +24,10 @@ namespace TerryAndMike.Sudoku
 
         #endregion
 
+        /// <summary>
+        /// Initializes the Sudoku board.
+        /// </summary>
+        /// <param name="boardData">String array (character matrix) representing the board.</param>
         public Board(string[] boardData)
         {
             observers = new List<IObserver>();
@@ -46,29 +49,33 @@ namespace TerryAndMike.Sudoku
             // Create each cell
             cells = new Cell[dimension * dimension];
             for (int i = 0; i < cells.Length; ++i)
-                cells[i] = new Cell(i);
+                cells[i] = new Cell();
 
         }
 
         #region IBoard Members
 
+        /// <summary> add an observer to the notification list. </summary>
         public void AddObserver(IObserver observer)
         {
             observers.Add(observer);
         }
 
+        /// <summary> remove an observer from notifications. </summary>
         public void RemoveObserver(IObserver observer)
         {
             observers.Remove(observer);
         }
 
-        /// <summary>
+
+        /// <summary> set a digit into a cell. </summary>
+        /// <remarks>
         /// Set requests a board to put a non-zero digit into a cell identified by an index between 0 and 80. 
         /// As a response, every IObserver which is known to the board is sent a Set and 
         /// maybe some Possible messages.
-        /// </summary>
-        /// <param name="cell"></param>
-        /// <param name="digit"></param>
+        /// </remarks>
+        /// <param name="cell">The cell index, [0,80]</param>
+        /// <param name="digit">The digit to set, [1,9]</param>
         public void Set(int cell, int digit)
         {
             //per instructions, restrict board to 81 cells
@@ -83,15 +90,20 @@ namespace TerryAndMike.Sudoku
                 foreach (IObserver o in observers)
                 {
                     o.Set(cell, digit);
+
                     foreach (int i in Context(cell))
                     {
-                        o.Possible(i, cells[i].Candidates);
+                        //only notify not already set
+                        if ( !cells[ i ].IsSet ) {
+                            o.Possible( i, cells[ i ].Candidates );
+                        }
                     }
                 }
             }
         }
 
-        //Note: input cell is not included in output enumeration
+        /// <summary> indices in same row. </summary>
+        /// <remarks> Note: input cell is not included in output enumeration</remarks>
         public IEnumerable Row(int cell)
         {
             int[] rowIndices = new int[dimension - 1];
@@ -110,7 +122,8 @@ namespace TerryAndMike.Sudoku
             return rowIndices;
         }
 
-        //Note: input cell is not included in output enumeration
+        /// <summary> indices in same column. </summary>
+        /// <remarks> Note: input cell is not included in output enumeration</remarks>
         public IEnumerable Column(int cell)
         {
             int[] columnIndices = new int[dimension - 1];
@@ -129,7 +142,8 @@ namespace TerryAndMike.Sudoku
             return columnIndices;
         }
 
-        //Note: input cell is not included in output enumeration
+        /// <summary> indices in same shape. </summary>
+        /// <remarks> Note: input cell is not included in output enumeration</remarks>
         public IEnumerable Shape(int cell)
         {
             //assume dimmension == number of cells in each shape
@@ -149,6 +163,8 @@ namespace TerryAndMike.Sudoku
             return shapeIndices;
         }
 
+        /// <summary> indices in context of cell. </summary>
+        /// <remarks> Note: input cell is not included in output enumeration</remarks>
         public IEnumerable Context(int cell)
         {
             //Assure that each enumerable is not null after casting with 'as'

@@ -1,5 +1,4 @@
-﻿using File = System.IO.File;
-using Array = System.Array;
+﻿using System.Collections.Generic;
 
 namespace TerryAndMike.Sudoku
 {
@@ -13,35 +12,50 @@ namespace TerryAndMike.Sudoku
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            //construct a Board from lines read (up to a blank line) from standard input
-            string[] allLines = File.ReadAllLines("board.txt");
-            string[] boardLines;
+            List<string> inputBuf = new List<string>();
+            int blankIndex=0; //records index of blank line between board and Set() commands
 
-            int blankIndex = Array.IndexOf(allLines, string.Empty);
+            //if input file passed as an arguement
+            if ( args.Length > 0 ) {
+                inputBuf.AddRange( System.IO.File.ReadAllLines( args[ 0 ] ) );
 
-            boardLines = new string[blankIndex];
-            Array.Copy(allLines, boardLines, boardLines.Length);
-
-            Board testBoard = new Board(boardLines);
-            Observer observer = new Observer();
-            testBoard.AddObserver(observer);
-
-            //reads Set  parameters, i.e., lines with a cell index and a digit separated by white space, and sends them to the Board.
-
-            string[] setParams;
-            setParams = new string[allLines.Length - (blankIndex + 1)];
-            Array.Copy(allLines, blankIndex + 1, setParams, 0, setParams.Length);
-
-            foreach (string param in setParams)
-            {
-                string[] line = param.Split(new char[] {' '} );
-                int cell = int.Parse(line[0]);
-                int digit = int.Parse(line[1]);
-                testBoard.Set(cell, digit);
+                blankIndex = inputBuf.IndexOf( string.Empty );
             }
 
-            System.Console.WriteLine("Press Enter to exit");
+            //else read from stdin until EOL
+            else {
+                string strBuf;
 
+                while ( ( strBuf = System.Console.ReadLine() ) != null ) {
+                    if ( strBuf == string.Empty )
+                        blankIndex = inputBuf.Count;
+
+                    inputBuf.Add( strBuf );
+                }
+            }
+
+
+            //Construct Board
+            string[] boardLines = new string[ blankIndex ];
+            inputBuf.CopyTo(0, boardLines, 0, boardLines.Length);
+
+            Board myBoard = new Board(boardLines);
+            Observer myObserver = new Observer();
+            myBoard.AddObserver(myObserver);
+
+            
+            
+            //Read Set() Parameters and send them to the Board.
+            for ( int i = blankIndex + 1; i < inputBuf.Count; ++i ) {
+                string[] line = inputBuf[ i ].Split( new char[] { ' ' } );
+                int cell = int.Parse( line[ 0 ] );
+                int digit = int.Parse( line[ 1 ] );
+                myBoard.Set( cell, digit );
+            }
+
+
+            
+            System.Console.WriteLine("Press Enter to exit");
             System.Console.ReadLine();
 
         }

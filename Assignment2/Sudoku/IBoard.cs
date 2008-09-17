@@ -5,12 +5,19 @@ namespace Axel.Sudoku
     /// <summary> what a Sudoku Model must do. </summary>
     public interface IBoard
     {
-        void AddObserver(IObserver observer);
-        void RemoveObserver(IObserver observer);
-        void Set(int cell, int digit);
-        IEnumerable Row(int cell);
-        IEnumerable Column(int cell);
-        IEnumerable Shape(int cell);
-        IEnumerable Context(int cell);
+        /// <summary> add an observer. </summary>
+        void AddObserver( IObserver observer );
+        /// <summary> remove an observer. </summary>
+        void RemoveObserver( IObserver observer );
+        /// <summary> set a digit into a cell. </summary>
+        void Set( int cell, int digit );
+        /// <summary> indices in same row. </summary>
+        IEnumerable Row( int cell );
+        /// <summary> indices in same column. </summary>
+        IEnumerable Column( int cell );
+        /// <summary> indices in same shape. </summary>
+        IEnumerable Shape( int cell );
+        /// <summary> indices in context of cell. </summary>
+        IEnumerable Context( int cell );
     }
 }
