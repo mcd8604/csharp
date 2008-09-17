@@ -32,7 +32,8 @@ namespace TerryAndMike.Sudoku
             // Process board data
             dimension = boardData.Length;
 
-            shapes = new int[dimension * dimension];
+                //assume all board rows are of equal length
+            shapes = new int[dimension * boardData[0].Length];
 
             for (int i = 0; i < dimension; ++i)
             {
@@ -70,6 +71,7 @@ namespace TerryAndMike.Sudoku
         /// <param name="digit"></param>
         public void Set(int cell, int digit)
         {
+            //per instructions, restrict board to 81 cells
             if (digit != 0 && cell >= 0 && cell <= 80)
             {
                 cells[cell].Set(digit);
@@ -93,14 +95,15 @@ namespace TerryAndMike.Sudoku
         {
             int[] rowIndices = new int[dimension - 1];
 
+                //assumes square board
             int startIndex = cell - (cell % dimension);
-            int curIndex;
+            int curIndex = startIndex;
 
-            for (int i = 0; i < rowIndices.Length; ++i)
+            for (int i = 0; i < rowIndices.Length; ++curIndex)
             {
-                curIndex = startIndex + i;
-                if (curIndex != cell)
-                    rowIndices[i] = curIndex;
+                if ( curIndex != cell ) {
+                    rowIndices[i++] = curIndex;
+                }
             }
             
             return rowIndices;
@@ -110,6 +113,7 @@ namespace TerryAndMike.Sudoku
         {
             int[] columnIndices = new int[dimension - 1];
 
+                //assumes square board
             int colIndex = cell % dimension;
             int curIndex;
 
@@ -130,6 +134,7 @@ namespace TerryAndMike.Sudoku
             
             int curIndex = -1;
 
+            //iterate through entire board to find shapes
             for(int i = 0; i < shapes.Length; ++i)
             {
                 if (i != cell && shapes[i] == shapeID)
@@ -144,7 +149,19 @@ namespace TerryAndMike.Sudoku
 
         public IEnumerable Context(int cell)
         {
-            return Enumerable.Union(Enumerable.Union(Row(cell) as IEnumerable<int>, Column(cell) as IEnumerable<int>), Shape(cell) as IEnumerable<int>); 
+            //Assure that each enumerable is not null after casting with 'as'
+            IEnumerable<int> row = Row( cell ) as IEnumerable<int> ?? new int[0],
+                col = Column( cell ) as IEnumerable<int> ?? new int[0],
+                shape = Shape( cell ) as IEnumerable<int> ?? new int[0];
+
+            try {
+                 return Enumerable.Union( Enumerable.Union( row, col ), shape );
+            }
+            catch ( ArgumentNullException ane ) {
+                throw new Exception( 
+                    "Error in calculating context for cell '" + cell + "'.  One of the arguements was null.",
+                    ane );
+            }
         }
 
         #endregion

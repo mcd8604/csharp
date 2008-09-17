@@ -20,7 +20,7 @@ namespace TerryAndMike.Sudoku
             int blankIndex = Array.IndexOf(allLines, string.Empty);
 
             boardLines = new string[blankIndex];
-            Array.Copy(allLines, 0, boardLines, 0, boardLines.Length);
+            Array.Copy(allLines, boardLines, boardLines.Length);
 
             Board testBoard = new Board(boardLines);
             Observer observer = new Observer();
