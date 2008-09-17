@@ -91,6 +91,7 @@ namespace TerryAndMike.Sudoku
             }
         }
 
+        //Note: input cell is not included in output enumeration
         public IEnumerable Row(int cell)
         {
             int[] rowIndices = new int[dimension - 1];
@@ -102,46 +103,47 @@ namespace TerryAndMike.Sudoku
             for (int i = 0; i < rowIndices.Length; ++curIndex)
             {
                 if ( curIndex != cell ) {
-                    rowIndices[i++] = curIndex;
+                    rowIndices[ i++ ] = curIndex;
                 }
             }
             
             return rowIndices;
         }
 
+        //Note: input cell is not included in output enumeration
         public IEnumerable Column(int cell)
         {
             int[] columnIndices = new int[dimension - 1];
 
                 //assumes square board
-            int colIndex = cell % dimension;
-            int curIndex;
+            int startIndex = cell % dimension;
+            int curIndex = startIndex;
 
-            for (int i = 0; i < columnIndices.Length; ++i)
+            for (int i = 0; i < columnIndices.Length; curIndex += dimension )
             {
-                curIndex = colIndex + (i * dimension);
-                if (curIndex != cell)
-                    columnIndices[i] = curIndex;
+                if ( curIndex != cell ) {
+                    columnIndices[ i++ ] = curIndex;
+                }
             }
 
             return columnIndices;
         }
 
+        //Note: input cell is not included in output enumeration
         public IEnumerable Shape(int cell)
         {
+            //assume dimmension == number of cells in each shape
             int[] shapeIndices = new int[dimension - 1];
             int shapeID = shapes[cell];
             
             int curIndex = -1;
 
-            //iterate through entire board to find shapes
-            for(int i = 0; i < shapes.Length; ++i)
+            //iterate through board to find shapes, stopping when 
+            //'dimmension'-1 other cells in shape found or end of board reached
+            for(int i = 0; i < shapes.Length && curIndex < shapeIndices.Length; ++i)
             {
                 if (i != cell && shapes[i] == shapeID)
-                    shapeIndices[++curIndex] = i;
-
-                if (shapeIndices.Length - curIndex - 1 > 0)
-                    break;
+                    shapeIndices[ ++curIndex ] = i;
             }
 
             return shapeIndices;
