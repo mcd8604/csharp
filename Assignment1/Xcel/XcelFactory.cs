@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
+using System.Reflection;
+using System;
 
 namespace TerryAndMike.Xcel
 {
@@ -10,18 +9,27 @@ namespace TerryAndMike.Xcel
     /// </summary>
     static class XcelCommandFactory
     {
-        #region Declare instances of each base class for factory
+        /// <summary>
+        /// Array of XcelCommands to be instansiated
+        /// </summary>
+        private static readonly XcelCommand[] commands;
 
-        private static XcelSum sumCmd = new XcelSum();
-        private static XcelMin minCmd = new XcelMin();
-        private static XcelMax maxCmd = new XcelMax();
-        private static XcelUp upCmd = new XcelUp();
-        private static XcelDown downCmd = new XcelDown();
-        private static XcelMedian medianCmd = new XcelMedian();
-        private static XcelMean meanCmd = new XcelMean();
-        private static XcelStdDev stdevCmd = new XcelStdDev();
-
-        #endregion
+        /// <summary>
+        /// Retrieves all subclasses of XcelCommand to populate the commands array
+        /// </summary>
+        static XcelCommandFactory()
+        {
+            commands = new XcelCommand[0];
+            Type[] assemblyTypes = Assembly.GetAssembly(typeof(XcelCommand)).GetTypes();
+            foreach (Type t in assemblyTypes)
+            {
+                if (t.IsSubclassOf(typeof(XcelCommand)))
+                {
+                    Array.Resize<XcelCommand>(ref commands, commands.Length + 1);
+                    commands[commands.Length - 1] = (XcelCommand)t.GetConstructor(new Type[0]).Invoke(null);
+                }
+            }
+        }
 
         private static Dictionary<int[], XcelCommand> _commandHistory = new Dictionary<int[], XcelCommand>();
 
@@ -32,42 +40,15 @@ namespace TerryAndMike.Xcel
         /// <returns>The created command.</returns>
         private static XcelCommand GetCommand(string commandName)
         {
-            if (sumCmd.HasCommandName(commandName))
+            foreach (XcelCommand command in commands)
             {
-               return new XcelSum();
+                if (command.HasCommandName(commandName))
+                    //return command.Clone();
+                    //NOTE: Reflection is slow
+                    return (XcelCommand)command.GetType().GetConstructor(new Type[0]).Invoke(null);
             }
-            else if (minCmd.HasCommandName(commandName))
-            {
-                return new XcelMin();
-            }
-            else if (maxCmd.HasCommandName(commandName))
-            {
-                return new XcelMax();
-            }
-            else if (upCmd.HasCommandName(commandName))
-            {
-                return new XcelUp();
-            }
-            else if (downCmd.HasCommandName(commandName))
-            {
-                return new XcelDown();
-            }
-            else if (medianCmd.HasCommandName(commandName))
-            {
-                return new XcelMedian();
-            }
-            else if (meanCmd.HasCommandName(commandName))
-            {
-                return new XcelMean();
-            }
-            else if (stdevCmd.HasCommandName(commandName))
-            {
-                return new XcelStdDev();
-            }
-            else
-            {
-                return null;
-            }
+
+            throw new ArgumentException("Invalid Command Name: " + commandName);
         }
 
         /// <summary>
