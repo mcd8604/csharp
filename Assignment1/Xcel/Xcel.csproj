@@ -66,6 +66,7 @@
     <Compile Include="XcelDown.cs" />
     <Compile Include="XcelMax.cs" />
     <Compile Include="XcelMin.cs" />
+    <Compile Include="XcelProduct.cs" />
     <Compile Include="XcelStddev.cs" />
     <Compile Include="XcelSum.cs" />
     <Compile Include="XcelCommand.cs" />
