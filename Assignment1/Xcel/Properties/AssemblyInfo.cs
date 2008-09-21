@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("TerryAndMike.Xcel")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Decision Lens")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("TerryAndMike.Xcel")]
-[assembly: AssemblyCopyright("Copyright © Decision Lens 2008")]
+[assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

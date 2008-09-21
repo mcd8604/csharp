@@ -10,9 +10,9 @@ using System.Windows;
 [assembly: AssemblyTitle("XcelGui")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Decision Lens")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("XcelGui")]
-[assembly: AssemblyCopyright("Copyright © Decision Lens 2008")]
+[assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
