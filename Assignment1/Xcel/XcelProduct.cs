@@ -9,7 +9,7 @@ namespace TerryAndMike.Xcel
     {
         protected int? _product = null;
 
-        protected override string CommandName
+        public override string CommandName
         {
             get { return "product"; }
         }
@@ -22,6 +22,7 @@ namespace TerryAndMike.Xcel
         {
             if (!_product.HasValue)
             {
+                _product = 1;
                 foreach (int i in _args)
                     _product *= i;
             }

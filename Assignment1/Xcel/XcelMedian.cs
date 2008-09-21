@@ -9,7 +9,7 @@ namespace TerryAndMike.Xcel
     {
         protected double? _median = null;
 
-        protected override string CommandName
+        public override string CommandName
         {
             get { return "median"; }
         }

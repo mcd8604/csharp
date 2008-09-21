@@ -10,7 +10,7 @@ namespace TerryAndMike.Xcel
     /// </summary>
     public abstract class XcelCommand
     {
-        protected abstract string CommandName { get; }
+        public abstract string CommandName { get; }
         protected int[] _args;
         
         public int[] Args

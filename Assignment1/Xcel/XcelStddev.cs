@@ -9,7 +9,7 @@ namespace TerryAndMike.Xcel
     {
         protected double? _stdDev = null;
 
-        protected override string CommandName
+        public override string CommandName
         {
             get { return "stdev"; }
         }

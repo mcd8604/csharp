@@ -9,7 +9,7 @@ namespace TerryAndMike.Xcel
     {
         protected int[] _up = null;
 
-        protected override string CommandName
+        public override string CommandName
         {
             get { return "up"; }
         }

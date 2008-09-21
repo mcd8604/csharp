@@ -9,7 +9,7 @@ namespace TerryAndMike.Xcel
     {
         protected int? _sum = null;
 
-        protected override string CommandName
+        public override string CommandName
         {
             get { return "sum"; }
         }

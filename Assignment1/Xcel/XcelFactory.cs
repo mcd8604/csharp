@@ -7,7 +7,7 @@ namespace TerryAndMike.Xcel
     /// <summary>
     /// Creates instances of XcelCommands
     /// </summary>
-    static class XcelCommandFactory
+    public static class XcelCommandFactory
     {
         /// <summary>
         /// Array of XcelCommands to be instansiated
@@ -29,6 +29,14 @@ namespace TerryAndMike.Xcel
                     commands[commands.Length - 1] = (XcelCommand)t.GetConstructor(new Type[0]).Invoke(null);
                 }
             }
+        }
+
+        public static string[] GetCommandNames()
+        {
+            string[] commandNames = new string[commands.Length];
+            for (int i = 0; i < commands.Length; ++i)
+                commandNames[i] = commands[i].CommandName;
+            return commandNames;
         }
 
         private static Dictionary<int[], XcelCommand> _commandHistory = new Dictionary<int[], XcelCommand>();
