@@ -5,7 +5,7 @@ using System;
 namespace TerryAndMike.Xcel
 {
     /// <summary>
-    /// Creates instances of XcelCommands
+    /// Generates/returns instances of XcelCommands given command name.
     /// </summary>
     public static class XcelCommandFactory
     {
@@ -21,6 +21,7 @@ namespace TerryAndMike.Xcel
         {
             commands = new XcelCommand[0];
             Type[] assemblyTypes = Assembly.GetAssembly(typeof(XcelCommand)).GetTypes();
+
             foreach (Type t in assemblyTypes)
             {
                 if (t.IsSubclassOf(typeof(XcelCommand)))
@@ -31,6 +32,10 @@ namespace TerryAndMike.Xcel
             }
         }
 
+        /// <summary>
+        /// Retrieve a list of names for all XcelCommand objects.
+        /// </summary>
+        /// <returns>String array of command names.</returns>
         public static string[] GetCommandNames()
         {
             string[] commandNames = new string[commands.Length];
