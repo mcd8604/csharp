@@ -14,8 +14,15 @@ namespace TerryAndMike.Xcel
         /// The primary name for the command object.
         /// </summary>
         public abstract string CommandName { get; }
+
+        /// <summary>
+        /// Input argument list, used by command objects to run calculations on.
+        /// </summary>
         protected int[] _args;
-        
+
+        /// <summary>
+        /// Retrieve copy of argument list array, or throw an exception if argument list is empty.
+        /// </summary>
         public int[] Args
         {
             set
