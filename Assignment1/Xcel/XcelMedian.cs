@@ -5,15 +5,9 @@ using System.Text;
 
 namespace TerryAndMike.Xcel
 {
-<<<<<<< .mine
     /// <summary>
     /// Command object for Xcel calculator model: finds median value in argument list.
     /// </summary>
-=======
-    /// <summary>
-    /// An XcelCommand that calculates the median of an array of integers
-    /// </summary>
->>>>>>> .r36
     public class XcelMedian : XcelCommand
     {
         /// <summary>
