@@ -5,19 +5,34 @@ using System.Text;
 
 namespace TerryAndMike.Xcel
 {
+    /// <summary>
+    /// An XcelCommand that sorts an array of integers in ascending order.
+    /// </summary>
     public class XcelUp : XcelCommand
     {
+        /// <summary>
+        /// The array of sorted integers
+        /// </summary>
         protected int[] _up = null;
 
+        /// <summary>
+        /// The string name of this command, returns "up"
+        /// </summary>
         public override string CommandName
         {
             get { return "up"; }
         }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public XcelUp() { }
 
         #region XcelCommand Members
 
+        /// <summary>
+        /// Performs the calculation to sort the arguments
+        /// </summary>
         public override void Execute()
         {
             if (_up == null)
@@ -30,6 +45,10 @@ namespace TerryAndMike.Xcel
 
         #endregion
 
+        /// <summary>
+        /// Returns a string representation of the sorted integers
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
