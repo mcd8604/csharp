@@ -10,6 +10,9 @@ namespace TerryAndMike.Xcel
     /// </summary>
     public abstract class XcelCommand
     {
+        /// <summary>
+        /// The primary name for the command object.
+        /// </summary>
         public abstract string CommandName { get; }
         protected int[] _args;
         
@@ -31,13 +34,17 @@ namespace TerryAndMike.Xcel
         /// <summary>
         /// Determines if the given command name is associated with the command.
         /// </summary>
-        /// <param name="commandName"></param>
-        /// <returns></returns>
+        /// <remarks>A command object may have multiple command names by which it may be referred.</remarks>
+        /// <param name="commandName">Command name for lookup</param>
+        /// <returns>Boolean value indicating if command name is valid for that object</returns>
         public virtual bool HasCommandName(string commandName)
         {
             return (commandName.ToLower() == CommandName);
         }
 
+        /// <summary>
+        /// Performs execution on a given command object, the specific behavior varying by each command object.
+        /// </summary>
         public abstract void Execute();
         
     }

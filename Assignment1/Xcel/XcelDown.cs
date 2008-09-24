@@ -5,19 +5,29 @@ using System.Text;
 
 namespace TerryAndMike.Xcel
 {
+    /// <summary>
+    /// Command object for Xcel calculator model: re-orders argument list descending.
+    /// </summary>
     public class XcelDown : XcelCommand
     {
+        /// <summary>
+        /// Stores the calculated value of this command object, or null if not yet calculated
+        /// </summary>
         protected int[] _down = null;
 
+        /// <summary>
+        /// The command name for XcelDown, specifically "down"
+        /// </summary>
         public override string CommandName
         {
             get { return "down"; }
         }
 
-        public XcelDown() { }
-
         #region XcelCommand Members
 
+        /// <summary>
+        /// Performs descending sort on input argument list.
+        /// </summary>
         public override void Execute()
         {
             if (_down == null)
@@ -31,6 +41,10 @@ namespace TerryAndMike.Xcel
 
         #endregion
 
+        /// <summary>
+        /// Returns arguement list sorted descending if Execute()ed, otherwise empty string.
+        /// </summary>
+        /// <returns>String representation of output value</returns>
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
