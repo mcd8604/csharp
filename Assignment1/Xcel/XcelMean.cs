@@ -56,7 +56,12 @@ namespace TerryAndMike.Xcel
         /// <returns>String representation of output value</returns>
         public override string ToString()
         {
-            return _mean.Value.ToString("0.###");
+            if (_mean.HasValue)
+            {
+                return _mean.Value.ToString("0.###");
+            }
+            else
+                return string.Empty;
         }
     }
 }
