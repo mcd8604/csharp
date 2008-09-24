@@ -5,33 +5,34 @@ using System.Text;
 
 namespace TerryAndMike.Xcel
 {
+<<<<<<< .mine
+    /// <summary>
+    /// Command object for Xcel calculator model: finds median value in argument list.
+    /// </summary>
+=======
     /// <summary>
     /// An XcelCommand that calculates the median of an array of integers
     /// </summary>
+>>>>>>> .r36
     public class XcelMedian : XcelCommand
     {
         /// <summary>
-        /// The median of the array of integers
+        /// The median of the array of integers, or null if not yet calculated
         /// </summary>
         protected double? _median = null;
 
         /// <summary>
-        /// The string name of this command, returns "median"
+        /// The command name for XcelMedian, specifically "median"
         /// </summary>
         public override string CommandName
         {
             get { return "median"; }
         }
 
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public XcelMedian() { }
-
         #region XcelCommand Members
 
         /// <summary>
-        /// Performs the calculation to determine the median
+        /// Performs median value calculation on input argument list.
         /// </summary>
         public override void Execute()
         {
@@ -58,12 +59,15 @@ namespace TerryAndMike.Xcel
         #endregion
 
         /// <summary>
-        /// Returns a string representation of the median
+        /// Returns median value of arguement list if Execute()ed, otherwise empty string.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>String representation of output value</returns>
         public override string ToString()
         {
-            return _median.Value.ToString("0.###");
+            if (_median.HasValue)
+                return _median.Value.ToString("0.###");
+            else
+                return string.Empty;
         }
     }
 }
