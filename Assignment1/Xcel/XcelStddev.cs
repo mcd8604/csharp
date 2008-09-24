@@ -23,11 +23,6 @@ namespace TerryAndMike.Xcel
             get { return "stdev"; }
         }
 
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public XcelStdDev() { }
-
         #region XcelCommand Members
 
         /// <summary>
@@ -62,7 +57,12 @@ namespace TerryAndMike.Xcel
         /// <returns></returns>
         public override string ToString()
         {
-            return _stdDev.Value.ToString("0.###");
+            if (_stdDev.HasValue)
+            {
+                return _stdDev.Value.ToString("0.###");
+            }
+            else
+                return string.Empty;
         }
     }
 }
