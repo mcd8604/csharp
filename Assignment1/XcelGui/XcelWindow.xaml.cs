@@ -19,13 +19,16 @@ namespace TerryAndMike.XcelGui
     /// </summary>
     public partial class XcelWindow : Window
     {
-        private static List<XcelWindow> windows = new List<XcelWindow>();
+        private static List<XcelWindow> windowList = new List<XcelWindow>();
 
+        /// <summary>
+        /// Initialize GUI and add this Window to the window list.
+        /// </summary>
         public XcelWindow()
         {
             InitializeComponent();
             LoadXcelCommands();
-            windows.Add(this);
+            windowList.Add(this);
             dataTextBox.Focus();
         }
 
@@ -69,7 +72,7 @@ namespace TerryAndMike.XcelGui
                 cmd.Execute();
 
                 //update all XcelWindows with output
-                foreach (XcelWindow w in windows)
+                foreach (XcelWindow w in windowList)
                     w.outputTextBox.Text = cmd.ToString();
             }
         }
@@ -82,7 +85,7 @@ namespace TerryAndMike.XcelGui
 
         private void dataTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            foreach (XcelWindow w in windows)
+            foreach (XcelWindow w in windowList)
             {
                 if (w != this)
                 {
@@ -97,7 +100,7 @@ namespace TerryAndMike.XcelGui
         private void commandComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //update each window's dropdown to change selection
-            foreach (XcelWindow w in windows)
+            foreach (XcelWindow w in windowList)
             {
                 w.commandComboBox.SelectedIndex = commandComboBox.SelectedIndex;
             }
