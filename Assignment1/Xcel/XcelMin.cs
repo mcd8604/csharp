@@ -23,11 +23,6 @@ namespace TerryAndMike.Xcel
             get { return "min"; }
         }
 
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public XcelMin() { }
-
         #region XcelCommand Members
 
         /// <summary>
