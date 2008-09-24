@@ -23,11 +23,6 @@ namespace TerryAndMike.Xcel
             get { return "sum"; }
         }
 
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public XcelSum() { }
-
         #region XcelCommand Members
 
         /// <summary>
