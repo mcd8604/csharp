@@ -23,11 +23,6 @@ namespace TerryAndMike.Xcel
             get { return "up"; }
         }
 
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public XcelUp() { }
-
         #region XcelCommand Members
 
         /// <summary>
