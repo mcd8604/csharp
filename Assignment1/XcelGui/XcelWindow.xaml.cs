@@ -40,6 +40,7 @@ namespace TerryAndMike.XcelGui
         }
 
         private void Calculate() {
+            //split input from datatextbox and parse into an integer List
             string[] stringArgs = dataTextBox.Text.Split(new char[]{' '});
             List<int> args = new List<int>(stringArgs.Length);
             
@@ -56,11 +57,18 @@ namespace TerryAndMike.XcelGui
                 args.Add(iarg);
             }
 
+
             if (args.Count > 0)
             {
-                Xcel.XcelCommand cmd = Xcel.XcelCommandFactory.GetCommand(commandComboBox.SelectedItem.ToString(), args.ToArray());
+                //retrieve command object for the command selected in the dropdown
+                Xcel.XcelCommand cmd = Xcel.XcelCommandFactory.GetCommand(
+                    commandComboBox.SelectedItem.ToString(), args.ToArray());
+                
+                //load in arguements and execute
                 cmd.Args = args.ToArray();
                 cmd.Execute();
+
+                //update all XcelWindows with output
                 foreach (XcelWindow w in windows)
                     w.outputTextBox.Text = cmd.ToString();
             }
