@@ -16,11 +16,20 @@ namespace TerryAndMike.Sudoku
 
         private List<IObserver> observers;
 
-        private int dimension;
+        private readonly int dimension;
 
         private int[] shapes;
 
         private Cell[] cells;
+
+        #endregion
+
+        #region Properties
+
+        public int Dimension
+        {
+            get { return dimension; }
+        }
 
         #endregion
 
