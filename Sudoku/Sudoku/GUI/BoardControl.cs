@@ -6,13 +6,14 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using IObserver = Axel.Sudoku.IObserver;
 
 namespace TerryAndMike.Sudoku.GUI
 {
     /// <summary>
     /// A Board which contains 9x9 Cell objects with colors indicating the shapes. 
     /// </summary>
-    public partial class BoardControl : UserControl
+    public partial class BoardControl : UserControl, IObserver
     {        
         private int labelSize;
 
@@ -53,6 +54,21 @@ namespace TerryAndMike.Sudoku.GUI
             this.Width = this.cells[this.cells.Length - 1].Bounds.Right;
             this.Height = this.cells[this.cells.Length - 1].Bounds.Bottom;
         }
+
+        #region IObserver implementation
+
+        /// <summary> a digit is entered into a cell. </summary>
+        public void Set(int cell, int digit) {
+            throw new NotImplementedException();
+        }
+
+        /// <summary> new list of candidates for a cell. </summary>
+        public void Possible(int cell, System.Collections.BitArray digits) {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+
 
         #region Event Management
 
