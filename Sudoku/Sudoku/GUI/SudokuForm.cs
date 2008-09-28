@@ -16,10 +16,10 @@ namespace TerryAndMike.Sudoku.GUI
         /// <summary>
         /// Creates a new instance of SudokuForm
         /// </summary>
-        internal SudokuForm(int dimension)
+        internal SudokuForm(int dimension, int[] shapes)
         {
             InitializeComponent();
-            InitializeBoard(dimension);
+            InitializeBoard(dimension, shapes);
         }
 
         /// <summary>
@@ -27,13 +27,14 @@ namespace TerryAndMike.Sudoku.GUI
         /// and then produces a fixed-size window containing a Board.
         /// </summary>
         /// <param name="board">The Board</param>
-        private void InitializeBoard(int dimension)
+        private void InitializeBoard(int dimension, int[] shapes)
         {
             Label fontLabel = new Label();
             int labelSize = (int)fontLabel.Font.GetHeight();
-            this.Width = dimension * dimension * labelSize;
-            this.Height = dimension * dimension * labelSize;
-            this.boardControl = new BoardControl(dimension, labelSize);
+            this.boardControl = new BoardControl(dimension, shapes, labelSize);
+            this.Controls.Add(boardControl);
         }
+
+
     }
 }

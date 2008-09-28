@@ -19,9 +19,9 @@ namespace TerryAndMike.Sudoku.GUI
     /// </summary>
     public partial class CellControl : UserControl
     {
-        private int labelSize;
+        private readonly int labelSize;
 
-        private Label[] candidateLabels = new Label[9];
+        private readonly Label[] candidateLabels = new Label[9];
 
         private readonly int index;
 
@@ -31,9 +31,10 @@ namespace TerryAndMike.Sudoku.GUI
         /// Creates a new instance of CellControl
         /// </summary>
         /// <param name="candidateLabelSize"></param>
-        public CellControl(int candidateLabelSize)
+        public CellControl(int candidateLabelSize, int dimension, int index)
         {
             this.labelSize = candidateLabelSize;
+            this.index = index;
             InitializeComponent();
 
             /// Sets the size and position of candidate labels
@@ -41,10 +42,13 @@ namespace TerryAndMike.Sudoku.GUI
             {
                 Label l = new Label();
                 l.AutoSize = true;
-                l.Location = new System.Drawing.Point(3, 3);
+
+                // Square root of dimension equals number of labels per row and column
+                l.Location = new System.Drawing.Point((i % (int)Math.Sqrt(dimension)) * candidateLabelSize, (i / (int)Math.Sqrt(dimension)) * candidateLabelSize);
+                
                 l.Margin = new System.Windows.Forms.Padding(0);
                 l.Name = "label" + (i + 1);
-                l.Size = new System.Drawing.Size(13, 13);
+                l.Size = new System.Drawing.Size(candidateLabelSize, candidateLabelSize);
                 l.Tag = (i + 1);
                 l.Text = (i + 1).ToString();
                 l.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -52,6 +56,9 @@ namespace TerryAndMike.Sudoku.GUI
                 this.Controls.Add(l);
                 this.candidateLabels[i] = l;
             }
+
+            this.Width = this.candidateLabels[this.candidateLabels.Length - 1].Bounds.Right;
+            this.Height = this.candidateLabels[this.candidateLabels.Length - 1].Bounds.Bottom;
         }
 
         #region Event Management
@@ -72,6 +79,7 @@ namespace TerryAndMike.Sudoku.GUI
                 this.digit = (int)sLabel.Tag;
                 
                 // TODO:
+                Console.WriteLine("Index: " + index + ", Digit: " + digit);
 
                 if (CellSet != null && digit != null)
                     CellSet(this.index, this.digit.Value);

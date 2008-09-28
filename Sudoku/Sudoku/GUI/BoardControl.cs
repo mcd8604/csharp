@@ -16,32 +16,40 @@ namespace TerryAndMike.Sudoku.GUI
     {        
         private int labelSize;
 
-        private CellControl[] cells = new CellControl[81];
+        private readonly CellControl[] cells;
+
+        private readonly Color[] shapeColors;
 
         /// <summary>
         /// Creates a new instance of Board.
         /// </summary>
-        internal BoardControl(int dimension, int labelSize)
+        internal BoardControl(int dimension, int[] shapes, int labelSize)
         {
-            this.labelSize = labelSize;
+            InitializeComponent();
 
-            this.Width = labelSize * 3 * dimension;
-            this.Height = labelSize * 3 * dimension;
-
-            //Create cells based on the size of one of the small, square labels. 
-            for (int row = 0; row < dimension; ++row)
+            shapeColors = new Color[dimension];
+            for (int i = 1; i <= shapeColors.Length; ++i)
             {
-                for (int column = 0; column < dimension; ++column)
-                {
-                    CellControl c = new CellControl(this.labelSize);
-                    c.Size = new System.Drawing.Size(labelSize, labelSize);
-                    c.Location = new System.Drawing.Point(row * labelSize, column * labelSize);
-                    this.Controls.Add(c);
-                    this.cells[(row * dimension) + column] = c;
-                }
+                shapeColors[i - 1] = Color.FromArgb((255 * i) % 255, (255 - 255 * i) % 255, 255 / i);
             }
 
-            InitializeComponent();
+            this.labelSize = labelSize;
+
+            cells = new CellControl[dimension * dimension];
+
+            //Create cells based on the size of one of the small, square labels. 
+            for (int i = 0; i < cells.Length; ++i)
+            {
+                CellControl c = new CellControl(this.labelSize, dimension, i);
+                c.Location = new System.Drawing.Point((i % dimension) * c.Width, (i / dimension) * c.Height);
+                c.BackColor = shapeColors[shapes[i] - 1];
+                c.BorderStyle = BorderStyle.Fixed3D;
+                this.Controls.Add(c);
+                this.cells[i] = c;
+            }
+
+            this.Width = this.cells[this.cells.Length - 1].Bounds.Right;
+            this.Height = this.cells[this.cells.Length - 1].Bounds.Bottom;
         }
     }
 }

@@ -34,7 +34,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(292, 266);
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(104, 0);
             this.Name = "SudokuForm";
             this.Text = "Sudoku";
             this.ResumeLayout(false);
@@ -42,6 +44,7 @@
         }
 
         #endregion
+
     }
 }
 

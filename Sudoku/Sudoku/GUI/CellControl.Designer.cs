@@ -30,17 +30,21 @@
         {
             this.SuspendLayout();
             // 
-            // Cell
+            // CellControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Name = "Cell";
-            this.Size = new System.Drawing.Size(52, 52);
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.Margin = new System.Windows.Forms.Padding(0);
+            this.Name = "CellControl";
+            this.Size = new System.Drawing.Size(0, 0);
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
 
     }
 }
