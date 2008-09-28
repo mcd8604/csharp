@@ -11,17 +11,15 @@ namespace TerryAndMike.Sudoku.GUI
 {
     public partial class SudokuForm : Form
     {
-        private Font font;
-
         private BoardControl boardControl;
 
         /// <summary>
         /// Creates a new instance of SudokuForm
         /// </summary>
-        internal SudokuForm(Board board)
+        internal SudokuForm(int dimension)
         {
             InitializeComponent();
-            InitializeBoard(board);
+            InitializeBoard(dimension);
         }
 
         /// <summary>
@@ -29,14 +27,13 @@ namespace TerryAndMike.Sudoku.GUI
         /// and then produces a fixed-size window containing a Board.
         /// </summary>
         /// <param name="board">The Board</param>
-        private void InitializeBoard(Board board)
+        private void InitializeBoard(int dimension)
         {
-            this.font = new Font("Arial", 8);
-            //TODO: get correct label size, 8 is arbitrary
-            int labelSize = 8;
-            this.Width = 81 * labelSize;
-            this.Height = 81 * labelSize;
-            this.boardControl = new BoardControl(board, labelSize);
+            Label fontLabel = new Label();
+            int labelSize = (int)fontLabel.Font.GetHeight();
+            this.Width = dimension * dimension * labelSize;
+            this.Height = dimension * dimension * labelSize;
+            this.boardControl = new BoardControl(dimension, labelSize);
         }
     }
 }

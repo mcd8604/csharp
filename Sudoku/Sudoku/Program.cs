@@ -64,7 +64,7 @@ namespace TerryAndMike.Sudoku
             //Set up and display a SudokuForm
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new GUI.SudokuForm(myBoard));
+            Application.Run(new GUI.SudokuForm(myBoard.Dimension));
         }
     }
 }

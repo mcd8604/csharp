@@ -6,9 +6,13 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Collections;
 
 namespace TerryAndMike.Sudoku.GUI
 {
+    delegate void CellSetHandler(int cellIndex, int digit);
+    delegate void CellClearHandler(int cellIndex);
+
     /// <summary>
     /// A Cell which contains either one or nine labels with large or small digits. 
     /// Geometry based on the construction parameter: the size of one of the small, square labels. 
@@ -17,7 +21,11 @@ namespace TerryAndMike.Sudoku.GUI
     {
         private int labelSize;
 
-        private Label[] labels = new Label[9];
+        private Label[] candidateLabels = new Label[9];
+
+        private readonly int index;
+
+        private int? digit;
 
         /// <summary>
         /// Creates a new instance of CellControl
@@ -29,7 +37,7 @@ namespace TerryAndMike.Sudoku.GUI
             InitializeComponent();
 
             /// Sets the size and position of candidate labels
-            for (int i = 0; i < labels.Length; ++i)
+            for (int i = 0; i < candidateLabels.Length; ++i)
             {
                 Label l = new Label();
                 l.AutoSize = true;
@@ -42,11 +50,14 @@ namespace TerryAndMike.Sudoku.GUI
                 l.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
                 l.MouseClick += new System.Windows.Forms.MouseEventHandler(this.candidate_MouseClick);
                 this.Controls.Add(l);
-                this.labels[i] = l;
+                this.candidateLabels[i] = l;
             }
         }
 
         #region Event Management
+
+        event CellSetHandler CellSet;
+        event CellClearHandler CellClear;
 
         /// <summary>
         /// Selecting a candidate enters it into a big label in its cell and hides it from its context (row, column, and box). 
@@ -58,8 +69,12 @@ namespace TerryAndMike.Sudoku.GUI
             Label sLabel = sender as Label;
             if (sLabel != null)
             {
-                int cVal = (int)sLabel.Tag;
+                this.digit = (int)sLabel.Tag;
+                
                 // TODO:
+
+                if (CellSet != null && digit != null)
+                    CellSet(this.index, this.digit.Value);
             }
         }
         
