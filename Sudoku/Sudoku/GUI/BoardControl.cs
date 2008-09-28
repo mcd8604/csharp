@@ -29,9 +29,20 @@ namespace TerryAndMike.Sudoku.GUI
             InitializeComponent();
 
             shapeColors = new Color[dimension];
-            for (int i = 1; i <= shapeColors.Length; ++i)
+            for (int i = 0; i < shapeColors.Length; ++i)
             {
-                shapeColors[i - 1] = Color.FromArgb((255 * i) % 255, (255 - 255 * i) % 255, 255 / i);
+                int r = (int)Math.Pow(3, i + 1) % 255;
+                int g = (int)Math.Pow(3, i + 3) % 255;
+                int b = (int)Math.Pow(3, i + 5) % 255;
+
+                if (r < 128)
+                    r += 128;
+                if (g < 128)
+                    g += 128;
+                if (b < 128)
+                    b += 128;
+
+                shapeColors[i] = Color.FromArgb(r, g, b);
             }
 
             this.labelSize = labelSize;
