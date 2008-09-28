@@ -69,13 +69,13 @@ namespace TerryAndMike.Sudoku.GUI
         #region IObserver implementation
 
         /// <summary> a digit is entered into a cell. </summary>
-        public void Set(int cell, int digit) {
-            throw new NotImplementedException();
+        public void Set(int cellIdx, int digit) {
+            cells[cellIdx].UpdateDigit(digit);
         }
 
         /// <summary> new list of candidates for a cell. </summary>
-        public void Possible(int cell, System.Collections.BitArray digits) {
-            throw new NotImplementedException();
+        public void Possible(int cellIdx, System.Collections.BitArray digits) {
+            cells[cellIdx].UpdateCandidates(digits);
         }
 
         #endregion

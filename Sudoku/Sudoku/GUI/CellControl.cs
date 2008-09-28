@@ -22,10 +22,9 @@ namespace TerryAndMike.Sudoku.GUI
         private readonly int labelSize;
 
         private readonly Label[] candidateLabels = new Label[9];
+        private readonly Label setLbl;
 
         private readonly int index;
-
-        private int? digit;
 
         /// <summary>
         /// Creates a new instance of CellControl
@@ -59,6 +58,21 @@ namespace TerryAndMike.Sudoku.GUI
 
             this.Width = this.candidateLabels[this.candidateLabels.Length - 1].Bounds.Right;
             this.Height = this.candidateLabels[this.candidateLabels.Length - 1].Bounds.Bottom;
+            
+            setLbl = new Label();
+            setLbl.AutoSize = false;
+            setLbl.Location = new System.Drawing.Point(0, 0);
+            setLbl.Margin = new System.Windows.Forms.Padding(0);
+            setLbl.Name = "set";
+            setLbl.Size = new System.Drawing.Size(Width, Height);
+            setLbl.Text = "";
+            setLbl.Font = new Font(setLbl.Font.Name, setLbl.Font.SizeInPoints + 4);
+            setLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            setLbl.MouseClick += new System.Windows.Forms.MouseEventHandler(candidate_MouseClick);
+            setLbl.Visible = false;
+            this.Controls.Add(setLbl);
+
+            
         }
 
         #region Event Management
@@ -76,18 +90,82 @@ namespace TerryAndMike.Sudoku.GUI
             Label sLabel = sender as Label;
             if (sLabel != null)
             {
-                this.digit = (int)sLabel.Tag;
-                
-                // TODO:
-                Console.WriteLine("Index: " + index + ", Digit: " + digit);
+                //if unsetting a cell    
+                if (sLabel == setLbl)
+                {
+                    CellCleared(this.index);
+                }
+                //else if setting a cell
+                else
+                {
+                    int digit;
+                    digit = (int)sLabel.Tag;
 
-                if (CellSet != null && digit != null)
-                    CellSet(this.index, this.digit.Value);
+                    // TODO:
+                    Console.WriteLine("Index: " + index + ", Digit: " + digit);
+
+                    if (CellSet != null)
+                        CellSet(this.index, digit);
+                }
             }
         }
         
         // TODO: Selecting a big digit will remove it and redisplay the appropriate candidates in its context. 
 
         #endregion 
+
+        #region Observer cell handlers
+
+        public void UpdateDigit( int value ) 
+        {
+#if DEBUG
+            Console.WriteLine("Set " + index + ": " + value);
+#endif
+
+            foreach (Label l in candidateLabels)
+            {
+                l.Visible = false;
+            }
+
+            setLbl.Text = value.ToString();
+            setLbl.Tag = value;
+            setLbl.Visible = true;
+
+        }
+
+        public void UpdateCandidates(BitArray candidates)
+        {
+            if (candidates.Length != candidateLabels.Length)
+            {
+                throw new ArgumentException("Invalid candidates length.");
+            }
+            
+            //if cell currently set, clear it
+            setLbl.Visible = false;
+#if DEBUG
+
+            StringBuilder sb = new StringBuilder("Possible " + index + ": ");
+#endif
+
+            for (int i = 0; i < candidates.Length; ++i)
+            {
+                if (candidates[i])
+                {
+                    candidateLabels[i].Visible = true;
+#if DEBUG
+                    sb.Append(i + 1 + " ");
+#endif
+                }
+                else
+                {
+                    candidateLabels[i].Visible = false;
+                }
+            }
+#if DEBUG
+            Console.WriteLine(sb);
+#endif
+        }
+
+        #endregion
     }
 }

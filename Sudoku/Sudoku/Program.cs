@@ -47,25 +47,12 @@ namespace TerryAndMike.Sudoku
             inputBuf.CopyTo(0, boardLines, 0, boardLines.Length);
 
             Board myBoard = new Board(boardLines);
-            Observer myObserver = new Observer();
-            myBoard.AddObserver(myObserver);
 
-
-
-            //Read Set() Parameters and send them to the Board.
-            for (int i = blankIndex + 1; i < inputBuf.Count; ++i)
-            {
-                string[] line = inputBuf[i].Split(new char[] { ' ' });
-                int cell = int.Parse(line[0]);
-                int digit = int.Parse(line[1]);
-                myBoard.Set(cell, digit);
-            }
-
-            //Set up and display a SudokuForm
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
             GUI.SudokuForm sForm = new GUI.SudokuForm(myBoard.Dimension, myBoard.Shapes);
+            
             sForm.CellSet += delegate(int cellIndex, int digit)
             {
                 myBoard.Set(cellIndex, digit);
@@ -77,7 +64,19 @@ namespace TerryAndMike.Sudoku
 
             myBoard.AddObserver(sForm.Observer);
 
+            //Read Set() Parameters and send them to the Board.
+            for (int i = blankIndex + 1; i < inputBuf.Count; ++i)
+            {
+                string[] line = inputBuf[i].Split(new char[] { ' ' });
+                int cell = int.Parse(line[0]);
+                int digit = int.Parse(line[1]);
+                myBoard.Set(cell, digit);
+            }
+
+
+            //Set up and display a SudokuForm
             Application.Run(sForm);
+            sForm.Activate();
         }
     }
 }
