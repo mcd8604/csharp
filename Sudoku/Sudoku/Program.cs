@@ -74,6 +74,9 @@ namespace TerryAndMike.Sudoku
             {
                 throw new NotImplementedException();
             };
+
+            myBoard.AddObserver(sForm.Observer);
+
             Application.Run(sForm);
         }
     }

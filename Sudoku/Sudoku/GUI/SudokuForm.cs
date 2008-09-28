@@ -13,6 +13,11 @@ namespace TerryAndMike.Sudoku.GUI
     {
         private BoardControl boardControl;
 
+        public Axel.Sudoku.IObserver Observer
+        {
+            get { return boardControl; }
+        }
+
         /// <summary>
         /// Creates a new instance of SudokuForm
         /// </summary>
