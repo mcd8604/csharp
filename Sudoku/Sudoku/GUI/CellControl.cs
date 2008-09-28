@@ -10,8 +10,8 @@ using System.Collections;
 
 namespace TerryAndMike.Sudoku.GUI
 {
-    delegate void CellSetHandler(int cellIndex, int digit);
-    delegate void CellClearHandler(int cellIndex);
+    public delegate void SetEventHandler(int cellIndex, int digit);
+    public delegate void ClearEventHandler(int cellIndex);
 
     /// <summary>
     /// A Cell which contains either one or nine labels with large or small digits. 
@@ -63,8 +63,8 @@ namespace TerryAndMike.Sudoku.GUI
 
         #region Event Management
 
-        event CellSetHandler CellSet;
-        event CellClearHandler CellClear;
+        public event SetEventHandler CellSet;
+        public event ClearEventHandler CellCleared;
 
         /// <summary>
         /// Selecting a candidate enters it into a big label in its cell and hides it from its context (row, column, and box). 

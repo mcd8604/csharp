@@ -44,6 +44,8 @@ namespace TerryAndMike.Sudoku.GUI
                 c.Location = new System.Drawing.Point((i % dimension) * c.Width, (i / dimension) * c.Height);
                 c.BackColor = shapeColors[shapes[i] - 1];
                 c.BorderStyle = BorderStyle.Fixed3D;
+                c.CellSet += new SetEventHandler(c_CellSet);
+                c.CellCleared += new ClearEventHandler(c_CellCleared);
                 this.Controls.Add(c);
                 this.cells[i] = c;
             }
@@ -51,5 +53,24 @@ namespace TerryAndMike.Sudoku.GUI
             this.Width = this.cells[this.cells.Length - 1].Bounds.Right;
             this.Height = this.cells[this.cells.Length - 1].Bounds.Bottom;
         }
+
+        #region Event Management
+
+        public event SetEventHandler CellSet;
+        public event ClearEventHandler CellCleared;
+
+        private void c_CellSet(int cellIndex, int digit)
+        {
+            if (CellSet != null)
+                CellSet(cellIndex, digit);
+        }
+
+        private void c_CellCleared(int cellIndex)
+        {
+            if (CellCleared != null)
+                CellCleared(cellIndex);
+        }
+
+        #endregion
     }
 }

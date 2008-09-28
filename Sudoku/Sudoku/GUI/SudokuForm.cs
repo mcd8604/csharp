@@ -32,9 +32,29 @@ namespace TerryAndMike.Sudoku.GUI
             Label fontLabel = new Label();
             int labelSize = (int)fontLabel.Font.GetHeight();
             this.boardControl = new BoardControl(dimension, shapes, labelSize);
+            this.boardControl.CellSet += new SetEventHandler(boardControl_CellSet);
+            this.boardControl.CellCleared += new ClearEventHandler(boardControl_CellCleared);
             this.Controls.Add(boardControl);
         }
 
+        #region Event Management
+
+        public event SetEventHandler CellSet;
+        public event ClearEventHandler CellCleared;
+
+        private void boardControl_CellSet(int cellIndex, int digit)
+        {
+            if (CellSet != null)
+                CellSet(cellIndex, digit);
+        }
+
+        private void boardControl_CellCleared(int cellIndex)
+        {
+            if (CellCleared != null)
+                CellCleared(cellIndex);
+        }
+
+        #endregion
 
     }
 }
