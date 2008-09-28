@@ -31,6 +31,11 @@ namespace TerryAndMike.Sudoku
             get { return dimension; }
         }
 
+        public int[] Shapes
+        {
+            get { return shapes; }
+        }
+
         #endregion
 
         /// <summary>
