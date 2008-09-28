@@ -72,19 +72,19 @@ namespace TerryAndMike.Sudoku.GUI
 
         #region Event Management
 
-        public event SetEventHandler CellSet;
-        public event ClearEventHandler CellCleared;
+        public event SetEventHandler BoardCellSet;
+        public event ClearEventHandler BoardCellCleared;
 
         private void c_CellSet(int cellIndex, int digit)
         {
-            if (CellSet != null)
-                CellSet(cellIndex, digit);
+            if (BoardCellSet != null)
+                BoardCellSet(cellIndex, digit);
         }
 
         private void c_CellCleared(int cellIndex)
         {
-            if (CellCleared != null)
-                CellCleared(cellIndex);
+            if (BoardCellCleared != null)
+                BoardCellCleared(cellIndex);
         }
 
         #endregion
