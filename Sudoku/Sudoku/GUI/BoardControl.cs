@@ -53,9 +53,14 @@ namespace TerryAndMike.Sudoku.GUI
             for (int i = 0; i < cells.Length; ++i)
             {
                 CellControl c = new CellControl(this.labelSize, dimension, i);
+
+                c.Width = (int)Math.Sqrt(dimension) * labelSize;
+                c.Height = (int)Math.Sqrt(dimension) * labelSize;
+                c.Margin = new Padding(0);
+                c.Padding = new Padding(0);
                 c.Location = new System.Drawing.Point((i % dimension) * c.Width, (i / dimension) * c.Height);
                 c.BackColor = shapeColors[shapes[i] - 1];
-                c.BorderStyle = BorderStyle.Fixed3D;
+                c.BorderStyle = BorderStyle.FixedSingle;
                 c.CellSet += new SetEventHandler(c_CellSet);
                 c.CellCleared += new ClearEventHandler(c_CellCleared);
                 this.Controls.Add(c);

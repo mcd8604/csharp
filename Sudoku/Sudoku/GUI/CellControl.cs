@@ -21,7 +21,7 @@ namespace TerryAndMike.Sudoku.GUI
     {
         private readonly int labelSize;
 
-        private readonly Label[] candidateLabels = new Label[9];
+        private readonly Label[] candidateLabels;
         private readonly Label setLbl;
 
         private readonly int index;
@@ -33,7 +33,9 @@ namespace TerryAndMike.Sudoku.GUI
         public CellControl(int candidateLabelSize, int dimension, int index)
         {
             this.labelSize = candidateLabelSize;
+            candidateLabels = new Label[dimension];
             this.index = index;
+
             InitializeComponent();
 
             /// Sets the size and position of candidate labels
@@ -44,8 +46,8 @@ namespace TerryAndMike.Sudoku.GUI
 
                 // Square root of dimension equals number of labels per row and column
                 l.Location = new System.Drawing.Point((i % (int)Math.Sqrt(dimension)) * candidateLabelSize, (i / (int)Math.Sqrt(dimension)) * candidateLabelSize);
-                
-                l.Margin = new System.Windows.Forms.Padding(0);
+
+                l.Margin = new Padding(0);
                 l.Name = "label" + (i + 1);
                 l.Size = new System.Drawing.Size(candidateLabelSize, candidateLabelSize);
                 l.Tag = (i + 1);
@@ -56,9 +58,6 @@ namespace TerryAndMike.Sudoku.GUI
                 this.candidateLabels[i] = l;
             }
 
-            this.Width = this.candidateLabels[this.candidateLabels.Length - 1].Bounds.Right;
-            this.Height = this.candidateLabels[this.candidateLabels.Length - 1].Bounds.Bottom;
-            
             setLbl = new Label();
             setLbl.AutoSize = false;
             setLbl.Location = new System.Drawing.Point(0, 0);
@@ -66,7 +65,9 @@ namespace TerryAndMike.Sudoku.GUI
             setLbl.Name = "set";
             setLbl.Size = new System.Drawing.Size(Width, Height);
             setLbl.Text = "";
-            setLbl.Font = new Font(setLbl.Font.Name, setLbl.Font.SizeInPoints + 4);
+            Label label0 = this.candidateLabels[0];
+            float ratio = label0.Font.SizeInPoints / label0.Font.Height;
+            setLbl.Font = new Font(label0.Font.FontFamily, setLbl.Height * ratio);
             setLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             setLbl.MouseClick += new System.Windows.Forms.MouseEventHandler(candidate_MouseClick);
             setLbl.Visible = false;

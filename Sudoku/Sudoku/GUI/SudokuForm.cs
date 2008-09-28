@@ -35,7 +35,7 @@ namespace TerryAndMike.Sudoku.GUI
         private void InitializeBoard(int dimension, int[] shapes)
         {
             Label fontLabel = new Label();
-            int labelSize = (int)fontLabel.Font.GetHeight();
+            int labelSize = fontLabel.Font.Height;
             this.boardControl = new BoardControl(dimension, shapes, labelSize);
             this.boardControl.BoardCellSet += new SetEventHandler(boardControl_CellSet);
             this.boardControl.BoardCellCleared += new ClearEventHandler(boardControl_CellCleared);
