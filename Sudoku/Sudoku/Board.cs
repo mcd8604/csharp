@@ -26,11 +26,17 @@ namespace TerryAndMike.Sudoku
 
         #region Properties
 
+        /// <summary>
+        /// Return dimmension of a single side of the board.
+        /// </summary>
         public int Dimension
         {
             get { return dimension; }
         }
 
+        /// <summary>
+        /// Return a one-dimmensional array of shapeIds (index origin 1) indexed my cellId (origin 0)
+        /// </summary>
         public int[] Shapes
         {
             get { return shapes; }
@@ -46,17 +52,23 @@ namespace TerryAndMike.Sudoku
         {
             observers = new List<IObserver>();
             
-            // Process board data
+
+            //Set dimmension of the board as height of input matrix
             dimension = boardData.Length;
 
-                //assume all board rows are of equal length
-            shapes = new int[dimension * boardData[0].Length];
+            //For now assume square board, will check below
+            shapes = new int[dimension * dimension];
 
-            for (int i = 0; i < dimension; ++i)
+
+            for (int row = 0; row < dimension; ++row)
             {
-                for (int k = 0; k < boardData[i].Length; ++k)
+                for (int col = 0; col < boardData[row].Length; ++col)
                 {
-                    shapes[(i * dimension) + k] = int.Parse(boardData[i][k].ToString());
+                    //Throw exception for non-square boards, not supported
+                    if (dimension != boardData[row].Length)
+                        throw new ArgumentException("Non-square boards not supported.");
+
+                    shapes[(row * dimension) + col] = int.Parse(boardData[row][col].ToString());
                 }
             }
 
