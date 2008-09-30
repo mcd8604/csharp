@@ -11,6 +11,8 @@ namespace Axel.Sudoku
         void RemoveObserver( IObserver observer );
         /// <summary> set a digit into a cell. </summary>
         void Set( int cell, int digit );
+        /// <summary>Clear a digit which has previously been Set into a cell.</summary>
+        void Clear( int cell );
         /// <summary> indices in same row. </summary>
         IEnumerable Row( int cell );
         /// <summary> indices in same column. </summary>

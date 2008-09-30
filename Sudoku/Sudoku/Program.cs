@@ -57,10 +57,12 @@ namespace TerryAndMike.Sudoku
             {
                 myBoard.Set(cellIndex, digit);
             };
-            sForm.CellCleared += delegate(int cellIndex)
+            /*sForm.CellCleared += delegate(int cellIndex)
             {
                 throw new NotImplementedException();
-            };
+            };*/
+
+            sForm.CellCleared += (cellIndex => myBoard.Clear(cellIndex));
 
             myBoard.AddObserver(sForm.Observer);
 

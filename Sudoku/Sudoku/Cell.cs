@@ -51,9 +51,9 @@ namespace TerryAndMike.Sudoku
         /// <summary>
         /// Create a new cell with all candidates valid.
         /// </summary>
-        public Cell()
+        public Cell(int dimension)
         {
-            candidates = new BitArray(9, true);
+            candidates = new BitArray(dimension, true);
         }
 
         /// <summary>
@@ -74,12 +74,33 @@ namespace TerryAndMike.Sudoku
         }
 
         /// <summary>
+        /// Clears a digit if it has been set, resets all candidates to true
+        /// </summary>
+        public void Clear()
+        {
+            if (this.digit.HasValue)
+            {
+                this.digit = null;
+                candidates.SetAll(true);
+            }
+        }
+
+        /// <summary>
         /// Removes <code>digit</code> from the candidate set.
         /// </summary>
         /// <param name="digit">The digit to remove, [1,9]</param>
         public void RemoveCandidate(int digit)
         {
             candidates.Set(digit - 1, false);
+        }
+
+        /// <summary>
+        /// Adds <code>digit</code> to the candidate set.
+        /// </summary>
+        /// <param name="digit">The digit to add, [1,9]</param>
+        public void AddCandidate(int digit)
+        {
+            candidates.Set(digit - 1, true);
         }
     }
 }

@@ -75,7 +75,7 @@ namespace TerryAndMike.Sudoku
             // Create each cell
             cells = new Cell[dimension * dimension];
             for (int i = 0; i < cells.Length; ++i)
-                cells[i] = new Cell();
+                cells[i] = new Cell(dimension);
 
         }
 
@@ -125,6 +125,41 @@ namespace TerryAndMike.Sudoku
                         }
                     }
                 }
+            }
+        }
+
+        /// <summary>
+        /// Clear a digit from a cell that has been set. 
+        /// Send possible messages to cells within context.
+        /// </summary>
+        /// <param name="cell">The index of the cell to clear</param>
+        public void Clear(int cell)
+        {
+            int clearedDigit = cells[cell].Digit;
+            cells[cell].Clear();
+
+            //recover candidates
+            foreach (int i in Context(cell))
+            {
+                if (cells[i].Digit > 0)
+                {
+                    cells[cell].RemoveCandidate(cells[i].Digit);
+                }
+
+                cells[i].AddCandidate(clearedDigit);
+            }
+
+            foreach (IObserver o in observers)
+            {
+                foreach (int i in Context(cell))
+                {
+                    //only notify not already set
+                    if (!cells[i].IsSet)
+                    {
+                        o.Possible(i, cells[i].Candidates);
+                    }
+                }
+                o.Possible( cell, cells[cell].Candidates );
             }
         }
 
