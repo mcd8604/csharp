@@ -146,7 +146,19 @@ namespace TerryAndMike.Sudoku
                     cells[cell].RemoveCandidate(cells[i].Digit);
                 }
 
-                cells[i].AddCandidate(clearedDigit);
+                // check if clearedDigit is in context of 'i'
+                bool inContext = false;
+                foreach (int k in Context(i))
+                {
+                    if (cells[k].Digit == clearedDigit)
+                    {
+                        inContext = true;
+                        break;
+                    }
+                }
+
+                if(!inContext) 
+                    cells[i].AddCandidate(clearedDigit);
             }
 
             foreach (IObserver o in observers)
