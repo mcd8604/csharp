@@ -38,6 +38,8 @@ As a third note, the comment "BUG: does not happen on arrow key" for the box_Key
 
 2.  Assignment 3 Bugs
 
+In your solution to the previous week's assignment, there is a bug in that display on cloned windows does not update until focus enters them.  This is because when you calculate() you do not update each of the cloned windows.  We got around that bug by maintaining a static List<Window> of all the windows, and adding each window to the List in it's constructor.  Then, when one output textbox was updated we iterated through the List of windows to update each one (same with combobox selection).  You could implement our solution, or simple check if the value has been changed on the Active event of the Window.
+
 
 Part B
 ======
