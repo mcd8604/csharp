@@ -19,31 +19,12 @@ namespace TerryAndMike.Sudoku.GUI
 
         private readonly CellControl[] cells;
 
-        private readonly Color[] shapeColors;
-
         /// <summary>
         /// Creates a new instance of Board.
         /// </summary>
         internal BoardControl(int dimension, int[] shapes, int labelSize)
         {
             InitializeComponent();
-
-            shapeColors = new Color[dimension];
-            for (int i = 0; i < shapeColors.Length; ++i)
-            {
-                int r = (int)Math.Pow(3, i + 1) % 255;
-                int g = (int)Math.Pow(3, i + 3) % 255;
-                int b = (int)Math.Pow(3, i + 5) % 255;
-
-                if (r < 128)
-                    r += 128;
-                if (g < 128)
-                    g += 128;
-                if (b < 128)
-                    b += 128;
-
-                shapeColors[i] = Color.FromArgb(r, g, b);
-            }
 
             this.labelSize = labelSize;
 
@@ -59,7 +40,7 @@ namespace TerryAndMike.Sudoku.GUI
                 c.Margin = new Padding(0);
                 c.Padding = new Padding(0);
                 c.Location = new System.Drawing.Point((i % dimension) * c.Width, (i / dimension) * c.Height);
-                c.BackColor = shapeColors[shapes[i] - 1];
+                c.BackColor = GetShapeColor(shapes[i] - 1);
                 c.BorderStyle = BorderStyle.FixedSingle;
                 c.CellSet += new SetEventHandler(c_CellSet);
                 c.CellCleared += new ClearEventHandler(c_CellCleared);
@@ -70,6 +51,26 @@ namespace TerryAndMike.Sudoku.GUI
             this.Width = this.cells[this.cells.Length - 1].Bounds.Right;
             this.Height = this.cells[this.cells.Length - 1].Bounds.Bottom;
         }
+
+        /// <summary>
+        /// Return a Color representing that shape, provided the shape's index.
+        /// </summary>
+        /// <param name="shapeId">Integer shape index, [0,dimension-1]</param>
+        private static Color GetShapeColor( int shapeId ) {
+            int r = (int)Math.Pow( 3, shapeId + 1 ) % 255;
+            int g = (int)Math.Pow( 3, shapeId + 3 ) % 255;
+            int b = (int)Math.Pow( 3, shapeId + 5 ) % 255;
+
+            if ( r < 128 )
+                r += 128;
+            if ( g < 128 )
+                g += 128;
+            if ( b < 128 )
+                b += 128;
+
+            return Color.FromArgb( r, g, b );
+        }
+
 
         #region IObserver implementation
 
