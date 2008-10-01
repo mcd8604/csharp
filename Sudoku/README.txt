@@ -47,7 +47,7 @@ We extended the IBoard interface to IClearableBoard and implementation to add th
 
 Part C
 ======
-We created a SudokuForm which holds
+We created a SudokuForm which holds a BoardControl and also calculates the size of the board and each CellControl. Events (SetEvent and ClearEvent) are used to route user interactions to the model.
 
 References:
 Design Patterns (Gamma) - book
