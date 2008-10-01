@@ -38,7 +38,7 @@ namespace TerryAndMike.Sudoku
         {
             observers = new List<IObserver>();
 
-            //Set dimmension of the board as height of input matrix
+            //Set dimension of the board as height of input matrix
             dimension = boardData.Length;
 
             //For now assume square board, will check below
@@ -92,7 +92,7 @@ namespace TerryAndMike.Sudoku
 
 #if (!ORIGINAL)
         /// <summary>
-        /// Return dimmension of a single side of the board.
+        /// Return dimension of a single side of the board.
         /// </summary>
         public int Dimension
         {
@@ -100,7 +100,7 @@ namespace TerryAndMike.Sudoku
         }
 
         /// <summary>
-        /// Return a one-dimmensional array of shapeIds (index origin 1) indexed by cellId (origin 0)
+        /// Return a one-dimensional array of shapeIds (index origin 1) indexed by cellId (origin 0)
         /// </summary>
         public int[] Shapes
         {
@@ -186,14 +186,14 @@ namespace TerryAndMike.Sudoku
         /// <remarks> Note: input cell is not included in output enumeration</remarks>
         public IEnumerable Shape(int cell)
         {
-            //assume dimmension == number of cells in each shape
+            //assume dimension == number of cells in each shape
             int[] shapeIndices = new int[dimension - 1];
             int shapeID = shapes[cell];
             
             int curIndex = -1;
 
             //iterate through board to find shapes, stopping when 
-            //'dimmension'-1 other cells in shape found or end of board reached
+            //'dimension'-1 other cells in shape found or end of board reached
             for(int i = 0; i < shapes.Length && curIndex < shapeIndices.Length; ++i)
             {
                 if (i != cell && shapes[i] == shapeID)

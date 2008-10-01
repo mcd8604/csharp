@@ -21,9 +21,9 @@ namespace Axel.Sudoku
         IEnumerable Context( int cell );
 
 #if (!ORIGINAL)
-        /// <summary> dimmension of a single side of the board. </summary>
+        /// <summary> dimension of a single side of the board. </summary>
         int Dimension { get; }
-        /// <summary> one-dimmensional array of shapeIds (index origin 1) indexed by cellId (origin 0). </summary>
+        /// <summary> one-dimensional array of shapeIds (index origin 1) indexed by cellId (origin 0). </summary>
         int[] Shapes { get; }
 
 #endif
