@@ -57,7 +57,7 @@ namespace TerryAndMike.Sudoku
             sForm.CellSet += ((cellIndex, digit) => myBoard.Set(cellIndex, digit));
             sForm.CellCleared += (cellIndex => myBoard.Clear(cellIndex));
 
-            myBoard.AddObserver(sForm.Observer);
+            myBoard.AddObserver(sForm.BoardObserver);
 
             //Read Set() Parameters and send them to the Board.
             for (int i = blankIndex + 1; i < inputBuf.Count; ++i)

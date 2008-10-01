@@ -11,7 +11,7 @@ using IObserver = Axel.Sudoku.IObserver;
 namespace TerryAndMike.Sudoku.GUI
 {
     /// <summary>
-    /// A Board which contains 9x9 Cell objects with colors indicating the shapes. 
+    /// A Board which contains (dimension)x(dimension) Cell objects with colors indicating the shapes. 
     /// </summary>
     public partial class BoardControl : UserControl, IObserver
     {        
@@ -89,7 +89,16 @@ namespace TerryAndMike.Sudoku.GUI
 
         #region Event Management
 
+        /// <summary>
+        /// Event queue for actions upon cell notification to board of digit selection.
+        /// </summary>
+        /// <remarks>A BoardControl's SudokuForm adds a handler to this queue.</remarks>
         public event SetEventHandler BoardCellSet;
+
+        /// <summary>
+        /// Event queue for actions upon cell notification to board of digit clear.
+        /// </summary>
+        /// <remarks>A BoardControl's SudokuForm adds a handler to this queue.</remarks>
         public event ClearEventHandler BoardCellCleared;
 
         private void c_CellSet(int cellIndex, int digit)

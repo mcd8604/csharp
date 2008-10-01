@@ -10,7 +10,19 @@ using System.Collections;
 
 namespace TerryAndMike.Sudoku.GUI
 {
+    /// <summary>
+    /// Delegate type for view to notify controller of a UI cell 'set' action.
+    /// </summary>
+    /// <remarks>View will not update until model notifies observers of 'set' action.</remarks>
+    /// <param name="cellIndex">Index for cell that has been set</param>
+    /// <param name="digit">Digit that cell has been set to</param>
     public delegate void SetEventHandler(int cellIndex, int digit);
+
+    /// <summary>
+    /// Delegate type for view to notify controller of a UI cell 'clear' (un-set) action.
+    /// </summary>
+    /// <remarks>View will not update until model notifies observers of 'possible' candidates for that cell.</remarks>
+    /// <param name="cellIndex">Index for cell that is to be un-set</param>
     public delegate void ClearEventHandler(int cellIndex);
 
     /// <summary>
@@ -29,7 +41,9 @@ namespace TerryAndMike.Sudoku.GUI
         /// <summary>
         /// Creates a new instance of CellControl
         /// </summary>
-        /// <param name="candidateLabelSize"></param>
+        /// <param name="candidateLabelSize">The size (in px) of a candidate digit label</param>
+        /// <param name="dimension">Dimmension of the board (cells on one side)</param>
+        /// <param name="index">Index of cell in board, to establish identity</param>
         public CellControl(int candidateLabelSize, int dimension, int index)
         {
             this.labelSize = candidateLabelSize;
@@ -38,24 +52,24 @@ namespace TerryAndMike.Sudoku.GUI
 
             InitializeComponent();
 
-            /// Sets the size and position of candidate labels
+            // Sets the size and position of candidate labels
             for (int i = 0; i < candidateLabels.Length; ++i)
             {
-                Label l = new Label();
-                l.AutoSize = true;
+                Label lbl = new Label();
+                lbl.AutoSize = true;
 
                 // Square root of dimension equals number of labels per row and column
-                l.Location = new System.Drawing.Point((i % (int)Math.Sqrt(dimension)) * candidateLabelSize, (i / (int)Math.Sqrt(dimension)) * candidateLabelSize);
+                lbl.Location = new System.Drawing.Point((i % (int)Math.Sqrt(dimension)) * candidateLabelSize, (i / (int)Math.Sqrt(dimension)) * candidateLabelSize);
 
-                l.Margin = new Padding(0);
-                l.Name = "label" + (i + 1);
-                l.Size = new System.Drawing.Size(candidateLabelSize, candidateLabelSize);
-                l.Tag = (i + 1);
-                l.Text = (i + 1).ToString();
-                l.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-                l.MouseClick += new System.Windows.Forms.MouseEventHandler(this.candidate_MouseClick);
-                this.Controls.Add(l);
-                this.candidateLabels[i] = l;
+                lbl.Margin = new Padding(0);
+                lbl.Name = "label" + (i + 1);
+                lbl.Size = new System.Drawing.Size(candidateLabelSize, candidateLabelSize);
+                lbl.Tag = (i + 1);
+                lbl.Text = (i + 1).ToString();
+                lbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+                lbl.MouseClick += new System.Windows.Forms.MouseEventHandler(this.candidate_MouseClick);
+                this.Controls.Add(lbl);
+                this.candidateLabels[i] = lbl;
             }
 
             setLbl = new Label();
@@ -78,7 +92,16 @@ namespace TerryAndMike.Sudoku.GUI
 
         #region Event Management
 
+        /// <summary>
+        /// Event queue for actions upon cell digit selection.
+        /// </summary>
+        /// <remarks>A CellControl's BoardControl adds a handler to this queue.</remarks>
         public event SetEventHandler CellSet;
+
+        /// <summary>
+        /// Event queue for actions upon cell digit clear.
+        /// </summary>
+        /// <remarks>A CellControl's BoardControl adds a handler to this queue.</remarks>
         public event ClearEventHandler CellCleared;
 
         /// <summary>
@@ -117,6 +140,10 @@ namespace TerryAndMike.Sudoku.GUI
 
         #region Observer cell handlers
 
+        /// <summary>
+        /// Updates UI to hide candidates and show selected digit.
+        /// </summary>
+        /// <param name="value">Digit that has been selected for that cell</param>
         public void UpdateDigit( int value ) 
         {
 #if DEBUG
@@ -134,7 +161,11 @@ namespace TerryAndMike.Sudoku.GUI
 
         }
 
-        public void UpdateCandidates(BitArray candidates)
+        /// <summary>
+        /// Updates UI to hide any selected digit and show candidate list per candidates parameter.
+        /// </summary>
+        /// <param name="candidates">List of possible candidates, where index 0 true represents 1 as a candidate</param>
+        public void UpdateCandidates( BitArray candidates )
         {
             if (candidates.Length != candidateLabels.Length)
             {
