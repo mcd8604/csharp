@@ -14,35 +14,21 @@ namespace TerryAndMike.Sudoku
     {
         #region Fields
 
+
+#if ORIGINAL
         private List<IObserver> observers;
-
-        private readonly int dimension;
-
+        private int dimension;
         private int[] shapes;
-
         private Cell[] cells;
+#else
+        protected List<IObserver> observers;
+        protected readonly int dimension;
+        protected readonly int[] shapes;
+        protected Cell[] cells;
+#endif
 
         #endregion
 
-        #region Properties
-
-        /// <summary>
-        /// Return dimmension of a single side of the board.
-        /// </summary>
-        public int Dimension
-        {
-            get { return dimension; }
-        }
-
-        /// <summary>
-        /// Return a one-dimmensional array of shapeIds (index origin 1) indexed my cellId (origin 0)
-        /// </summary>
-        public int[] Shapes
-        {
-            get { return shapes; }
-        }
-
-        #endregion
 
         /// <summary>
         /// Initializes the Sudoku board.
@@ -51,7 +37,6 @@ namespace TerryAndMike.Sudoku
         public Board(string[] boardData)
         {
             observers = new List<IObserver>();
-            
 
             //Set dimmension of the board as height of input matrix
             dimension = boardData.Length;
@@ -73,11 +58,23 @@ namespace TerryAndMike.Sudoku
             }
 
             // Create each cell
+#if ORIGINAL
             cells = new Cell[dimension * dimension];
             for (int i = 0; i < cells.Length; ++i)
                 cells[i] = new Cell(dimension);
+#else
+            InitializeCells();
+#endif
 
         }
+
+#if (!ORIGINAL)
+        protected virtual void InitializeCells() {
+            cells = new Cell[dimension * dimension];
+            for (int i = 0; i < cells.Length; ++i)
+                cells[i] = new Cell(dimension);
+        }
+#endif
 
         #region IBoard Members
 
@@ -93,6 +90,24 @@ namespace TerryAndMike.Sudoku
             observers.Remove(observer);
         }
 
+#if (!ORIGINAL)
+        /// <summary>
+        /// Return dimmension of a single side of the board.
+        /// </summary>
+        public int Dimension
+        {
+            get { return dimension; }
+        }
+
+        /// <summary>
+        /// Return a one-dimmensional array of shapeIds (index origin 1) indexed by cellId (origin 0)
+        /// </summary>
+        public int[] Shapes
+        {
+            get { return shapes; }
+        }
+#endif
+
 
         /// <summary> set a digit into a cell. </summary>
         /// <remarks>
@@ -100,12 +115,11 @@ namespace TerryAndMike.Sudoku
         /// As a response, every IObserver which is known to the board is sent a Set and 
         /// maybe some Possible messages.
         /// </remarks>
-        /// <param name="cell">The cell index, [0,80]</param>
-        /// <param name="digit">The digit to set, [1,9]</param>
+        /// <param name="cell">The cell index, [0,dimension*dimension]</param>
+        /// <param name="digit">The digit to set, [1,dimension]</param>
         public void Set(int cell, int digit)
         {
-            //per instructions, restrict board to 81 cells
-            if (digit != 0 && cell >= 0 && cell <= 80)
+            if (digit != 0 && cell >= 0 && cell < (dimension*dimension))
             {
                 cells[cell].Set(digit);
                 foreach (int i in Context(cell))
@@ -125,53 +139,6 @@ namespace TerryAndMike.Sudoku
                         }
                     }
                 }
-            }
-        }
-
-        /// <summary>
-        /// Clear a digit from a cell that has been set. 
-        /// Send possible messages to cells within context.
-        /// </summary>
-        /// <param name="cell">The index of the cell to clear</param>
-        public void Clear(int cell)
-        {
-            int clearedDigit = cells[cell].Digit;
-            cells[cell].Clear();
-
-            //recover candidates
-            foreach (int i in Context(cell))
-            {
-                if (cells[i].Digit > 0)
-                {
-                    cells[cell].RemoveCandidate(cells[i].Digit);
-                }
-
-                // check if clearedDigit is in context of 'i'
-                bool inContext = false;
-                foreach (int k in Context(i))
-                {
-                    if (cells[k].Digit == clearedDigit)
-                    {
-                        inContext = true;
-                        break;
-                    }
-                }
-
-                if(!inContext) 
-                    cells[i].AddCandidate(clearedDigit);
-            }
-
-            foreach (IObserver o in observers)
-            {
-                foreach (int i in Context(cell))
-                {
-                    //only notify not already set
-                    if (!cells[i].IsSet)
-                    {
-                        o.Possible(i, cells[i].Candidates);
-                    }
-                }
-                o.Possible( cell, cells[cell].Candidates );
             }
         }
 

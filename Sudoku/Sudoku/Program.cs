@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using Axel.Sudoku;
 
 namespace TerryAndMike.Sudoku
 {
@@ -46,22 +47,14 @@ namespace TerryAndMike.Sudoku
             string[] boardLines = new string[blankIndex];
             inputBuf.CopyTo(0, boardLines, 0, boardLines.Length);
 
-            Board myBoard = new Board(boardLines);
+            IClearableBoard myBoard = new ClearableBoard(boardLines);
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
             GUI.SudokuForm sForm = new GUI.SudokuForm(myBoard.Dimension, myBoard.Shapes);
             
-            sForm.CellSet += delegate(int cellIndex, int digit)
-            {
-                myBoard.Set(cellIndex, digit);
-            };
-            /*sForm.CellCleared += delegate(int cellIndex)
-            {
-                throw new NotImplementedException();
-            };*/
-
+            sForm.CellSet += ((cellIndex, digit) => myBoard.Set(cellIndex, digit));
             sForm.CellCleared += (cellIndex => myBoard.Clear(cellIndex));
 
             myBoard.AddObserver(sForm.Observer);
@@ -76,7 +69,7 @@ namespace TerryAndMike.Sudoku
             }
 
 
-            //Set up and display a SudokuForm
+            //Set up and display a SudokuForm, bring focus to that form even in console app
             Application.Run(sForm);
             sForm.Activate();
         }

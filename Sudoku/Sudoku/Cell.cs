@@ -15,8 +15,13 @@ namespace TerryAndMike.Sudoku
     {
         #region Fields
         
+#if ORIGINAL
         private int? digit = null;
         private BitArray candidates;
+#else
+        protected int? digit = null;
+        protected BitArray candidates;
+#endif
 
         #endregion
 
@@ -62,8 +67,8 @@ namespace TerryAndMike.Sudoku
         /// <param name="digit">The digit to set, [1,9]</param>
         public void Set(int digit)
         {
-            if ( digit < 1 || digit > 9 ) {
-                throw new System.ArgumentException( "Digit set must be in the range [1,9]" );
+            if ( digit < 1 || digit > candidates.Length ) {
+                throw new System.ArgumentException( "Digit set must be in the range [1,dimension]" );
             }
 
             this.digit = digit;
@@ -74,33 +79,12 @@ namespace TerryAndMike.Sudoku
         }
 
         /// <summary>
-        /// Clears a digit if it has been set, resets all candidates to true
-        /// </summary>
-        public void Clear()
-        {
-            if (this.digit.HasValue)
-            {
-                this.digit = null;
-                candidates.SetAll(true);
-            }
-        }
-
-        /// <summary>
         /// Removes <code>digit</code> from the candidate set.
         /// </summary>
-        /// <param name="digit">The digit to remove, [1,9]</param>
-        public void RemoveCandidate(int digit)
-        {
-            candidates.Set(digit - 1, false);
+        /// <param name="digit">The digit to remove, [1,dimension]</param>
+        public void RemoveCandidate( int digit ) {
+            candidates.Set( digit - 1, false );
         }
 
-        /// <summary>
-        /// Adds <code>digit</code> to the candidate set.
-        /// </summary>
-        /// <param name="digit">The digit to add, [1,9]</param>
-        public void AddCandidate(int digit)
-        {
-            candidates.Set(digit - 1, true);
-        }
     }
 }

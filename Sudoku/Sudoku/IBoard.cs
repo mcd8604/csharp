@@ -11,8 +11,6 @@ namespace Axel.Sudoku
         void RemoveObserver( IObserver observer );
         /// <summary> set a digit into a cell. </summary>
         void Set( int cell, int digit );
-        /// <summary>Clear a digit which has previously been Set into a cell.</summary>
-        void Clear( int cell );
         /// <summary> indices in same row. </summary>
         IEnumerable Row( int cell );
         /// <summary> indices in same column. </summary>
@@ -21,5 +19,14 @@ namespace Axel.Sudoku
         IEnumerable Shape( int cell );
         /// <summary> indices in context of cell. </summary>
         IEnumerable Context( int cell );
+
+#if (!ORIGINAL)
+        /// <summary> dimmension of a single side of the board. </summary>
+        int Dimension { get; }
+        /// <summary> one-dimmensional array of shapeIds (index origin 1) indexed by cellId (origin 0). </summary>
+        int[] Shapes { get; }
+
+#endif
+
     }
 }
