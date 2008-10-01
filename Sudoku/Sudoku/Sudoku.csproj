@@ -68,7 +68,7 @@
     <Compile Include="GUI\CellControl.Designer.cs">
       <DependentUpon>CellControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\Form1.Designer.cs">
+    <Compile Include="GUI\SudokuForm.Designer.cs">
       <DependentUpon>SudokuForm.cs</DependentUpon>
     </Compile>
     <Compile Include="IClearableBoard.cs" />
