@@ -1,7 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVC", "MVC\MVC.csproj", "{72C3239E-D68D-46AC-AA69-8D6C2B784126}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PuzzleGame", "PuzzleGame\PuzzleGame.csproj", "{EAD0C347-7104-477A-80F1-ACF6AAAB429B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StateMVC", "StateMVC\StateMVC.csproj", "{70915BD5-03E2-4D1E-941C-A9AFF6894DC0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +11,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{72C3239E-D68D-46AC-AA69-8D6C2B784126}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{72C3239E-D68D-46AC-AA69-8D6C2B784126}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{72C3239E-D68D-46AC-AA69-8D6C2B784126}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{72C3239E-D68D-46AC-AA69-8D6C2B784126}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAD0C347-7104-477A-80F1-ACF6AAAB429B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAD0C347-7104-477A-80F1-ACF6AAAB429B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAD0C347-7104-477A-80F1-ACF6AAAB429B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAD0C347-7104-477A-80F1-ACF6AAAB429B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70915BD5-03E2-4D1E-941C-A9AFF6894DC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70915BD5-03E2-4D1E-941C-A9AFF6894DC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70915BD5-03E2-4D1E-941C-A9AFF6894DC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70915BD5-03E2-4D1E-941C-A9AFF6894DC0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
