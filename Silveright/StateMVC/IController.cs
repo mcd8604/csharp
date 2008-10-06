@@ -20,11 +20,11 @@ namespace TerryAndMike.SilverlightGame.StateMVC
         /// <summary>
         /// The Model owned by the controller
         /// </summary>
-        IModel Model
+        /*IModel Model
         {
             get;
             set;
-        }
+        }*/
 
         /// <summary>
         /// Registers view as an observer of the controller's model.
@@ -45,5 +45,10 @@ namespace TerryAndMike.SilverlightGame.StateMVC
         /// <param name="col">The column of the tile.</param>
         /// <param name="tile">The tile to set.</param>
         void SetState(int row, int col, int tile);
+
+        /// <summary>
+        /// Initializes the state of the Model
+        /// </summary>
+        void Reset();
     }
 }

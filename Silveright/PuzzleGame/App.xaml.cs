@@ -1,23 +1,69 @@
 ﻿using System;
 using System.Windows;
+using IController = TerryAndMike.SilverlightGame.StateMVC.IController;
+using IView = TerryAndMike.SilverlightGame.StateMVC.IView;
+using IModel = TerryAndMike.SilverlightGame.StateMVC.IModel;
 
-namespace PuzzleGame
+namespace TerryAndMike.SilverlightGame.PuzzleGame
 {
-    public partial class App : Application
+    /// <summary>
+    /// Starts up the view and acts as the controller.
+    /// </summary>
+    public partial class App : Application, IController
     {
 
+#warning Temporary Implementation of IModel
+        
+        private class PuzzleModel : IModel
+        {
+
+            #region IModel Members
+
+            public void SetState(int row, int col, int tile)
+            {
+                throw new NotImplementedException();
+            }
+
+            public void Reset()
+            {
+            }
+
+            public void AddView(IView view)
+            {
+                throw new NotImplementedException();
+            }
+
+            public void RemoveView(IView view)
+            {
+                throw new NotImplementedException();
+            }
+
+            #endregion
+        }
+
+        /// <summary>
+        /// The puzzle model
+        /// </summary>
+        private IModel model;
+
+        /// <summary>
+        /// Creates a new instance of App
+        /// </summary>
         public App()
         {
             this.Startup += this.Application_Startup;
             this.Exit += this.Application_Exit;
             this.UnhandledException += this.Application_UnhandledException;
 
+            model = new PuzzleModel();
+
             InitializeComponent();
         }
 
         private void Application_Startup(object sender, StartupEventArgs e)
-        {
-            this.RootVisual = new Page();
+        {            
+            this.RootVisual = new Page(this);
+            model.AddView(this.RootVisual as IView);
         }
 
         private void Application_Exit(object sender, EventArgs e)
@@ -53,5 +99,46 @@ namespace PuzzleGame
             {
             }
         }
+
+        #region IController Members
+
+        /// <summary>
+        /// Registers view as an observer of the controller's model.
+        /// </summary>
+        /// <param name="view">The IView to add.</param>
+        public void AddView(IView view)
+        {
+            model.AddView(view);
+        }
+
+        /// <summary>
+        /// Unregisters view as an observer of the controller's model.
+        /// </summary>
+        /// <param name="view">The IView to remove.</param>
+        public void RemoveView(IView view)
+        {
+            model.RemoveView(view);
+        }
+
+        /// <summary>
+        /// Updates the state of the model.
+        /// </summary>
+        /// <param name="row">The row of the tile.</param>
+        /// <param name="col">The column of the tile.</param>
+        /// <param name="tile">The tile to set.</param>
+        public void SetState(int row, int col, int tile)
+        {
+            model.SetState(row, col, tile);
+        }
+
+        /// <summary>
+        /// Initializes the state of the Model
+        /// </summary>
+        public void Reset()
+        {
+            model.Reset();
+        }
+
+        #endregion
     }
 }
