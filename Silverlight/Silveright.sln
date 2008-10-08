@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PuzzleGame", "PuzzleGame\PuzzleGame.csproj", "{EAD0C347-7104-477A-80F1-ACF6AAAB429B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PuzzleGame1", "PuzzleGame\PuzzleGame1.csproj", "{EAD0C347-7104-477A-80F1-ACF6AAAB429B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StateMVC", "StateMVC\StateMVC.csproj", "{70915BD5-03E2-4D1E-941C-A9AFF6894DC0}"
 EndProject
