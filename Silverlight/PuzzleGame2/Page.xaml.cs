@@ -62,7 +62,7 @@ namespace PuzzleGame2
             int row = 0;
             if (int.TryParse(colTextBox.Text, out col) && int.TryParse(rowTextBox.Text, out row))
             {
-                clipTable.Initialize(imageTextBox.Text, row, col, this.ActualWidth, this.ActualHeight);
+                clipTable.Initialize(imageTextBox.Text, row, col, this.ActualWidth, this.ActualHeight - this.LayoutRoot.Margin.Top);
                 if (Reset != null)
                 {
                     Reset(row, col);

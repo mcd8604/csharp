@@ -17,16 +17,10 @@ namespace PuzzleGame2
     {
         private struct Tile
         {
-            public Tile(int row, int col, int tile)
-            {
-                this.row = row;
-                this.col = col;
-                this.tile = tile;
-            }
-
             public int row;
             public int col;
-            public int tile;
+            public int homeRow;
+            public int homeCol;
         }
 
         /// <summary>
@@ -75,14 +69,17 @@ namespace PuzzleGame2
                     b.ImageSource = img;
 
                     TranslateTransform tt = new TranslateTransform();
-                    tt.X = col * clipWidth;
-                    tt.Y = row * clipHeight;
                     b.Transform = tt;
                     canvas.Background = b;
 
                     canvas.Visibility = Visibility.Collapsed;
 
-                    canvas.Tag = new Tile(row, col, this.LayoutRoot.Children.Count);
+                    Tile t = new Tile();
+                    t.row = row;
+                    t.col = col;
+                    t.homeRow = row;
+                    t.homeCol = col;
+                    canvas.Tag = t;
 
                     this.LayoutRoot.Children.Add(canvas);
                 }
@@ -99,8 +96,8 @@ namespace PuzzleGame2
             Canvas canvas = sender as Canvas;
             if (canvas != null && TileClicked != null)
             {
-                Tile rcp = (Tile)canvas.Tag;
-                TileClicked(rcp.row, rcp.col);
+                Tile t = (Tile)canvas.Tag;
+                TileClicked(t.row, t.col);
             }
         }
 
@@ -112,17 +109,27 @@ namespace PuzzleGame2
         /// <param name="tile">The tile index.</param>
         public void SetClip(int row, int col, int tile)
         {
-            if (tile > 0)
+            if (tile < this.LayoutRoot.Children.Count)
             {
-                Canvas canvas = this.LayoutRoot.Children[tile - 1] as Canvas;
+                Canvas canvas = this.LayoutRoot.Children[tile] as Canvas;
                 if(canvas != null) {
-                    Rect rect = new Rect(col * canvas.Width, row * canvas.Height, canvas.Width, canvas.Height);
+                    Rect rect = new Rect(col * canvas.Clip.Bounds.Width, row * canvas.Clip.Bounds.Height, canvas.Clip.Bounds.Width, canvas.Clip.Bounds.Height);
 
                     RectangleGeometry rectGeom = new RectangleGeometry();
                     rectGeom.SetValue(RectangleGeometry.RectProperty, rect);
-                    this.LayoutRoot.Children[tile - 1].Clip = rectGeom;
+                    canvas.Clip = rectGeom;
 
-                    this.LayoutRoot.Children[tile - 1].Visibility = Visibility.Visible;
+                    TranslateTransform tt = new TranslateTransform();
+                    Tile t = (Tile)canvas.Tag;
+                    tt.X = 0 - (t.homeCol - col) * canvas.Clip.Bounds.Width;
+                    tt.Y = 0 - (t.homeRow - row) * canvas.Clip.Bounds.Height;
+                    canvas.Background.Transform = tt;
+
+                    t.row = row;
+                    t.col = col;
+                    canvas.Tag = t;
+
+                    canvas.Visibility = Visibility.Visible;
                 }
             }
         }
