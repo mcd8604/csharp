@@ -3,26 +3,27 @@
 namespace TerryAndMike.SilverlightGame.StateMVC
 {
     /// <summary>
-    /// Maintains state of tiles in context of rows and columns.
-    /// Notifies View observers of changes in State. 
+    /// Maintains state of elements in context of rows and columns and
+    /// notifies observers of changes in State. 
     /// </summary>
     public interface IModel
     {
         /// <summary>
-        /// Updates the state of the model; sets the row and column for the given tile.
+        /// Notifies the model; attempts to set the row, column given as the blank element.
         /// </summary>
-        /// <param name="row">The row of the tile.</param>
-        /// <param name="col">The column of the tile.</param>
-        /// <param name="tile">The tile to set.</param>
-        void SetState(int row, int col, int tile);
+        /// <param name="row">The row number in the puzzle.</param>
+        /// <param name="col">The column number in the puzzle.</param>
+        void ShiftMakeBlank(int row, int col);
 
         /// <summary>
         /// Initializes the state of the Model
         /// </summary>
-        void Reset();
+        /// <param name="row">The number of rows in the puzzle.</param>
+        /// <param name="col">The number of cols in the puzzle.</param>
+        void Reset(int row, int col);
 
         /// <summary>
-        /// Adds a view as an observer.
+        /// Registers a view as an observer.
         /// </summary>
         /// <param name="view">The IView to add.</param>
         void AddView(IView view);
