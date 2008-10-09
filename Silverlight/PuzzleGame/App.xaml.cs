@@ -11,9 +11,15 @@ namespace TerryAndMike.SilverlightGame.PuzzleGame
     /// </summary>
     public partial class App : Application, IController
     {
+        /// <summary>
+        /// Number of default rows in a puzzle
+        /// </summary>
+        public const int NUM_ROWS = 4;
 
-        public const int NUM_ROWS = 4,
-                         NUM_COLS = 4;
+        /// <summary>
+        /// Number of default columns in a puzzle
+        /// </summary>
+        public const int NUM_COLS = 4;
 
         /// <summary>
         /// The puzzle model
@@ -37,8 +43,8 @@ namespace TerryAndMike.SilverlightGame.PuzzleGame
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             Page aPage = new Page();
-            aPage.ShiftMakeTileBlank += (int row, int col, int tile) => model.ShiftMakeBlank(row, col);
-            aPage.Reset += (int row, int col, int tile) => model.Reset(row, col);
+            aPage.ShiftMakeBlank += new StateMVC.State2(ShiftMakeBlank);
+            aPage.Reset += new StateMVC.State2(Reset);
             model.AddView( aPage );
             model.Reset( NUM_ROWS, NUM_COLS );
             this.RootVisual = aPage as UIElement;
@@ -81,29 +87,11 @@ namespace TerryAndMike.SilverlightGame.PuzzleGame
         #region IController Members
 
         /// <summary>
-        /// Registers view as an observer of the controller's model.
-        /// </summary>
-        /// <param name="view">The IView to add.</param>
-        public void AddView(IView view)
-        {
-            model.AddView(view);
-        }
-
-        /// <summary>
-        /// Unregisters view as an observer of the controller's model.
-        /// </summary>
-        /// <param name="view">The IView to remove.</param>
-        public void RemoveView(IView view)
-        {
-            model.RemoveView(view);
-        }
-
-        /// <summary>
         /// Updates the state of the model.
         /// </summary>
         /// <param name="row">The row of the tile.</param>
         /// <param name="col">The column of the tile.</param>
-        public void ShiftMakeTileBlank( int row, int col )
+        public void ShiftMakeBlank( int row, int col )
         {
             model.ShiftMakeBlank(row, col);
         }
@@ -111,17 +99,9 @@ namespace TerryAndMike.SilverlightGame.PuzzleGame
         /// <summary>
         /// Initializes the state of the Model
         /// </summary>
+        /// <param name="row">The row of the tile.</param>
+        /// <param name="col">The column of the tile.</param>
         public void Reset( int row, int col )
-
-
-
-
-
-
-
-
-
-
         {
             model.Reset( row, col );
         }

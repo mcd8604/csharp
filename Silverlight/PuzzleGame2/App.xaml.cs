@@ -3,18 +3,25 @@ using System.Windows;
 using IModel = TerryAndMike.SilverlightGame.StateMVC.IModel;
 using IController = TerryAndMike.SilverlightGame.StateMVC.IController;
 using IView = TerryAndMike.SilverlightGame.StateMVC.IView;
+using PuzzleModel = TerryAndMike.SilverlightGame.StateMVC.PuzzleModel;
+using State = TerryAndMike.SilverlightGame.StateMVC.State2;
 
 namespace PuzzleGame2
 {
-    public partial class App : Application
+    /// <summary>
+    /// Implemntation of 15 puzzle application
+    /// </summary>
+    public partial class App : Application, IController
     {
 
         private IModel model;
 
+        /// <summary>
+        /// Creates a new instance of App
+        /// </summary>
         public App()
         {
-#warning need to instansiate model
-            //model = new Model();
+            model = new PuzzleModel();
 
             this.Startup += this.Application_Startup;
             this.Exit += this.Application_Exit;
@@ -25,7 +32,11 @@ namespace PuzzleGame2
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            this.RootVisual = new Page();
+            Page p = new Page();
+            p.Reset += new State(Reset);
+            p.ShiftMakeBlank += new State(ShiftMakeBlank);
+            model.AddView(p);
+            this.RootVisual = p;
         }
 
         private void Application_Exit(object sender, EventArgs e)
@@ -61,5 +72,29 @@ namespace PuzzleGame2
             {
             }
         }
+
+        #region IController Members
+
+        /// <summary>
+        /// Updates the state of the model.
+        /// </summary>
+        /// <param name="row">The row of the tile.</param>
+        /// <param name="col">The column of the tile.</param>
+        public void ShiftMakeBlank(int row, int col)
+        {
+            model.ShiftMakeBlank(row, col);
+        }
+
+        /// <summary>
+        /// Initializes the state of the Model
+        /// </summary>
+        /// <param name="row">The row of the tile.</param>
+        /// <param name="col">The column of the tile.</param>
+        public void Reset(int row, int col)
+        {
+            model.Reset(row, col);
+        }
+
+        #endregion
     }
 }

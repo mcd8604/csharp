@@ -7,6 +7,9 @@ using StringBuilder = System.Text.StringBuilder;
 
 namespace TerryAndMike.SilverlightGame.PuzzleGame
 {
+    /// <summary>
+    /// Implements the IView for Puzzle 15
+    /// </summary>
     public partial class Page : UserControl, IView
     {
         /// <summary>
@@ -40,21 +43,21 @@ namespace TerryAndMike.SilverlightGame.PuzzleGame
         /// <summary>
         /// Occurs when the reset button is pressed.
         /// </summary>
-        public event StateMVC.State Reset;
+        public event StateMVC.State2 Reset;
 
         /// <summary>
         /// Occurs when a tile shift is entered.
         /// </summary>
-        public event StateMVC.State ShiftMakeTileBlank;
+        public event StateMVC.State2 ShiftMakeBlank;
 
         private void resetButton_Click(object sender, RoutedEventArgs e)
         {
             if(Reset != null)
-                Reset( App.NUM_ROWS, App.NUM_COLS, 0 );
+                Reset( App.NUM_ROWS, App.NUM_COLS );
         }
 
         private void inputTextBox_KeyDown( object sender, KeyEventArgs e ) {
-            if ( ShiftMakeTileBlank != null && e.Key == Key.Enter ) {
+            if ( ShiftMakeBlank != null && e.Key == Key.Enter ) {
                 TextBox tbSender = sender as TextBox;
                 if ( tbSender == null )
                     return;
@@ -77,7 +80,7 @@ namespace TerryAndMike.SilverlightGame.PuzzleGame
                     return;
                 }
                 else {
-                    ShiftMakeTileBlank( iInputCoordinates[ 0 ], iInputCoordinates[ 1 ], 0 );
+                    ShiftMakeBlank( iInputCoordinates[ 0 ], iInputCoordinates[ 1 ] );
                     tbSender.Text = "";
                 }
             }
