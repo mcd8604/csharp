@@ -3,6 +3,9 @@ using TerryAndMike.SilverlightGame.StateMVC;
 
 namespace TerryAndMike.SilverlightGame.TestConsole
 {
+    /// <summary>
+    /// A simple console test client, or driver, to test the PuzzleModel
+    /// </summary>
     class ModelTestDriver : IView, IController
     {
         private IModel model = new PuzzleModel();

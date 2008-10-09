@@ -123,14 +123,16 @@ namespace TerryAndMike.SilverlightGame.StateMVC {
 
         #endregion
 
+        /// <summary>
+        /// Updates all viewers with messages about the state of all puzzle elements.
+        /// </summary>
         protected virtual void SendFullStateToObservers() {
             if ( observers == null )
                 return;
 
             for ( int r = 0; r < rows; ++r ) {
                 for ( int c = 0; c < cols; ++c ) {
-                    //if ( puzzle[ r, c ] != 0 )
-                        observers( r, c, puzzle[ r, c ] );
+                    observers( r, c, puzzle[ r, c ] );
                 }
             }
         }
