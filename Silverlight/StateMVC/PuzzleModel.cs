@@ -75,6 +75,10 @@ namespace TerryAndMike.SilverlightGame.StateMVC {
         /// <param name="rows"></param>
         /// <param name="cols"></param>
         public virtual void Reset( int rows, int cols ) {
+            /**** Quick validation ****/
+            if (rows < 0 || cols < 0)
+                return;
+
             puzzle = new int[ rows, cols ];
             this.rows = rows;
             this.cols = cols;
