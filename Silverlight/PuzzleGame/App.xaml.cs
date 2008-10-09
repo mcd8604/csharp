@@ -1,5 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Animation;
+using System.Windows.Shapes;
 using IController = TerryAndMike.SilverlightGame.StateMVC.IController;
 using IView = TerryAndMike.SilverlightGame.StateMVC.IView;
 using IModel = TerryAndMike.SilverlightGame.StateMVC.IModel;
@@ -11,36 +20,6 @@ namespace TerryAndMike.SilverlightGame.PuzzleGame
     /// </summary>
     public partial class App : Application, IController
     {
-
-#warning Temporary Implementation of IModel
-        
-        private class PuzzleModel : IModel
-        {
-
-            #region IModel Members
-
-            public void SetState(int row, int col, int tile)
-            {
-                throw new NotImplementedException();
-            }
-
-            public void Reset()
-            {
-            }
-
-            public void AddView(IView view)
-            {
-                throw new NotImplementedException();
-            }
-
-            public void RemoveView(IView view)
-            {
-                throw new NotImplementedException();
-            }
-
-            #endregion
-        }
-
         /// <summary>
         /// The puzzle model
         /// </summary>
@@ -55,15 +34,20 @@ namespace TerryAndMike.SilverlightGame.PuzzleGame
             this.Exit += this.Application_Exit;
             this.UnhandledException += this.Application_UnhandledException;
 
-            model = new PuzzleModel();
+           // model = new PuzzleModel();
 
             InitializeComponent();
         }
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {            
-            this.RootVisual = new Page(this);
-            model.AddView(this.RootVisual as IView);
+            Page page = new Page();
+            this.RootVisual = page;
+
+            page.Reset += (int row, int col, int tile) => model.Reset(row, col);
+            page.Move += (int row, int col, int tile) => model.ShiftMakeBlank(row, col);
+
+           // model.AddView(this.RootVisual as IView);
         }
 
         private void Application_Exit(object sender, EventArgs e)
@@ -128,15 +112,25 @@ namespace TerryAndMike.SilverlightGame.PuzzleGame
         /// <param name="tile">The tile to set.</param>
         public void SetState(int row, int col, int tile)
         {
-            model.SetState(row, col, tile);
+            model.ShiftMakeBlank(row, col);
         }
 
         /// <summary>
         /// Initializes the state of the Model
         /// </summary>
+        public void Reset(int row, int col)
+        {
+            model.Reset(row, col);
+        }
+
+        #endregion
+
+        #region IController Members
+
+
         public void Reset()
         {
-            model.Reset();
+            throw new NotImplementedException();
         }
 
         #endregion

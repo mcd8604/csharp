@@ -4,21 +4,21 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{EAD0C347-7104-477A-80F1-ACF6AAAB429B}</ProjectGuid>
+    <ProjectGuid>{7C7B630D-2E91-492D-B595-229A50965253}</ProjectGuid>
     <ProjectTypeGuids>{A1591282-1198-4647-A2B1-27E5FF5F6F3B};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TerryAndMike.SilverlightGame.PuzzleGame1</RootNamespace>
-    <AssemblyName>PuzzleGame1</AssemblyName>
+    <RootNamespace>PuzzleGame2</RootNamespace>
+    <AssemblyName>PuzzleGame2</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <SilverlightApplication>true</SilverlightApplication>
     <SupportedCultures>
     </SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
-    <XapFilename>PuzzleGame1.xap</XapFilename>
+    <XapFilename>PuzzleGame2.xap</XapFilename>
     <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
-    <SilverlightAppEntry>TerryAndMike.SilverlightGame.PuzzleGame.App</SilverlightAppEntry>
+    <SilverlightAppEntry>PuzzleGame2.App</SilverlightAppEntry>
     <TestPageFileName>TestPage.html</TestPageFileName>
     <CreateTestPage>true</CreateTestPage>
     <ValidateXaml>true</ValidateXaml>
@@ -34,7 +34,6 @@
     <NoConfig>true</NoConfig>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>Bin\Debug\PuzzleGame1.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -47,17 +46,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System.Core" />
-    <Reference Include="System.Net" />
     <Reference Include="System.Windows" />
     <Reference Include="mscorlib" />
     <Reference Include="system" />
-    <Reference Include="System.Windows.Browser" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Windows.Browser" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClipTable.xaml.cs">
+      <DependentUpon>ClipTable.xaml</DependentUpon>
     </Compile>
     <Compile Include="Page.xaml.cs">
       <DependentUpon>Page.xaml</DependentUpon>
@@ -69,9 +71,13 @@
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Page.xaml">
+    <Page Include="ClipTable.xaml">
+      <SubType>Page</SubType>
       <Generator>MSBuild:MarkupCompilePass1</Generator>
-      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Page.xaml">
+      <SubType>Page</SubType>
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

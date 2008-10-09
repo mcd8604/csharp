@@ -49,6 +49,8 @@ namespace TerryAndMike.SilverlightGame.StateMVC
         /// <summary>
         /// Initializes the state of the Model
         /// </summary>
-        void Reset();
+        /// <param name="row">The number of rows to create.</param>
+        /// <param name="col">The number of columns to create.</param>
+        void Reset(int row, int col);
     }
 }
