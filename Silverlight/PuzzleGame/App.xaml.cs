@@ -43,8 +43,8 @@ namespace TerryAndMike.SilverlightGame.PuzzleGame
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             Page aPage = new Page();
-            aPage.ShiftMakeBlank += new StateMVC.State2(ShiftMakeBlank);
-            aPage.Reset += new StateMVC.State2(Reset);
+            aPage.ShiftMakeBlank += new StateMVC.StateToModel(ShiftMakeBlank);
+            aPage.Reset += new StateMVC.StateToModel(Reset);
             model.AddView( aPage );
             model.Reset( NUM_ROWS, NUM_COLS );
             this.RootVisual = aPage as UIElement;

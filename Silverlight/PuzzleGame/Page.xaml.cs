@@ -43,12 +43,12 @@ namespace TerryAndMike.SilverlightGame.PuzzleGame
         /// <summary>
         /// Occurs when the reset button is pressed.
         /// </summary>
-        public event StateMVC.State2 Reset;
+        public event StateMVC.StateToModel Reset;
 
         /// <summary>
         /// Occurs when a tile shift is entered.
         /// </summary>
-        public event StateMVC.State2 ShiftMakeBlank;
+        public event StateMVC.StateToModel ShiftMakeBlank;
 
         private void resetButton_Click(object sender, RoutedEventArgs e)
         {

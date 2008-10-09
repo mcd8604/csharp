@@ -9,7 +9,7 @@ namespace TerryAndMike.SilverlightGame.StateMVC {
     /// <remarks>Note: The blank piece will still notify observers, indicating tile number 0.</remarks>
     public class PuzzleModel : IModel {
 
-        private State1 observers;
+        private StateToView observers;
 
         private int[ , ] puzzle;
         private int rows, cols;

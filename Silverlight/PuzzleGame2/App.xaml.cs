@@ -4,7 +4,7 @@ using IModel = TerryAndMike.SilverlightGame.StateMVC.IModel;
 using IController = TerryAndMike.SilverlightGame.StateMVC.IController;
 using IView = TerryAndMike.SilverlightGame.StateMVC.IView;
 using PuzzleModel = TerryAndMike.SilverlightGame.StateMVC.PuzzleModel;
-using State = TerryAndMike.SilverlightGame.StateMVC.State2;
+using StateToModel = TerryAndMike.SilverlightGame.StateMVC.StateToModel;
 
 namespace PuzzleGame2
 {
@@ -33,8 +33,8 @@ namespace PuzzleGame2
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             Page p = new Page();
-            p.Reset += new State(Reset);
-            p.ShiftMakeBlank += new State(ShiftMakeBlank);
+            p.Reset += new StateToModel(Reset);
+            p.ShiftMakeBlank += new StateToModel(ShiftMakeBlank);
             model.AddView(p);
             this.RootVisual = p;
         }

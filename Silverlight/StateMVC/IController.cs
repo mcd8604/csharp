@@ -4,18 +4,18 @@ using System.Collections.Generic;
 namespace TerryAndMike.SilverlightGame.StateMVC
 {
     /// <summary>
-    /// Defines a change in state.
+    /// Defines a change in state in the model, which will be sent along to the view.
     /// </summary>
     /// <param name="row">The row of the tile.</param>
     /// <param name="col">The column of the tile.</param>
     /// <param name="tile">The tile to set.</param>
-    public delegate void State1(int row, int col, int tile);
+    public delegate void StateToView(int row, int col, int tile);
 
-    /// Defines a change in state.
+    /// Defines an event representing change in state of the view, to be sent to the model.
     /// </summary>
     /// <param name="row">The row of the tile.</param>
     /// <param name="col">The column of the tile.</param>
-    public delegate void State2(int row, int col);
+    public delegate void StateToModel(int row, int col);
 
     /// <summary>
     /// Associates an IModel with multiple IViews

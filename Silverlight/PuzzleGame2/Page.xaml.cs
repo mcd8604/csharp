@@ -10,7 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using IView = TerryAndMike.SilverlightGame.StateMVC.IView;
-using State = TerryAndMike.SilverlightGame.StateMVC.State2;
+using State = TerryAndMike.SilverlightGame.StateMVC.StateToModel;
 
 namespace PuzzleGame2
 {

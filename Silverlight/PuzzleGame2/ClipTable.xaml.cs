@@ -1,7 +1,7 @@
 ﻿using System.Windows.Controls;
 using IView = TerryAndMike.SilverlightGame.StateMVC.IView;
 using IModel = TerryAndMike.SilverlightGame.StateMVC.IModel;
-using State = TerryAndMike.SilverlightGame.StateMVC.State2;
+using State = TerryAndMike.SilverlightGame.StateMVC.StateToModel;
 using BitmapImage = System.Windows.Media.Imaging.BitmapImage;
 using RectangleGeometry = System.Windows.Media.RectangleGeometry;
 using System.Windows.Media;
