@@ -109,9 +109,9 @@ namespace PuzzleGame2
         /// <param name="tile">The tile index.</param>
         public void SetClip(int row, int col, int tile)
         {
-            if (tile < this.LayoutRoot.Children.Count)
+            if (tile > 0)
             {
-                Canvas canvas = this.LayoutRoot.Children[tile] as Canvas;
+                Canvas canvas = this.LayoutRoot.Children[tile - 1] as Canvas;
                 if(canvas != null) {
                     Rect rect = new Rect(col * canvas.Clip.Bounds.Width, row * canvas.Clip.Bounds.Height, canvas.Clip.Bounds.Width, canvas.Clip.Bounds.Height);
 
