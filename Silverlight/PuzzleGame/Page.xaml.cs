@@ -30,10 +30,14 @@ namespace TerryAndMike.SilverlightGame.PuzzleGame
         /// <param name="tile">The tile that was set.</param>
         public void StateUpdated(int row, int col, int tile)
         {
-            StringBuilder sb = new StringBuilder(outputTextBox.Text);
-            sb.AppendLine(row + "," + col + " " + tile);
-            outputTextBox.Text = sb.ToString();
-            ScrollOutputToBottom();            
+            //zero tile is the blank space
+            if (tile != 0)
+            {
+                StringBuilder sb = new StringBuilder(outputTextBox.Text);
+                sb.AppendLine(row + "," + col + " " + tile);
+                outputTextBox.Text = sb.ToString();
+                ScrollOutputToBottom();
+            }
         }
 
         #endregion
@@ -88,11 +92,13 @@ namespace TerryAndMike.SilverlightGame.PuzzleGame
             }
         }
 
-        private void ScrollOutputToBottom() {
+        #endregion
+
+        private void ScrollOutputToBottom()
+        {
             //hack to scroll to bottom
-            outputTextBox.Select( outputTextBox.Text.Length - 1, 1 );
+            outputTextBox.Select(outputTextBox.Text.Length - 1, 1);
         }
 
-        #endregion
     }
 }

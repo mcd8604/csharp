@@ -19,7 +19,9 @@ namespace TerryAndMike.SilverlightGame.TestConsole
 
         public void StateUpdated(int row, int col, int tile)
         {
-            Console.WriteLine(row+","+col+" "+tile);
+            //tile of zero indicates blank space
+            if ( tile != 0 )
+                Console.WriteLine(row+","+col+" "+tile);
         }
 
         #endregion

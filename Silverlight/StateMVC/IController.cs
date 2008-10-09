@@ -28,7 +28,6 @@ namespace TerryAndMike.SilverlightGame.StateMVC
         /// </summary>
         /// <param name="row">The row of the tile.</param>
         /// <param name="col">The column of the tile.</param>
-        /// 
         void ShiftMakeBlank(int row, int col);
 
         /// <summary>
