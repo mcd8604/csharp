@@ -52,6 +52,8 @@ namespace TerryAndMike.SilverlightGame.PuzzleGame
 
         private void resetButton_Click(object sender, RoutedEventArgs e)
         {
+            outputTextBox.Text = string.Empty;
+
             if(Reset != null)
                 Reset( App.NUM_ROWS, App.NUM_COLS );
         }
@@ -81,7 +83,7 @@ namespace TerryAndMike.SilverlightGame.PuzzleGame
                 }
                 else {
                     ShiftMakeBlank( iInputCoordinates[ 0 ], iInputCoordinates[ 1 ] );
-                    tbSender.Text = "";
+                    tbSender.Text = string.Empty;
                 }
             }
         }
