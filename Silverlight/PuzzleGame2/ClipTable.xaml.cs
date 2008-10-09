@@ -41,8 +41,6 @@ namespace PuzzleGame2
         /// <param name="height">The height of the entire table of clips in pixels.</param>
         public void Initialize(string imageUri, int rows, int cols, double width, double height)
         {
-            this.Width = width;
-            this.Height = height;
             double clipWidth = width / cols;
             double clipHeight = height / rows;
 
