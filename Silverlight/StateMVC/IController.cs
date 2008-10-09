@@ -17,9 +17,9 @@ namespace TerryAndMike.SilverlightGame.StateMVC
     public interface IController
     {
 
-        /// <summary>
-        /// The Model owned by the controller
-        /// </summary>
+        // <summary>
+        // The Model owned by the controller
+        // </summary>
         /*IModel Model
         {
             get;
@@ -43,14 +43,14 @@ namespace TerryAndMike.SilverlightGame.StateMVC
         /// </summary>
         /// <param name="row">The row of the tile.</param>
         /// <param name="col">The column of the tile.</param>
-        /// <param name="tile">The tile to set.</param>
-        void SetState(int row, int col, int tile);
+        /// 
+        void ShiftMakeTileBlank( int row, int col );
 
         /// <summary>
         /// Initializes the state of the Model
         /// </summary>
-        /// <param name="row">The number of rows to create.</param>
-        /// <param name="col">The number of columns to create.</param>
-        void Reset(int row, int col);
+        void Reset( int row, int col );
+
+
     }
 }

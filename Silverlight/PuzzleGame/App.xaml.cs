@@ -1,14 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
 using IController = TerryAndMike.SilverlightGame.StateMVC.IController;
 using IView = TerryAndMike.SilverlightGame.StateMVC.IView;
 using IModel = TerryAndMike.SilverlightGame.StateMVC.IModel;
@@ -20,6 +11,10 @@ namespace TerryAndMike.SilverlightGame.PuzzleGame
     /// </summary>
     public partial class App : Application, IController
     {
+
+        public const int NUM_ROWS = 4,
+                         NUM_COLS = 4;
+
         /// <summary>
         /// The puzzle model
         /// </summary>
@@ -34,20 +29,17 @@ namespace TerryAndMike.SilverlightGame.PuzzleGame
             this.Exit += this.Application_Exit;
             this.UnhandledException += this.Application_UnhandledException;
 
-           // model = new PuzzleModel();
+            model = new StateMVC.PuzzleModel();
 
             InitializeComponent();
         }
 
         private void Application_Startup(object sender, StartupEventArgs e)
-        {            
-            Page page = new Page();
-            this.RootVisual = page;
-
-            page.Reset += (int row, int col, int tile) => model.Reset(row, col);
-            page.Move += (int row, int col, int tile) => model.ShiftMakeBlank(row, col);
-
-           // model.AddView(this.RootVisual as IView);
+        {
+            IView aPage = new Page( this );
+            model.AddView( aPage );
+            model.Reset( NUM_ROWS, NUM_COLS );
+            this.RootVisual = aPage as UIElement;
         }
 
         private void Application_Exit(object sender, EventArgs e)
@@ -109,8 +101,7 @@ namespace TerryAndMike.SilverlightGame.PuzzleGame
         /// </summary>
         /// <param name="row">The row of the tile.</param>
         /// <param name="col">The column of the tile.</param>
-        /// <param name="tile">The tile to set.</param>
-        public void SetState(int row, int col, int tile)
+        public void ShiftMakeTileBlank( int row, int col )
         {
             model.ShiftMakeBlank(row, col);
         }
@@ -118,19 +109,19 @@ namespace TerryAndMike.SilverlightGame.PuzzleGame
         /// <summary>
         /// Initializes the state of the Model
         /// </summary>
-        public void Reset(int row, int col)
+        public void Reset( int row, int col )
+
+
+
+
+
+
+
+
+
+
         {
-            model.Reset(row, col);
-        }
-
-        #endregion
-
-        #region IController Members
-
-
-        public void Reset()
-        {
-            throw new NotImplementedException();
+            model.Reset( row, col );
         }
 
         #endregion

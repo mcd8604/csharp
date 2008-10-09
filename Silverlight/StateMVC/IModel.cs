@@ -18,9 +18,9 @@ namespace TerryAndMike.SilverlightGame.StateMVC
         /// <summary>
         /// Initializes the state of the Model
         /// </summary>
-        /// <param name="row">The number of rows in the puzzle.</param>
-        /// <param name="col">The number of cols in the puzzle.</param>
-        void Reset(int row, int col);
+        /// <param name="rows">The number of rows in the puzzle.</param>
+        /// <param name="cols">The number of cols in the puzzle.</param>
+        void Reset(int rows, int cols);
 
         /// <summary>
         /// Registers a view as an observer.
