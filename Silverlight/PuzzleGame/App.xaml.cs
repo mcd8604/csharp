@@ -29,7 +29,7 @@ namespace TerryAndMike.SilverlightGame.PuzzleGame
             this.Exit += this.Application_Exit;
             this.UnhandledException += this.Application_UnhandledException;
 
-            //model = new StateMVC.PuzzleModel();
+            model = new StateMVC.PuzzleModel();
 
             InitializeComponent();
         }
