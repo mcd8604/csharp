@@ -9,15 +9,11 @@ namespace TerryAndMike.SilverlightGame.PuzzleGame
 {
     public partial class Page : UserControl, IView
     {
-        private IController controller;
-
         /// <summary>
         /// Creates a new instance of Page
         /// </summary>
-        /// <param name="controller">The IContoller implement</param>
-        public Page(IController controller)
+        public Page()
         {
-            this.controller = controller;
             InitializeComponent();
         }
 
@@ -39,15 +35,26 @@ namespace TerryAndMike.SilverlightGame.PuzzleGame
 
         #endregion
 
-        private void resetButton_Click(object sender, RoutedEventArgs e)
+        #region Event Management
 
+        /// <summary>
+        /// Occurs when the reset button is pressed.
+        /// </summary>
+        public event StateMVC.State Reset;
+
+        /// <summary>
+        /// Occurs when a tile shift is entered.
+        /// </summary>
+        public event StateMVC.State ShiftMakeTileBlank;
+
+        private void resetButton_Click(object sender, RoutedEventArgs e)
         {
-            controller.Reset( App.NUM_ROWS, App.NUM_COLS );
+            if(Reset != null)
+                Reset( App.NUM_ROWS, App.NUM_COLS, 0 );
         }
 
-
         private void inputTextBox_KeyDown( object sender, KeyEventArgs e ) {
-            if ( e.Key == Key.Enter ) {
+            if ( ShiftMakeTileBlank != null && e.Key == Key.Enter ) {
                 TextBox tbSender = sender as TextBox;
                 if ( tbSender == null )
                     return;
@@ -70,7 +77,7 @@ namespace TerryAndMike.SilverlightGame.PuzzleGame
                     return;
                 }
                 else {
-                    controller.ShiftMakeTileBlank( iInputCoordinates[ 0 ], iInputCoordinates[ 1 ] );
+                    ShiftMakeTileBlank( iInputCoordinates[ 0 ], iInputCoordinates[ 1 ], 0 );
                     tbSender.Text = "";
                 }
             }
@@ -80,5 +87,7 @@ namespace TerryAndMike.SilverlightGame.PuzzleGame
             //hack to scroll to bottom
             outputTextBox.Select( outputTextBox.Text.Length - 1, 1 );
         }
+
+        #endregion
     }
 }

@@ -29,14 +29,16 @@ namespace TerryAndMike.SilverlightGame.PuzzleGame
             this.Exit += this.Application_Exit;
             this.UnhandledException += this.Application_UnhandledException;
 
-            model = new StateMVC.PuzzleModel();
+            //model = new StateMVC.PuzzleModel();
 
             InitializeComponent();
         }
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            IView aPage = new Page( this );
+            Page aPage = new Page();
+            aPage.ShiftMakeTileBlank += (int row, int col, int tile) => model.ShiftMakeBlank(row, col);
+            aPage.Reset += (int row, int col, int tile) => model.Reset(row, col);
             model.AddView( aPage );
             model.Reset( NUM_ROWS, NUM_COLS );
             this.RootVisual = aPage as UIElement;
