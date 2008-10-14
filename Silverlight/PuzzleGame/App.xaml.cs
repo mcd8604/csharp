@@ -93,7 +93,7 @@ namespace TerryAndMike.SilverlightGame.PuzzleGame
         /// <param name="col">The column of the tile.</param>
         public void ShiftMakeBlank( int row, int col )
         {
-            model.ShiftMakeBlank(row, col);
+            model.NotifyStateChange(row, col);
         }
 
         /// <summary>

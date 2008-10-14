@@ -30,7 +30,7 @@ namespace TerryAndMike.SilverlightGame.TestConsole
 
         public void ShiftMakeBlank(int row, int col)
         {
-            model.ShiftMakeBlank(row, col);
+            model.NotifyStateChange(row, col);
         }
 
         public void Reset(int row, int col)

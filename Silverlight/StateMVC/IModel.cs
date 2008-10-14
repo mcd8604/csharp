@@ -13,7 +13,7 @@ namespace TerryAndMike.SilverlightGame.StateMVC
         /// </summary>
         /// <param name="row">The row number in the puzzle.</param>
         /// <param name="col">The column number in the puzzle.</param>
-        void ShiftMakeBlank(int row, int col);
+        void NotifyStateChange(int row, int col);
 
         /// <summary>
         /// Initializes the state of the Model
