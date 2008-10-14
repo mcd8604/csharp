@@ -6,11 +6,11 @@ namespace TerryAndMike.SilverlightGame.TestConsole
     /// <summary>
     /// A simple console test client, or driver, to test the PuzzleModel
     /// </summary>
-    class ModelTestDriver : IView, IController
+    class PuzzleModelTestDriver : IView, IController
     {
         private IModel model = new PuzzleModel();
 
-        public ModelTestDriver()
+        public PuzzleModelTestDriver()
         {
             model.AddView(this);
         }
@@ -44,7 +44,7 @@ namespace TerryAndMike.SilverlightGame.TestConsole
 
         static void Main(string[] args)
         {
-            ModelTestDriver myDriver = new ModelTestDriver();
+            PuzzleModelTestDriver myDriver = new PuzzleModelTestDriver();
             string[] rowcol;
             char[] spaceCharArray = new char[] { ' ' };
             
