@@ -73,10 +73,13 @@ namespace Memory
             int row = 0;
             if (int.TryParse(colTextBox.Text, out col) && int.TryParse(rowTextBox.Text, out row))
             {
-                clipTable.Initialize(row, col, this.ActualWidth, this.LayoutRoot.RowDefinitions[1].ActualHeight);
-                if (Reset != null)
+                if (row * col <= (ClipTable.NUM_IMAGES - 1) * 2)
                 {
-                    Reset(row, col);
+                    clipTable.Initialize(row, col, this.ActualWidth, this.LayoutRoot.RowDefinitions[1].ActualHeight);
+                    if (Reset != null)
+                    {
+                        Reset(row, col);
+                    }
                 }
             }
         }

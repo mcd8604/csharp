@@ -17,7 +17,7 @@ namespace TerryAndMike.SilverlightGame.StateMVC
 
         protected override bool ValidateBoardSize(int rows, int cols)
         {
-            return base.ValidateBoardSize(rows, cols) && (rows%2==0) && (cols%2==0);
+            return base.ValidateBoardSize(rows, cols) && (rows * cols) % 2 == 0;
         }
 
         protected override void InitializeBoardValues() {

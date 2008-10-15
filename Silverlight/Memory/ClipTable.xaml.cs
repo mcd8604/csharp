@@ -29,7 +29,7 @@ namespace Memory
         //private const string[] imageNames = {
         //                                        "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10",
         //                                    };
-        private const int NUM_IMAGES = 21;
+        public const int NUM_IMAGES = 21;
         private BitmapImage[] images;
 
         private Canvas[,] clips;
