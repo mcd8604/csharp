@@ -23,9 +23,12 @@ namespace Memory
             public int row;
             public int col;
             public int tileImg;
+            public ScaleTransform scale;
+            public TranslateTransform translate;
         }
 
         public const int NUM_IMAGES = 21;
+        private const int IMAGE_SIZE = 168;
         private BitmapImage[] images;
 
         private Canvas[,] clips;
@@ -90,12 +93,25 @@ namespace Memory
 
                     ImageBrush b = new ImageBrush();
                     b.ImageSource = images[0];
+
+                    TranslateTransform translate = new TranslateTransform();
+                    translate.X = col * clipWidth;
+                    translate.Y = row * clipHeight;
+
+                    ScaleTransform scale = new ScaleTransform();
+                    scale.ScaleX = clipWidth / IMAGE_SIZE;
+                    scale.ScaleY = clipHeight / IMAGE_SIZE;
+                    b.Transform = translate;
                     canvas.Background = b;
+
+                    //canvas.Visibility = Visibility.Collapsed;
 
                     Tile t = new Tile();
                     t.row = row;
                     t.col = col;
                     t.tileImg = 0;
+                    t.scale = scale;
+                    t.translate = translate;
                     canvas.Tag = t;
 
                     this.clips[row, col] = canvas;
@@ -121,6 +137,7 @@ namespace Memory
                 b.ImageSource = images[tile];
 
                 Tile t = (Tile)canvas.Tag;
+                b.Transform = t.scale;
                 canvas.Background = b;
                 
                 t.tileImg = tile;
@@ -153,6 +170,7 @@ namespace Memory
                     b.ImageSource = images[0];
                 }
 
+                b.Transform = t.scale;
                 canvas.Background = b;
             }            
         }
