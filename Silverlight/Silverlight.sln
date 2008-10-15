@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelTestDriver", "ModelTes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blackout", "Blackout\Blackout.csproj", "{CA2D08D7-FD25-44D9-A578-7B9E82BAFC84}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Memory", "Memory\Memory.csproj", "{84E801A6-A117-4BBD-AF31-D25753AE4BB5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{CA2D08D7-FD25-44D9-A578-7B9E82BAFC84}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA2D08D7-FD25-44D9-A578-7B9E82BAFC84}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA2D08D7-FD25-44D9-A578-7B9E82BAFC84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84E801A6-A117-4BBD-AF31-D25753AE4BB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84E801A6-A117-4BBD-AF31-D25753AE4BB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84E801A6-A117-4BBD-AF31-D25753AE4BB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84E801A6-A117-4BBD-AF31-D25753AE4BB5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
