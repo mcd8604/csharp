@@ -23,12 +23,8 @@ namespace Memory
             public int row;
             public int col;
             public int tileImg;
-            public TranslateTransform tt;
         }
 
-        //private const string[] imageNames = {
-        //                                        "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10",
-        //                                    };
         public const int NUM_IMAGES = 21;
         private BitmapImage[] images;
 
@@ -94,20 +90,12 @@ namespace Memory
 
                     ImageBrush b = new ImageBrush();
                     b.ImageSource = images[0];
-
-                    TranslateTransform tt = new TranslateTransform();
-                    tt.X = 0 - col * clipWidth;
-                    tt.Y = 0 - row * clipHeight;
-                    b.Transform = tt;
                     canvas.Background = b;
-
-                    //canvas.Visibility = Visibility.Collapsed;
 
                     Tile t = new Tile();
                     t.row = row;
                     t.col = col;
                     t.tileImg = 0;
-                    t.tt = tt;
                     canvas.Tag = t;
 
                     this.clips[row, col] = canvas;
@@ -133,7 +121,6 @@ namespace Memory
                 b.ImageSource = images[tile];
 
                 Tile t = (Tile)canvas.Tag;
-                b.Transform = t.tt;
                 canvas.Background = b;
                 
                 t.tileImg = tile;
@@ -166,7 +153,6 @@ namespace Memory
                     b.ImageSource = images[0];
                 }
 
-                b.Transform = t.tt;
                 canvas.Background = b;
             }            
         }
