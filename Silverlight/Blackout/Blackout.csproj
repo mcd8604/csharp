@@ -58,6 +58,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ClipTable.xaml.cs">
+      <DependentUpon>ClipTable.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Page.xaml.cs">
       <DependentUpon>Page.xaml</DependentUpon>
     </Compile>
@@ -67,12 +70,30 @@
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
     </ApplicationDefinition>
+    <Page Include="ClipTable.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Page.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AppManifest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\StateMVC\StateMVC.csproj">
+      <Project>{70915BD5-03E2-4D1E-941C-A9AFF6894DC0}</Project>
+      <Name>StateMVC</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="enzian.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="tuerkenbund.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight\v2.0\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

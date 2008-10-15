@@ -9,11 +9,15 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using IController = TerryAndMike.SilverlightGame.StateMVC.IController;
+using IModel = TerryAndMike.SilverlightGame.StateMVC.IModel;
+using State = TerryAndMike.SilverlightGame.StateMVC.StateToModel;
 
 namespace Blackout
 {
-    public partial class App : Application
+    public partial class App : Application, IController
     {
+        private IModel model;
 
         public App()
         {
@@ -26,7 +30,10 @@ namespace Blackout
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            this.RootVisual = new Page();
+            Page p = new Page();
+            p.Reset += new State(Reset);
+            p.TileClicked += new State(NotifyStateChange);
+            this.RootVisual = p;
         }
 
         private void Application_Exit(object sender, EventArgs e)
@@ -62,5 +69,29 @@ namespace Blackout
             {
             }
         }
+
+        #region IController Members
+
+        /// <summary>
+        /// Updates the state of the model.
+        /// </summary>
+        /// <param name="row">The row of the tile.</param>
+        /// <param name="col">The column of the tile.</param>
+        public void NotifyStateChange(int row, int col)
+        {
+            if (model != null) model.NotifyStateChange(row, col);
+        }
+
+        /// <summary>
+        /// Initializes the state of the Model
+        /// </summary>
+        /// <param name="row">The row of the tile.</param>
+        /// <param name="col">The column of the tile.</param>
+        public void Reset(int row, int col)
+        {
+            if(model != null) model.Reset(row, col);
+        }
+
+        #endregion
     }
 }

@@ -43,7 +43,7 @@ namespace TerryAndMike.SilverlightGame.PuzzleGame
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             Page aPage = new Page();
-            aPage.ShiftMakeBlank += new StateMVC.StateToModel(ShiftMakeBlank);
+            aPage.ShiftMakeBlank += new StateMVC.StateToModel(NotifyStateChange);
             aPage.Reset += new StateMVC.StateToModel(Reset);
             model.AddView( aPage );
             model.Reset( NUM_ROWS, NUM_COLS );
@@ -91,7 +91,7 @@ namespace TerryAndMike.SilverlightGame.PuzzleGame
         /// </summary>
         /// <param name="row">The row of the tile.</param>
         /// <param name="col">The column of the tile.</param>
-        public void ShiftMakeBlank( int row, int col )
+        public void NotifyStateChange( int row, int col )
         {
             model.NotifyStateChange(row, col);
         }

@@ -34,7 +34,7 @@ namespace PuzzleGame2
         {
             Page p = new Page();
             p.Reset += new StateToModel(Reset);
-            p.ShiftMakeBlank += new StateToModel(ShiftMakeBlank);
+            p.ShiftMakeBlank += new StateToModel(NotifyStateChange);
             model.AddView(p);
             this.RootVisual = p;
         }
@@ -80,7 +80,7 @@ namespace PuzzleGame2
         /// </summary>
         /// <param name="row">The row of the tile.</param>
         /// <param name="col">The column of the tile.</param>
-        public void ShiftMakeBlank(int row, int col)
+        public void NotifyStateChange(int row, int col)
         {
             model.NotifyStateChange(row, col);
         }

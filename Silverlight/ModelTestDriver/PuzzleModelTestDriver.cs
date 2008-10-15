@@ -28,7 +28,7 @@ namespace TerryAndMike.SilverlightGame.TestConsole
 
         #region IController Members
 
-        public void ShiftMakeBlank(int row, int col)
+        public void NotifyStateChange(int row, int col)
         {
             model.NotifyStateChange(row, col);
         }
@@ -67,7 +67,7 @@ namespace TerryAndMike.SilverlightGame.TestConsole
                 rowcol = input.Split(spaceCharArray);
                 if (rowcol.Length == 2)
                 {
-                    myDriver.ShiftMakeBlank(int.Parse(rowcol[0]), int.Parse(rowcol[1]));
+                    myDriver.NotifyStateChange(int.Parse(rowcol[0]), int.Parse(rowcol[1]));
                 }
             } while (!input.Equals("quit", System.StringComparison.CurrentCultureIgnoreCase));
         }
