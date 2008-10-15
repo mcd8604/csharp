@@ -51,10 +51,12 @@ namespace Memory
             for(int i = 0; i < NUM_IMAGES; ++i)
             {
                 sb.Remove(0, sb.Length);
+                sb.Append(@"images/");
                 if(i < 10) {
                     sb.Append("0");
                 }
                 sb.Append(i.ToString());
+                sb.Append(".jpg");
                 images[i] = new BitmapImage(new System.Uri(sb.ToString(), System.UriKind.Relative));
             }
         }
