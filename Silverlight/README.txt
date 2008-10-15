@@ -1,7 +1,7 @@
 Terry Van Hise
 Mike DeMauro
 
-Our code is laid out into four different projects:
+Our code is laid out into six different projects.  Blackout and Memory are our two new projects since last submission.
 
 StateMVC - A Silverlight library project, this contains the three interfaces (IView, IController, and IModel) 
 	as well as an abstract implementation of the IModel, BoardModel.  BlackoutModel and MemoryModel
