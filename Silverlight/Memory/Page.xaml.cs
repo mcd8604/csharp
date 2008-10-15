@@ -14,15 +14,21 @@ using State = TerryAndMike.SilverlightGame.StateMVC.StateToModel;
 
 namespace Memory
 {
+    /// <summary>
+    /// Implementation of IView for Memory
+    /// </summary>
     public partial class Page : UserControl, IView
     {
         ClipTable clipTable;
 
+        /// <summary>
+        /// Creates a new instance of Page.
+        /// </summary>
         public Page()
         {
             InitializeComponent();
             clipTable = new ClipTable();
-            clipTable.TileClicked += new State(clipTable_TileClicked);
+            clipTable.ClipClicked += new State(clipTable_TileClicked);
             Grid.SetRow(clipTable, 1);
             Grid.SetColumnSpan(clipTable, 4);
             this.LayoutRoot.Children.Add(clipTable);
@@ -41,11 +47,15 @@ namespace Memory
             clipTable.SetClip(row, col, tile);
         }
 
-
+        /// <summary>
+        /// Updates the IView to represent the visibility state of an IModel.
+        /// </summary>
+        /// <param name="row">The row of the tile.</param>
+        /// <param name="col">The column of the tile.</param>
+        /// <param name="visible">True if visible, false of not.</param>
         public void StateVisibilityUpdated(int row, int col, bool visible)
         {
-#warning hide tiles when this guy comes in
-            throw new NotImplementedException();
+            clipTable.SetClipVisible(row, col, visible);
         }
 
         #endregion
