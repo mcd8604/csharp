@@ -18,7 +18,7 @@ namespace TerryAndMike.SilverlightGame.StateMVC {
 
         public void Reset( int rows, int cols ) {
             /**** Quick validation ****/
-            if ( rows < 0 || cols < 0 )
+            if (!ValidateBoardSize(rows, cols))
                 return;
 
             board = new int[ rows, cols ];
@@ -63,6 +63,10 @@ namespace TerryAndMike.SilverlightGame.StateMVC {
                     observers( r, c, board[ r, c ] );
                 }
             }
+        }
+
+        protected virtual bool ValidateBoardSize(int rows, int cols) {
+            return (rows >= 0 && cols >= 0);
         }
 
         protected abstract void InitializeBoardValues();
