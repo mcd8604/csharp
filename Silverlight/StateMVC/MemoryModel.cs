@@ -8,6 +8,8 @@ namespace TerryAndMike.SilverlightGame.StateMVC
         protected const int MATCH_DISPLAY_TIME_MS = 1500;
 
         protected int[] upCell;
+        protected bool[,] boardVisibility;
+        protected int pairsLeftToMatch;
         
         public MemoryModel() : base() {
             upCell = new int[] { -1, -1 };
@@ -19,6 +21,12 @@ namespace TerryAndMike.SilverlightGame.StateMVC
         }
 
         protected override void InitializeBoardValues() {
+            /**** Instantiate & initialize boardVisibility matrix ****/
+            boardVisibility = new bool[ rows, cols ];
+
+            /**** Initialize pairsLeftToMatch ****/
+            pairsLeftToMatch = board.Length / 2;
+
             /**** Randomly assign board values in pairs (12 cells have on [1,rows*cols] ****/
             List<int> imagePairsList = new List<int>(board.Length);
             for (int i = 1; i <= board.Length/2; ++i)
@@ -47,24 +55,33 @@ namespace TerryAndMike.SilverlightGame.StateMVC
 
             /**** Set visibility, check if match found ****/
             if ( upCell[ 0 ] == -1 && upCell[ 1 ] == -1 ) { //first of pair to be clicked
+                if (boardVisibility[row, col] == true) //already matched (locked visible) cell clicked
+                    return;
+
                 upCell[ 0 ] = row;
                 upCell[ 1 ] = col;
+                boardVisibility[ row, col ] = true;
                 visibleObservers( row, col, true );
             }
             else {
                 if (upCell[0] == row && upCell[1] == col) { //clicked same cell again
+                    boardVisibility[row, col] = false;
                     visibleObservers(row, col, false);
                 }
                 else {                                      //clicked a second cell, check for match
+                    boardVisibility[row, col] = true;
                     visibleObservers(row, col, true);
 
                     if (board[upCell[0], upCell[1]] == board[row, col]) {   //if two selected match
-                        ;
+                        --pairsLeftToMatch;
                     }
                     else {                                                  //two selected don't match
                         System.Threading.Thread.Sleep(MATCH_DISPLAY_TIME_MS);
-                        
+
+                        boardVisibility[ upCell[0], upCell[1] ] = false;
                         visibleObservers( upCell[ 0 ], upCell[ 1 ], false );
+
+                        boardVisibility[row, col] = false;
                         visibleObservers( row, col, false );
                     }
                 }
