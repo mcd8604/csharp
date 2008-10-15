@@ -20,6 +20,7 @@ namespace Blackout
             public int row;
             public int col;
             public int tileImg;
+            public TranslateTransform tt;
         }
 
         private Canvas[,] clips;
@@ -86,6 +87,7 @@ namespace Blackout
                     t.row = row;
                     t.col = col;
                     t.tileImg = 0;
+                    t.tt = tt;
                     canvas.Tag = t;
 
                     this.clips[row, col] = canvas;
@@ -107,12 +109,11 @@ namespace Blackout
             {
                 Tile t = (Tile)canvas.Tag;
                 TileClicked(t.row, t.col);
-                SetClip(t.row, t.col, (t.tileImg + 1) % 2);
             }
         }
 
         /// <summary>
-        /// Sets a tile's position and visibility.
+        /// Sets a tile's image source.
         /// </summary>
         /// <param name="row">The row index.</param>
         /// <param name="col">The column index.</param>
@@ -120,8 +121,11 @@ namespace Blackout
         public void SetClip(int row, int col, int tile)
         {
             Canvas canvas = this.clips[row, col];
-            ImageBrush b = canvas.Background as ImageBrush;
+            //ImageBrush b = canvas.Background as ImageBrush;
+            ImageBrush b = new ImageBrush();
+            
             if(b != null) {
+            
                 if (tile == 0)
                 {
                     b.ImageSource = img1;
@@ -130,9 +134,14 @@ namespace Blackout
                 {
                     b.ImageSource = img2;
                 }
+
                 Tile t = (Tile)canvas.Tag;
+                b.Transform = t.tt;
+                canvas.Background = b;
+                
                 t.tileImg = tile;
                 canvas.Tag = t;
+
             }
         }
     }

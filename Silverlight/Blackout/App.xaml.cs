@@ -12,6 +12,7 @@ using System.Windows.Shapes;
 using IController = TerryAndMike.SilverlightGame.StateMVC.IController;
 using IModel = TerryAndMike.SilverlightGame.StateMVC.IModel;
 using State = TerryAndMike.SilverlightGame.StateMVC.StateToModel;
+using BlackoutModel = TerryAndMike.SilverlightGame.StateMVC.BlackoutModel;
 
 namespace Blackout
 {
@@ -21,6 +22,8 @@ namespace Blackout
 
         public App()
         {
+            model = new BlackoutModel();
+
             this.Startup += this.Application_Startup;
             this.Exit += this.Application_Exit;
             this.UnhandledException += this.Application_UnhandledException;
@@ -33,6 +36,7 @@ namespace Blackout
             Page p = new Page();
             p.Reset += new State(Reset);
             p.TileClicked += new State(NotifyStateChange);
+            model.AddView(p);
             this.RootVisual = p;
         }
 
