@@ -20,8 +20,8 @@ namespace TerryAndMike.SilverlightGame.TestConsole
 
         public void StateUpdated(int row, int col, int tile)
         {
-            //tile of zero indicates blank space
-//            if ( tile != 0 )
+            //tile of zero indicates blank space in PuzzleModel
+            if ( (model is PuzzleModel) && (tile != 0) )
                 Console.WriteLine(row+","+col+" "+tile);
         }
 
