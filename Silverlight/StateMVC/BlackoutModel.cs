@@ -7,7 +7,7 @@ namespace TerryAndMike.SilverlightGame.StateMVC
     {
         #region IModel Members
 
-        public void NotifyStateChange(int row, int col)
+        public override void NotifyStateChange(int row, int col)
         {
             /**** Verify row, col are within puzzle ****/
             if ( row < 0 || row >= rows || col < 0 || col >= cols )

@@ -61,6 +61,6 @@ namespace TerryAndMike.SilverlightGame.StateMVC {
             }
         }
 
-        protected abstract virtual void InitializeBoardValues();
+        protected abstract void InitializeBoardValues();
     }
 }

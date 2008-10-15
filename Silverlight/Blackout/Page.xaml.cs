@@ -41,6 +41,12 @@ namespace Blackout
             clipTable.SetClip(row, col, tile);
         }
 
+        public void StateVisibilityUpdated(int row, int col, bool visible)
+        {
+            throw new NotImplementedException();
+        }
+
+
         #endregion
 
         #region Event Management
@@ -76,5 +82,7 @@ namespace Blackout
         }
 
         #endregion
+
+     
     }
 }

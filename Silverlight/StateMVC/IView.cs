@@ -14,5 +14,7 @@ namespace TerryAndMike.SilverlightGame.StateMVC
         /// <param name="col">The column of the tile.</param>
         /// <param name="tile">The tile that was set.</param>
         void StateUpdated(int row, int col, int tile);
+
+        void StateVisibilityUpdated(int row, int col, bool visible);
     }
 }

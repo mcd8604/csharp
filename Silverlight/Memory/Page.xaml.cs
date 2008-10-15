@@ -41,6 +41,13 @@ namespace Memory
             clipTable.SetClip(row, col, tile);
         }
 
+
+        public void StateVisibilityUpdated(int row, int col, bool visible)
+        {
+#warning hide tiles when this guy comes in
+            throw new NotImplementedException();
+        }
+
         #endregion
 
         #region Event Management
@@ -76,5 +83,6 @@ namespace Memory
         }
 
         #endregion
+
     }
 }

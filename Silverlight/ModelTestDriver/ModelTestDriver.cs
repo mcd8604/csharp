@@ -25,6 +25,12 @@ namespace TerryAndMike.SilverlightGame.TestConsole
                 Console.WriteLine(row+","+col+" "+tile);
         }
 
+
+        public void StateVisibilityUpdated(int row, int col, bool visible)
+        {
+            Console.WriteLine(row+","+col+" "+"is now "+(visible?"":"not ")+"visible");
+        }
+
         #endregion
 
         #region IController Members
@@ -93,5 +99,7 @@ namespace TerryAndMike.SilverlightGame.TestConsole
                 Console.Error.WriteLine( "Invalid choice." );
             }
         }
+
+
     }
 }

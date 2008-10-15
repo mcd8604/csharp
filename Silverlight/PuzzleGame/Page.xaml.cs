@@ -4,6 +4,7 @@ using System.Windows;
 using IView = TerryAndMike.SilverlightGame.StateMVC.IView;
 using IController = TerryAndMike.SilverlightGame.StateMVC.IController;
 using StringBuilder = System.Text.StringBuilder;
+using System;
 
 namespace TerryAndMike.SilverlightGame.PuzzleGame
 {
@@ -38,6 +39,11 @@ namespace TerryAndMike.SilverlightGame.PuzzleGame
                 outputTextBox.Text = sb.ToString();
                 ScrollOutputToBottom();
             }
+        }
+
+        public void StateVisibilityUpdated(int row, int col, bool visible)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion

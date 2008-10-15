@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BlackoutModel.cs" />
+    <Compile Include="BoardModel.cs" />
     <Compile Include="IController.cs" />
     <Compile Include="IModel.cs" />
     <Compile Include="IView.cs" />

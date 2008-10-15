@@ -11,6 +11,8 @@ namespace TerryAndMike.SilverlightGame.StateMVC
     /// <param name="tile">The tile to set.</param>
     public delegate void StateToView(int row, int col, int tile);
 
+    public delegate void StateToViewVisible(int row, int col, bool visible);
+
     /// <summary>
     /// Defines an event representing change in state of the view, to be sent to the model.
     /// </summary>
