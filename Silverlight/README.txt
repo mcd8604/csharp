@@ -18,6 +18,11 @@ PuzzleGame1 - Our first of two silverlight projects, this is identical to the to
 PuzzleGame2 - This is the project that contains the completed game.  It seemed impractical to reuse the silverlight 
 	code from PuzzleGame1, so this project just references StateMVC.
 
+Blackout - This is the implementation of Blackout. The interfaces did not have to be changed for this.
+
+Memory - This is the implementation of Memory. We had to add a delegate to IController to handle the visibility state of tiles.
+
+
 
 To Execute:
 	The ModelTestDriver compiles to a stand-alone exe.  The two PuzzleGames compile to xap files and generate
