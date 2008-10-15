@@ -9,17 +9,17 @@ namespace TerryAndMike.SilverlightGame.StateMVC
     public interface IModel
     {
         /// <summary>
-        /// Notifies the model; attempts to set the row, column given as the blank element.
+        /// Notifies the model of action on this element
         /// </summary>
-        /// <param name="row">The row number in the puzzle.</param>
-        /// <param name="col">The column number in the puzzle.</param>
+        /// <param name="row">The row number in the board.</param>
+        /// <param name="col">The column number in the board.</param>
         void NotifyStateChange(int row, int col);
 
         /// <summary>
         /// Initializes the state of the Model
         /// </summary>
-        /// <param name="rows">The number of rows in the puzzle.</param>
-        /// <param name="cols">The number of cols in the puzzle.</param>
+        /// <param name="rows">The number of rows in the board.</param>
+        /// <param name="cols">The number of cols in the board.</param>
         void Reset(int rows, int cols);
 
         /// <summary>

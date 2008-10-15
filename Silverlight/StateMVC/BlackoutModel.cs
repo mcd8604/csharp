@@ -3,10 +3,18 @@ using System.Collections.Generic;
 
 namespace TerryAndMike.SilverlightGame.StateMVC
 {
+    /// <summary>
+    /// Model for the blackout game
+    /// </summary>
     public class BlackoutModel : BoardModel
     {
         #region IModel Members
 
+        /// <summary>
+        /// Notifies the model; attempts to set the row, column given as the blank element.
+        /// </summary>
+        /// <param name="row">The row number in the puzzle.</param>
+        /// <param name="col">The column number in the puzzle.</param>
         public override void NotifyStateChange(int row, int col)
         {
             /**** Verify row, col are within puzzle ****/

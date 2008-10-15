@@ -3,23 +3,53 @@ using System.Collections.Generic;
 
 namespace TerryAndMike.SilverlightGame.StateMVC
 {
+    /// <summary>
+    /// Model for the memory matching game
+    /// </summary>
     public class MemoryModel : BoardModel
     {
+        /// <summary>
+        /// Constant value for the number of milliseconds to display both wrong cells before hiding
+        /// </summary>
         protected const int MATCH_DISPLAY_TIME_MS = 1500;
 
+        /// <summary>
+        /// Row and column of currently displayed ("up") cell
+        /// </summary>
         protected int[] upCell;
+
+        /// <summary>
+        /// Matrix of visiblities of all cells on the board
+        /// </summary>
         protected bool[,] boardVisibility;
+
+        /// <summary>
+        /// Countdown of pairs of elements left to find matches for.
+        /// </summary>
         protected int pairsLeftToMatch;
-        
+
+
+        /// <summary>
+        /// Construct a MemoryModel with the upCell initialized to default none-selected (-1, -1)
+        /// </summary>
         public MemoryModel() : base() {
             upCell = new int[] { -1, -1 };
         }
 
+        /// <summary>
+        /// Returns whether the board size parameters provided are valid
+        /// </summary>
+        /// <param name="rows">Number of rows to create</param>
+        /// <param name="cols">Number of cols to create</param>
+        /// <returns>True if valid parameters supplied</returns>
         protected override bool ValidateBoardSize(int rows, int cols)
         {
             return base.ValidateBoardSize(rows, cols) && (rows * cols) % 2 == 0;
         }
 
+        /// <summary>
+        /// Initialize board visibility values, pairsLeftToMatch, and assign pairs of values.
+        /// </summary>
         protected override void InitializeBoardValues() {
             /**** Instantiate & initialize boardVisibility matrix ****/
             boardVisibility = new bool[ rows, cols ];
@@ -48,6 +78,11 @@ namespace TerryAndMike.SilverlightGame.StateMVC
 
         }
 
+        /// <summary>
+        /// Notifies the model of action on this element (selected by mouse)
+        /// </summary>
+        /// <param name="row">The row number in the board.</param>
+        /// <param name="col">The column number in the board.</param>
         public override void NotifyStateChange( int row, int col ) {
             /**** Verify row, col are within board ****/
             if (row < 0 || row >= rows || col < 0 || col >= cols)

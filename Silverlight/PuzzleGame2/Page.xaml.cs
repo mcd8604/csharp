@@ -48,6 +48,12 @@ namespace PuzzleGame2
         }
 
 
+        /// <summary>
+        /// Updates the IView to represent the visibility state of an IModel.
+        /// </summary>
+        /// <param name="row">The row of the tile.</param>
+        /// <param name="col">The column of the tile.</param>
+        /// <param name="visible">The visibility of that cell.</param>
         public void StateVisibilityUpdated(int row, int col, bool visible)
         {
             throw new NotImplementedException();
