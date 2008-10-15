@@ -41,7 +41,11 @@ namespace TerryAndMike.SilverlightGame.StateMVC
         }
 
         public override void NotifyStateChange( int row, int col ) {
-            
+            /**** Verify row, col are within board ****/
+            if (row < 0 || row >= rows || col < 0 || col >= cols)
+                return;
+
+            /**** Set visibility, check if match found ****/
             if ( upCell[ 0 ] == -1 && upCell[ 1 ] == -1 ) { //first of pair to be clicked
                 upCell[ 0 ] = row;
                 upCell[ 1 ] = col;
