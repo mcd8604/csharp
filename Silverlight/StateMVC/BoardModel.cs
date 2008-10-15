@@ -6,6 +6,8 @@ namespace TerryAndMike.SilverlightGame.StateMVC {
 
         //data members
         protected StateToView observers;
+        protected StateToViewVisible visibleObservers;
+
         protected int[ , ] board;
         protected int rows, cols;
 
@@ -35,6 +37,7 @@ namespace TerryAndMike.SilverlightGame.StateMVC {
         /// <param name="view"></param>
         public void AddView( IView view ) {
             observers += view.StateUpdated;
+            visibleObservers += view.StateVisibilityUpdated;
         }
 
         /// <summary>
@@ -43,6 +46,7 @@ namespace TerryAndMike.SilverlightGame.StateMVC {
         /// <param name="view"></param>
         public void RemoveView( IView view ) {
             observers -= view.StateUpdated;
+            visibleObservers -= view.StateVisibilityUpdated;
         }
 
         #endregion

@@ -52,8 +52,8 @@ namespace TerryAndMike.SilverlightGame.TestConsole
         static void Main(string[] args)
         {
             IModel startModel = null;
-            
-            Console.Write( "Choose model type to test: \n\t(1) Puzzle \n\t(2) Blackout\n\n?: " );
+
+            Console.Write( "Choose model type to test: \n\t(1) Puzzle \n\t(2) Blackout\n\t(3) Memory\n\n?: ");
             string modelType = Console.ReadLine();
             switch ( modelType ) {
                 case "1":
@@ -65,6 +65,11 @@ namespace TerryAndMike.SilverlightGame.TestConsole
                 case "blackout":
                 case "Blackout":
                     startModel = new BlackoutModel();
+                    break;
+                case "3":
+                case "memory":
+                case "Memory":
+                    startModel = new MemoryModel();
                     break;
             }
 
