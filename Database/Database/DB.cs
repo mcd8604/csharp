@@ -8,7 +8,7 @@ namespace TerryAndMike.Database
     /// <summary>
     /// Implementation of a "Poor Man's" database
     /// </summary>
-    class DB: IDB
+    public class DB: IDB
     {
         /// <summary>
         /// Performs the result of a match.
@@ -54,7 +54,7 @@ namespace TerryAndMike.Database
         bool IDB.Add(Match match, object[] tuple)
         {
             // First validate tuple 
-            foreach(object o in tuple) if(o != null) return false;
+            foreach(object o in tuple) if(o == null) return false;
 
             // Replace each matched tuple
             int numMatched = Search(match, matchedTuple => { for (int i = 0; i < tuple.Length; ++i) matchedTuple[i] = tuple[i]; });

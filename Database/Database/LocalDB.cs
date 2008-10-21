@@ -6,7 +6,7 @@ using Axel.Database;
 
 namespace TerryAndMike.Database
 {
-    class LocalDB : IModel
+    public class LocalDB : IModel
     {
         protected IDB database = new DB();
 

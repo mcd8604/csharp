@@ -10,19 +10,19 @@ namespace TerryAndMike.Database
     /// </summary>
     /// <param name="tuple">The tuple to match.</param>
     /// <returns>True of tuple matches criteria</returns>
-    delegate bool Match(object[] tuple);
+    public delegate bool Match(object[] tuple);
 
     /// <summary>
     /// Formats the tuple into a report.
     /// </summary>
     /// <param name="tuple">The tuple to format.</param>
     /// <returns>The formatted tuple.</returns>
-    delegate object Report(object[] tuple);
+    public delegate object Report(object[] tuple);
 
     /// <summary>
     /// Flat "Poor man's" database interface
     /// </summary>
-    interface IDB
+    public interface IDB
     {
         /// <summary>
         /// Adds a tuple and returns true if it replaces a tuple with equal content as determined by the Match argument.

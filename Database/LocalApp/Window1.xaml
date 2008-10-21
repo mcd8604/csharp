@@ -1,0 +1,34 @@
+﻿<Window x:Class="LocalApp.Window1"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Window1" Height="431" Width="300">
+    <Grid>
+        <Menu  Height="22" Name="menu1" VerticalAlignment="Top">
+            <MenuItem Name="toggleBtn" Header="Toggle DB:" />
+            <MenuItem Name="toggleValue" Header="remote" IsEnabled="false"/>
+        </Menu>
+        <GroupBox Header="Name" Height="100" Margin="0,28,0,0" Name="groupBox1" VerticalAlignment="Top">
+            <Grid>
+                <TextBox Margin="6" Name="nameTextBox" />
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="Phone" Margin="0,134,0,0" Name="groupBox2" Height="100" VerticalAlignment="Top">
+            <Grid>
+                <TextBox Margin="6" Name="phoneTextBox" />
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="Room" Margin="0,240,0,0" Name="groupBox3" Height="100" VerticalAlignment="Top">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="89*" />
+                    <ColumnDefinition Width="177*" />
+                </Grid.ColumnDefinitions>
+                <TextBox Margin="6" Name="roomTextBox" Grid.ColumnSpan="2" />
+            </Grid>
+        </GroupBox>
+        <Button Height="41" HorizontalAlignment="Left" Name="searchBtn" VerticalAlignment="Bottom" Width="70" Margin="6,0,0,12" Click="searchBtn_Click">Search</Button>
+        <Button Height="41" Margin="82,0,0,12" Name="enterBtn" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="70" Click="enterBtn_Click">Enter</Button>
+        <Button Height="41" HorizontalAlignment="Right" Margin="0,0,50,12" Name="removeBtn" VerticalAlignment="Bottom" Width="70" Click="removeBtn_Click">Remove</Button>
+        <Label Height="27" HorizontalAlignment="Right" Margin="0,0,12,20" Name="countLabel" VerticalAlignment="Bottom" Width="32">0</Label>
+    </Grid>
+</Window>
