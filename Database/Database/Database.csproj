@@ -49,6 +49,7 @@
     <Compile Include="DB.cs" />
     <Compile Include="IDB.cs" />
     <Compile Include="IModel.cs" />
+    <Compile Include="LocalDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
