@@ -3,17 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Database
+namespace TerryAndMike.Database
 {
     /// <summary>
-    /// Compares one tuple to another.
+    /// Determines if a tuple matches certain criteria
     /// </summary>
-    /// <param name="tuple1">The first tuple to compare.</param>
-    /// <param name="tuple2">The second tuple to compare.</param>
-    /// <returns>True of tuple1 has equal content as tuple2.</returns>
-    delegate bool Match(object[] tuple1, object[] tuple2);
+    /// <param name="tuple">The tuple to match.</param>
+    /// <returns>True of tuple matches criteria</returns>
+    delegate bool Match(object[] tuple);
 
-    delegate void Report();
+    /// <summary>
+    /// Formats the tuple into a report.
+    /// </summary>
+    /// <param name="tuple">The tuple to format.</param>
+    /// <returns>The formatted tuple.</returns>
+    delegate object Report(object[] tuple);
 
     /// <summary>
     /// Flat "Poor man's" database interface
@@ -23,7 +27,7 @@ namespace Database
         /// <summary>
         /// Adds a tuple and returns true if it replaces a tuple with equal content as determined by the Match argument.
         /// </summary>
-        /// <param name="match"></param>
+        /// <param name="match">The delegate to specify how a tuple matches.</param>
         /// <param name="tuple"></param>
         /// <returns></returns>
         bool Add (Match match, object[] tuple);
@@ -31,17 +35,25 @@ namespace Database
         /// <summary>
         /// Returns a, possibly empty, array of values; each array element is constructed by the Report argument from one tuple selected by the Match argument.
         /// </summary>
-        /// <param name="?"></param>
-        /// <param name="?"></param>
-        /// <returns></returns>
+        /// <param name="match">The delegate to specify how a tuple matches.</param>
+        /// <param name="report">The delegate to perform the formatting of the tuple.</param>
+        /// <returns>An array of formatted tuples.</returns>
         object[] Extract (Match match, Report report);
-            
+
         /// <summary>
         /// Removes all tuples selected by the Match argument and returns how many tuples were removed. 
         /// </summary>
-        /// <param name="?"></param>
-        /// <returns></returns>
-        int Delete (Match match);            
+        /// <param name="match">The delegate that specifies how a tuple matches.</param>
+        /// <returns>The number of matched tuples.</returns>
+        int Delete (Match match);
+
+        /// <summary>
+        /// The number of tuples in the database.
+        /// </summary>
+        int Count
+        {
+            get;
+        }
 
     }
 }
