@@ -57,8 +57,7 @@ namespace TerryAndMike.Database
             foreach(object o in tuple) if(o != null) return false;
 
             // Replace each matched tuple
-#warning UNTESTED, does 'matchedTuple = tuple' actually replace the value in the array?
-            int numMatched = Search(match, matchedTuple => matchedTuple = tuple);
+            int numMatched = Search(match, matchedTuple => { for (int i = 0; i < tuple.Length; ++i) matchedTuple[i] = tuple[i]; });
 
             //add new tuple
             if (numMatched == 0) tuples.Add(tuple);
