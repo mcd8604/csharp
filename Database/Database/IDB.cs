@@ -50,10 +50,6 @@ namespace TerryAndMike.Database
         /// <summary>
         /// The number of tuples in the database.
         /// </summary>
-        int Count
-        {
-            get;
-        }
-
+        int Count { get; }
     }
 }
