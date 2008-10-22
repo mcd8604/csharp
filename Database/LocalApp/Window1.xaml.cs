@@ -33,7 +33,9 @@ namespace LocalApp
         {
             // Search the model on keys
 
-            string[] keys = { nameTextBox.Text, phoneTextBox.Text, roomTextBox.Text };
+            string[] keys = { nameTextBox.Text.Length > 0 ? nameTextBox.Text : null, 
+                                phoneTextBox.Text.Length > 0 ? phoneTextBox.Text : null, 
+                                roomTextBox.Text.Length > 0 ? roomTextBox.Text : null };
             string[][] tuples = model.Search(keys);
 
             // Display the array elements
@@ -44,9 +46,9 @@ namespace LocalApp
                         
             for (int i = 0; i < tuples.Length; i++)
             {
-                nameBuilder.Append(tuples[i][0]);
-                phoneBuilder.Append(tuples[i][1]);
-                roomBuilder.Append(tuples[i][2]);
+                nameBuilder.AppendLine(tuples[i][0]);
+                phoneBuilder.AppendLine(tuples[i][1]);
+                roomBuilder.AppendLine(tuples[i][2]);
             }
 
             nameTextBox.Text = nameBuilder.ToString();

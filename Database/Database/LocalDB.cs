@@ -25,7 +25,7 @@ namespace TerryAndMike.Database
 
             foreach (object tuple in result) {
                 if (tuple is string[])
-                    strRet[++i] = (tuple as string[]);
+                    strRet[i++] = (tuple as string[]);
             }
             return strRet;
         }
