@@ -29,13 +29,16 @@ namespace TerryAndMike.Database.LocalApp
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Search the model using first line of tuple as keys
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void searchBtn_Click(object sender, RoutedEventArgs e)
         {
             // Search the model on keys
 
-            string[] keys = { nameTextBox.Text.Length > 0 ? nameTextBox.Text : null, 
-                                phoneTextBox.Text.Length > 0 ? phoneTextBox.Text : null, 
-                                roomTextBox.Text.Length > 0 ? roomTextBox.Text : null };
+            string[] keys = GetTuple();
             string[][] tuples = model.Search(keys);
 
             // Display the array elements
@@ -58,22 +61,31 @@ namespace TerryAndMike.Database.LocalApp
 
         private void enterBtn_Click(object sender, RoutedEventArgs e)
         {
-            //form 3-tuple, replacing empty strings with null
-            string[] tuple = { 
-                nameTextBox.Text==string.Empty?null:nameTextBox.Text,
-                phoneTextBox.Text==string.Empty?null:phoneTextBox.Text,
-                roomTextBox.Text==string.Empty?null:roomTextBox.Text };
+            string[] tuple = GetTuple();
             /*bool result = */model.Enter(tuple);
-
             countLabel.Content = model.Count;
         }
 
         private void removeBtn_Click(object sender, RoutedEventArgs e)
         {
-            string[] keys = { nameTextBox.Text, phoneTextBox.Text, roomTextBox.Text };
+            string[] keys = GetTuple();
             /*bool result = */model.Remove(keys);
-
             countLabel.Content = model.Count;
+
+            //clear output text boxes
+            nameTextBox.Clear();
+            phoneTextBox.Clear();
+            roomTextBox.Clear();
+        }
+
+        /// <summary>
+        /// Form 3-tuple from the first line of each of the textboxs, replacing empty strings with null
+        /// </summary>
+        /// <returns>String array (tuple) with null representing empty textboxes</returns>
+        private string[] GetTuple() {
+            return new string[] { nameTextBox.Text.Length > 0 ? nameTextBox.GetLineText(0) : null, 
+                                phoneTextBox.Text.Length > 0 ? phoneTextBox.GetLineText(0) : null, 
+                                roomTextBox.Text.Length > 0 ? roomTextBox.GetLineText(0) : null };
         }
     }
 }
