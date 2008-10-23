@@ -106,10 +106,10 @@ namespace TerryAndMike.Database.TestApp {
                         output += ", ";
                 }
 
-                outStream.WriteLine( "Tuple (" + output + ") successfully stored or replaced.  Total tuple count: " + model.Count );
+                outStream.WriteLine( "Tuple (" + output + ") successfully stored.  Total tuple count: " + model.Count );
             }
             else {
-                outStream.WriteLine( "Error adding tuple, does it already exist?" );
+                outStream.WriteLine( "Error adding tuple, tuple was either duplicate or not added for another reason." );
             }
         }
 

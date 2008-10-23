@@ -40,11 +40,11 @@ namespace TerryAndMike.Database
         }
 
         /// <summary> adds (or replaces) a tuple. </summary>
-        /// <returns> true if tuple was added or replaced, false otherwise </returns>
+        /// <returns> true if something was added (not replaced). </returns>
         public bool Enter(string[] tuple)
         {
-            database.Add( tryMatchTuple => MatchTuples(tuple,tryMatchTuple), tuple );
-            return true; //all insertions succeed, DB.add() is true only if a tuple was _replaced_
+            //DB.Add returns true if tuple is replaced
+            return !database.Add( tryMatchTuple => MatchTuples(tuple,tryMatchTuple), tuple );
         }
 
         /// <summary> removes tuples matching key </summary>
