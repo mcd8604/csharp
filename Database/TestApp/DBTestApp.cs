@@ -10,7 +10,13 @@ namespace TerryAndMike.Database.TestApp {
     class DBTestApp {
         private const int TUPLE_LENGTH = 3;
 
-        IModel model = new LocalDB();
+        IModel model;
+
+        public DBTestApp() : this( new LocalDB() ) { }
+
+        public DBTestApp( IModel model ) {
+            this.model = model;
+        }
 
         public void CommandParseLoop( TextWriter outStream, TextReader inStream ) {
             string command = string.Empty;
@@ -112,7 +118,7 @@ namespace TerryAndMike.Database.TestApp {
         }
 
         static void Main( string[] args ) {
-            DBTestApp tester = new DBTestApp();
+            DBTestApp tester = new DBTestApp( new LocalDB() );
             tester.CommandParseLoop( Console.Out, Console.In );         
         }
     }
