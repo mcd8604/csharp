@@ -7,14 +7,14 @@ using Axel.Database;
 
 
 namespace TerryAndMike.Database.TestApp {
-    class DBTestApp {
+    class ModelTestApp {
         private const int TUPLE_LENGTH = 3;
 
         IModel model;
 
-        public DBTestApp() : this( new LocalDB() ) { }
+        public ModelTestApp() : this( new LocalDB() ) { }
 
-        public DBTestApp( IModel model ) {
+        public ModelTestApp( IModel model ) {
             this.model = model;
         }
 
@@ -118,7 +118,7 @@ namespace TerryAndMike.Database.TestApp {
         }
 
         static void Main( string[] args ) {
-            DBTestApp tester = new DBTestApp( new LocalDB() );
+            ModelTestApp tester = new ModelTestApp( new LocalDB() );
             tester.CommandParseLoop( Console.Out, Console.In );         
         }
     }
