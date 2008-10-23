@@ -14,17 +14,14 @@ using System.Windows.Shapes;
 using IModel = Axel.Database.IModel;
 using LocalDB = TerryAndMike.Database.LocalDB;
 
-namespace TerryAndMike.Database.LocalApp
-{
+namespace TerryAndMike.Database.LocalApp {
     /// <summary>
     /// Interaction logic for LocalAppWindow.xaml
     /// </summary>
-    public partial class LocalAppWindow : Window
-    {
+    public partial class LocalAppWindow : Window {
         private IModel model;
 
-        public LocalAppWindow()
-        {
+        public LocalAppWindow() {
             model = new LocalDB();
             InitializeComponent();
         }
@@ -34,24 +31,30 @@ namespace TerryAndMike.Database.LocalApp
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void searchBtn_Click(object sender, RoutedEventArgs e)
-        {
+        private void searchBtn_Click( object sender, RoutedEventArgs e ) {
             // Search the model on keys
 
             string[] keys = GetTuple();
-            string[][] tuples = model.Search(keys);
+            string[][] tuples = model.Search( keys );
 
             // Display the array elements
 
             StringBuilder nameBuilder = new StringBuilder();
             StringBuilder phoneBuilder = new StringBuilder();
             StringBuilder roomBuilder = new StringBuilder();
-                        
-            for (int i = 0; i < tuples.Length; i++)
-            {
-                nameBuilder.AppendLine(tuples[i][0]);
-                phoneBuilder.AppendLine(tuples[i][1]);
-                roomBuilder.AppendLine(tuples[i][2]);
+
+            for ( int i = 0; i < tuples.Length; i++ ) {
+                //don't append final newline
+                if ( i + 1 == tuples.Length ) {
+                    nameBuilder.Append( tuples[ i ][ 0 ] );
+                    phoneBuilder.Append( tuples[ i ][ 1 ] );
+                    roomBuilder.Append( tuples[ i ][ 2 ] );
+                }
+                else {
+                    nameBuilder.AppendLine( tuples[ i ][ 0 ] );
+                    phoneBuilder.AppendLine( tuples[ i ][ 1 ] );
+                    roomBuilder.AppendLine( tuples[ i ][ 2 ] );
+                }
             }
 
             nameTextBox.Text = nameBuilder.ToString();
@@ -59,17 +62,15 @@ namespace TerryAndMike.Database.LocalApp
             roomTextBox.Text = roomBuilder.ToString();
         }
 
-        private void enterBtn_Click(object sender, RoutedEventArgs e)
-        {
+        private void enterBtn_Click( object sender, RoutedEventArgs e ) {
             string[] tuple = GetTuple();
-            /*bool result = */model.Enter(tuple);
+            model.Enter( tuple );
             countLabel.Content = model.Count;
         }
 
-        private void removeBtn_Click(object sender, RoutedEventArgs e)
-        {
+        private void removeBtn_Click( object sender, RoutedEventArgs e ) {
             string[] keys = GetTuple();
-            /*bool result = */model.Remove(keys);
+            model.Remove( keys );
             countLabel.Content = model.Count;
 
             //clear output text boxes
@@ -83,9 +84,10 @@ namespace TerryAndMike.Database.LocalApp
         /// </summary>
         /// <returns>String array (tuple) with null representing empty textboxes</returns>
         private string[] GetTuple() {
-            return new string[] { nameTextBox.Text.Length > 0 ? nameTextBox.GetLineText(0) : null, 
-                                phoneTextBox.Text.Length > 0 ? phoneTextBox.GetLineText(0) : null, 
-                                roomTextBox.Text.Length > 0 ? roomTextBox.GetLineText(0) : null };
+            return new string[] { nameTextBox.Text.Length > 0 ? nameTextBox.GetLineText(0).TrimEnd('\r', '\n') : null, 
+                                phoneTextBox.Text.Length > 0 ? phoneTextBox.GetLineText(0).TrimEnd('\r', '\n') : null, 
+                                roomTextBox.Text.Length > 0 ? roomTextBox.GetLineText(0).TrimEnd('\r', '\n') : null };
+
         }
     }
 }
