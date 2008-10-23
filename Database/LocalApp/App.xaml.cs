@@ -5,7 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Windows;
 
-namespace LocalApp
+namespace TerryAndMike.Database.LocalApp
 {
     /// <summary>
     /// Interaction logic for App.xaml

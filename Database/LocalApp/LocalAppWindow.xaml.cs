@@ -14,16 +14,16 @@ using System.Windows.Shapes;
 using IModel = Axel.Database.IModel;
 using LocalDB = TerryAndMike.Database.LocalDB;
 
-namespace LocalApp
+namespace TerryAndMike.Database.LocalApp
 {
     /// <summary>
-    /// Interaction logic for Window1.xaml
+    /// Interaction logic for LocalAppWindow.xaml
     /// </summary>
-    public partial class Window1 : Window
+    public partial class LocalAppWindow : Window
     {
         private IModel model;
 
-        public Window1()
+        public LocalAppWindow()
         {
             model = new LocalDB();
             InitializeComponent();
@@ -58,8 +58,12 @@ namespace LocalApp
 
         private void enterBtn_Click(object sender, RoutedEventArgs e)
         {
-            string[] tuple = { nameTextBox.Text, phoneTextBox.Text, roomTextBox.Text };
-            model.Enter(tuple);
+            //form 3-tuple, replacing empty strings with null
+            string[] tuple = { 
+                nameTextBox.Text==string.Empty?null:nameTextBox.Text,
+                phoneTextBox.Text==string.Empty?null:phoneTextBox.Text,
+                roomTextBox.Text==string.Empty?null:roomTextBox.Text };
+            /*bool result = */model.Enter(tuple);
 
             countLabel.Content = model.Count;
         }
@@ -67,7 +71,7 @@ namespace LocalApp
         private void removeBtn_Click(object sender, RoutedEventArgs e)
         {
             string[] keys = { nameTextBox.Text, phoneTextBox.Text, roomTextBox.Text };
-            model.Remove(keys);
+            /*bool result = */model.Remove(keys);
 
             countLabel.Content = model.Count;
         }
