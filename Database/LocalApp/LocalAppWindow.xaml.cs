@@ -21,6 +21,9 @@ namespace TerryAndMike.Database.LocalApp {
     public partial class LocalAppWindow : Window {
         private IModel model;
 
+        /// <summary>
+        /// Creates a new instance of LocalAppWindow
+        /// </summary>
         public LocalAppWindow() {
             model = new LocalDB();
             InitializeComponent();
