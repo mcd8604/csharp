@@ -18,13 +18,7 @@ namespace service
     public class DBService : System.Web.Services.WebService
     {
 
-        private LocalDB database;
-
-#warning extract LocalDB
-        public DBService()
-        {
-            database = new LocalDB();
-        }
+        private static LocalDB database = new LocalDB();
 
         /// <summary> number of entries in database. </summary>
         public int Count
