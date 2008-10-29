@@ -7,7 +7,12 @@ using System.Threading;
 namespace TerryAndMike.Database
 {
     /// <summary> Identifies databases </summary>
-    public enum Databases { ONE, TWO };
+    public enum Databases { 
+        /// <summary>Database 1</summary>
+        ONE,
+        /// <summary>Database 2</summary>
+        TWO
+    };
     /// <summary> called to handle toggle event. </summary>
     public delegate void ToggleHandler(Databases database);
     /// <summary>Non-blocking controller for two togglable databases</summary>

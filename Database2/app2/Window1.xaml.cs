@@ -21,6 +21,8 @@ namespace app2
     /// </summary>
     public partial class Window1 : Window
     {
+        /// <summary>Creates a new instance of Window1</summary>
+        /// <remarks>Creates a controller which connects to this.</remarks>
         public Window1() {
           InitializeComponent();
           var controller = new ToggleController(new LocalDB(), new RemoteDB(), new WorkQueue(),

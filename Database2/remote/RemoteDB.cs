@@ -10,6 +10,7 @@ namespace TerryAndMike.Database
     /// <summary> wraps and synchronizes <c>DB</c> as <c>IModel</c>. </summary>
     public class RemoteDB : DB<string>, IModel
     {
+        /// <summary> The database service client </summary>
         protected DBServiceSoapClient model = new DBServiceSoapClient();
 
         /// <summary> number of tuples, delegate to <c>list</c>. </summary>
