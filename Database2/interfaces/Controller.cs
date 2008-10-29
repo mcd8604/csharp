@@ -35,28 +35,12 @@ namespace Axel.Database {
   public class Controller {
     /// <summary> represents current database. </summary>
     protected IModel db;
-    /// <summary> represents the first database. </summary>
-    protected readonly IModel db1;
-    /// <summary> represents the second database. </summary>
-    protected readonly IModel db2;
     /// <summary> sequential access to a <c>BackgroundWorker</c>. </summary>
     protected readonly WorkQueue bg;
     /// <summary> controls user interaction. </summary>
     protected Enable enable;
     /// <summary> get query fields. </summary>
     protected IAccess[] io;
-    /// <summary> connect to first database and view, post current count. </summary>
-    /// <param name="db1"> database 1. </param>
-    /// <param name="db2"> database 2. </param>
-    /// <param name="bg"> for sequential background execution. </param>
-    /// <param name="enable"> controls user interaction in view. </param>
-    /// <param name="io"> access to current/size/search/enter/remove fields (can be null). </param>
-    public Controller(IModel db1, IModel db2, WorkQueue bg, Enable enable, params IAccess[] io)
-        : this(db1, bg)
-    {
-        this.db1 = db1; this.db2 = db2;
-        Connect(enable, io);
-    }
     /// <summary> connect to database and view, post current count. </summary>
     /// <param name="db"> database. </param>
     /// <param name="bg"> for sequential background execution. </param>
@@ -158,23 +142,6 @@ namespace Axel.Database {
               : s; // entire line
         }
       return result;
-    }
-    /// <summary> handle toggle request </summary>
-    public void doToggle(object sender, EventArgs e) {
-        // disable user interface
-        enable(false);
-        // set up database toggle
-        bg.Enqueue(new ThreadStart[] {
-        delegate { // db toggle
-            if(db1 != null && db2 != null) {
-                db = db == db1 ?  db2 : db1;
-            }
-        },
-        delegate { // clean up after toggle is completed
-            for (int n = 2; n < io.Length; ++n)
-              if (io[n] != null) io[n].Text = "";
-            doSize(null, null);
-        }});
     }
   }
 }

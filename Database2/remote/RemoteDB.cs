@@ -18,8 +18,6 @@ namespace TerryAndMike.Database
         /// <returns> what was found. </returns>>
         public string[][] Search(string[] keys)
         {
-
-#warning is there a better way to do this?
             ArrayOfString aosKeys = new ArrayOfString();
             foreach (string s in keys)
                 aosKeys.Add(s);
@@ -36,7 +34,6 @@ namespace TerryAndMike.Database
         /// <returns> true if something was added (and not replaced). </returns>
         public bool Enter(string[] tuple)
         {
-#warning is there a better way to do this?
             ArrayOfString aosKeys = new ArrayOfString();
             foreach (string s in tuple)
                 aosKeys.Add(s);
@@ -47,7 +44,6 @@ namespace TerryAndMike.Database
         /// <returns> true if something was removed. </returns>
         public bool Remove(string[] keys)
         {
-#warning is there a better way to do this?
             ArrayOfString aosKeys = new ArrayOfString();
             foreach (string s in keys)
                 aosKeys.Add(s);

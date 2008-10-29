@@ -23,7 +23,7 @@ namespace app2
     {
         public Window1() {
           InitializeComponent();
-          var controller = new Controller(new LocalDB(), new RemoteDB(), new WorkQueue(),
+          var controller = new ToggleController(new LocalDB(), new RemoteDB(), new WorkQueue(),
             new Enable(isEnabled => {
               Toggle.IsEnabled = Search.IsEnabled = Enter.IsEnabled = Remove.IsEnabled = isEnabled; }),
             null,
@@ -37,6 +37,8 @@ namespace app2
           Remove.Click += new RoutedEventHandler(controller.doRemove);
           Size.MouseDown += new MouseButtonEventHandler(controller.doSize);
           Toggle.Click += new RoutedEventHandler(controller.doToggle);
+          controller.DatabaseToggled += (database) => { dbLabel.Header = database == Databases.ONE ? "Local" : "Remote"; };
+          dbLabel.Header = "Local";
         }
     }
 }
