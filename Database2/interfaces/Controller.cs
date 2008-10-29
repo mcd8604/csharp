@@ -72,11 +72,6 @@ namespace Axel.Database {
     public Controller (IModel db, WorkQueue bg) {
       this.db = db; this.bg = bg;
     }
-    /// <summary> Switches between remote and local databases </summary>
-    public void SwitchDatabase()
-    {
-
-    }
     /// <summary> connect to (current) view. </summary>
     /// <param name="enable"> controls user interaction in view. </param>
     /// <param name="io"> access to current/size/search/enter/remove fields (can be null). </param>
