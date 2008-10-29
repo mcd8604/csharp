@@ -1,0 +1,60 @@
+﻿<project schemaVersion="1.6.0.7">
+    <assemblies>
+        <assembly assemblyPath=".\app2\bin\Debug\app2.exe" xmlCommentsPath=".\app2\bin\Debug\app2.xml" commentsOnly="False" />
+        <assembly assemblyPath=".\app\bin\Debug\db.dll" xmlCommentsPath=".\app\bin\Debug\db.xml" commentsOnly="False" />
+        <assembly assemblyPath=".\app\bin\Debug\interfaces.dll" xmlCommentsPath=".\app\bin\Debug\interfaces.xml" commentsOnly="False" />
+        <assembly assemblyPath=".\app\bin\Debug\local.dll" xmlCommentsPath=".\app\bin\Debug\local.xml" commentsOnly="False" />
+        <assembly assemblyPath=".\remote\bin\Debug\remote.dll" xmlCommentsPath=".\remote\bin\Debug\remote.xml" commentsOnly="False" />
+        <assembly assemblyPath=".\service\bin\service.dll" xmlCommentsPath=".\service\bin\service.xml" commentsOnly="False" />
+        <assembly assemblyPath=".\test\bin\Debug\test.exe" xmlCommentsPath=".\test\bin\Debug\test.xml" commentsOnly="False" />
+    </assemblies>
+    <namespaceSummaries>
+        <namespaceSummaryItem name="" isDocumented="False" />
+        <namespaceSummaryItem name="Axel.Xcel" isDocumented="True">primitive solution.</namespaceSummaryItem>
+        <namespaceSummaryItem name="Axel.Xcel2" isDocumented="True">solution with patterns.</namespaceSummaryItem>
+    </namespaceSummaries>
+    <dependencies>
+        <dependencyItem depPath="C:\Program Files\Microsoft SDKs\Silverlight\v2.0\Reference Assemblies\*.*" />
+    </dependencies>
+    <ProjectSummary />
+    <MissingTags>Summary, Parameter, Returns, AutoDocumentCtors, TypeParameter</MissingTags>
+    <VisibleItems>InheritedMembers, InheritedFrameworkMembers, Internals, Privates, Protected, SealedProtected, PrivateFields</VisibleItems>
+    <HtmlHelp1xCompilerPath path="" />
+    <HtmlHelp2xCompilerPath path="" />
+    <OutputPath>doc-2\</OutputPath>
+    <SandcastlePath path="" />
+    <WorkingPath path="" />
+    <CleanIntermediates>True</CleanIntermediates>
+    <KeepLogFile>True</KeepLogFile>
+    <BuildLogFile path="" />
+    <HelpFileFormat>Website</HelpFileFormat>
+    <CppCommentsFixup>False</CppCommentsFixup>
+    <FrameworkVersion>3.5</FrameworkVersion>
+    <IndentHtml>False</IndentHtml>
+    <Preliminary>False</Preliminary>
+    <RootNamespaceContainer>False</RootNamespaceContainer>
+    <RootNamespaceTitle />
+    <HelpTitle>C#/.NET and Patterns: Assignment 7 part 1</HelpTitle>
+    <HtmlHelpName>Documentation</HtmlHelpName>
+    <Language>en-US</Language>
+    <CopyrightHref />
+    <CopyrightText />
+    <FeedbackEMailAddress>mcd8604@rit.edu</FeedbackEMailAddress>
+    <FeedbackEMailLinkText />
+    <HeaderText />
+    <FooterText />
+    <ProjectLinkType>Local</ProjectLinkType>
+    <SdkLinkType>Msdn</SdkLinkType>
+    <SdkLinkTarget>Blank</SdkLinkTarget>
+    <PresentationStyle>vs2005</PresentationStyle>
+    <NamingMethod>MemberName</NamingMethod>
+    <SyntaxFilters>CSharp</SyntaxFilters>
+    <ShowFeedbackControl>False</ShowFeedbackControl>
+    <BinaryTOC>True</BinaryTOC>
+    <IncludeFavorites>False</IncludeFavorites>
+    <CollectionTocStyle>Hierarchical</CollectionTocStyle>
+    <IncludeStopWordList>True</IncludeStopWordList>
+    <PlugInNamespaces>ms.vsipcc+, ms.vsexpresscc+</PlugInNamespaces>
+    <HelpFileVersion>1.0.0.0</HelpFileVersion>
+    <ContentPlacement>AboveNamespaces</ContentPlacement>
+</project>
