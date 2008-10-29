@@ -21,24 +21,22 @@ namespace app2
     /// </summary>
     public partial class Window1 : Window
     {
-        public Window1()
-        {
-            InitializeComponent();
-            var controller = new Controller(new RemoteDB(), new WorkQueue(),
-              new Enable(isEnabled =>
-              {
-                  Search.IsEnabled = Enter.IsEnabled = Remove.IsEnabled = isEnabled;
-              }),
-              null,
-              new Access(() => Size.Text, s => { Size.Text = s; }),
-              new Access(() => Names.Text, s => { Names.Text = s; }),
-              new Access(() => Phones.Text, s => { Phones.Text = s; }),
-              new Access(() => Rooms.Text, s => { Rooms.Text = s; }));
-            controller.doSize(null, null);
-            Search.Click += new RoutedEventHandler(controller.doSearch);
-            Enter.Click += new RoutedEventHandler(controller.doEnter);
-            Remove.Click += new RoutedEventHandler(controller.doRemove);
-            Size.MouseDown += new MouseButtonEventHandler(controller.doSize);
+        public Window1() {
+          InitializeComponent();
+          var controller = new Controller(new LocalDB(), new RemoteDB(), new WorkQueue(),
+            new Enable(isEnabled => {
+              Toggle.IsEnabled = Search.IsEnabled = Enter.IsEnabled = Remove.IsEnabled = isEnabled; }),
+            null,
+            new Access(() => Size.Text, s => { Size.Text = s; }),
+            new Access(() => Names.Text, s => { Names.Text = s; }),
+            new Access(() => Phones.Text, s => { Phones.Text = s; }),
+            new Access(() => Rooms.Text, s => { Rooms.Text = s; }));
+          controller.doSize(null, null);
+          Search.Click += new RoutedEventHandler(controller.doSearch);
+          Enter.Click += new RoutedEventHandler(controller.doEnter);
+          Remove.Click += new RoutedEventHandler(controller.doRemove);
+          Size.MouseDown += new MouseButtonEventHandler(controller.doSize);
+          Toggle.Click += new RoutedEventHandler(controller.doToggle);
         }
     }
 }
