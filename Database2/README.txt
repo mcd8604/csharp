@@ -16,4 +16,5 @@ interfaces - The toggling functionality is defined in ToggleController.  This cl
 The downside to the subclass - I removed the readonly modifier from Axel.Database.Controller.db. ToggleController uses db to store the current database. In order to do this, it has to assign to db after creation. I'm not sure if this is the best idea, is there a better way to implement this?
 
 To Execute:
-	Run app2 from Visual Studio.
+	Run app2 from Visual Studio. 
+	Note: running the standalone .exe will not start the service.
