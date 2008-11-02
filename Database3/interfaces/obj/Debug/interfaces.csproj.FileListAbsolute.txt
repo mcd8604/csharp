@@ -1,0 +1,6 @@
+C:\Documents and Settings\ats\My Documents\Visual Studio 2008\Projects\7\vs\interfaces\bin\Debug\interfaces.dll
+C:\Documents and Settings\ats\My Documents\Visual Studio 2008\Projects\7\vs\interfaces\bin\Debug\interfaces.pdb
+C:\Documents and Settings\ats\My Documents\Visual Studio 2008\Projects\7\vs\interfaces\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\ats\My Documents\Visual Studio 2008\Projects\7\vs\interfaces\obj\Debug\interfaces.dll
+C:\Documents and Settings\ats\My Documents\Visual Studio 2008\Projects\7\vs\interfaces\obj\Debug\interfaces.pdb
+C:\Documents and Settings\ats\My Documents\Visual Studio 2008\Projects\7\vs\interfaces\bin\Debug\interfaces.XML
