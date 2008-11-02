@@ -26,6 +26,27 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "app2", "app2\app2.csproj", 
 		{79D7C1A2-BC62-458C-B452-8373B62EBF7B} = {79D7C1A2-BC62-458C-B452-8373B62EBF7B}
 	EndProjectSection
 EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "app-web", "H:\Courses\C#\repo\Database2\app-web\", "{F05A655F-1087-494D-80F4-ADDBAFA5249E}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFramework = "3.5"
+		Debug.AspNetCompiler.VirtualPath = "/app-web"
+		Debug.AspNetCompiler.PhysicalPath = "app-web\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\app-web\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/app-web"
+		Release.AspNetCompiler.PhysicalPath = "app-web\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\app-web\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "1903"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -64,6 +85,10 @@ Global
 		{01A81764-546B-482A-8140-03DC45AF9C1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{01A81764-546B-482A-8140-03DC45AF9C1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{01A81764-546B-482A-8140-03DC45AF9C1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F05A655F-1087-494D-80F4-ADDBAFA5249E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F05A655F-1087-494D-80F4-ADDBAFA5249E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F05A655F-1087-494D-80F4-ADDBAFA5249E}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{F05A655F-1087-494D-80F4-ADDBAFA5249E}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
