@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="s_app.Page"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    Height="400" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="28"/>
+            <RowDefinition Height="65*"/>
+            <RowDefinition Height="65*"/>
+            <RowDefinition Height="65*"/>
+            <RowDefinition Height="20*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="80" />
+            <ColumnDefinition Width="220" />
+        </Grid.ColumnDefinitions>
+        <Button Grid.Row="0" Grid.Column="0" Margin="3" Height="22" Name="Toggle" Content="Toggle DB:"/>
+        <TextBlock Grid.Row="0" Grid.Column="1" Margin="3" Height="22" Name="Current" />
+        <TextBox Grid.Row="1" Grid.ColumnSpan="2" Margin="3" Name="Names" />
+        <TextBox Grid.Row="2" Grid.ColumnSpan="2" Margin="3" Name="Phones" />
+        <TextBox Grid.Row="3" Grid.ColumnSpan="2" Margin="3" Name="Rooms" />
+        <Grid Grid.Row="4" Grid.ColumnSpan="2" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120*"/>
+                <ColumnDefinition Width="120*"/>
+                <ColumnDefinition Width="120*"/>
+                <ColumnDefinition Width="60*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Content="search" Margin="6" Name="Search"/>
+            <Button Grid.Column="1" Content="enter" Margin="6" Name="Enter"/>
+            <Button Grid.Column="2" Content="remove" Margin="6" Name="Remove"/>
+            <TextBox Grid.Column="3" IsReadOnly="True" Margin="6" Name="Size" TextAlignment="Center" IsTabStop="False" />
+        </Grid>
+    </Grid>
+</UserControl>

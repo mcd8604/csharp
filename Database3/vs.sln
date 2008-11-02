@@ -22,6 +22,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "service", "service\", "{E32
 		VWDPort = "1436"
 		VWDVirtualPath = "/"
 		DefaultWebSiteLanguage = "Visual C#"
+		ProjOutputReferences = ""
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "app2", "app2\app2.csproj", "{64B24772-782E-4DC6-A165-6860E8DF3209}"
@@ -44,6 +45,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "local", "local\local.csproj", "{66347040-747E-4AEC-9ABB-53E4C4E655A0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "remote", "remote\remote.csproj", "{783FD0E1-BF2C-4585-BA70-79B9F7DA6902}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "s-app", "s-app\s-app.csproj", "{2DC0E845-06EC-40EA-B377-BE3557CAE46E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -91,6 +94,10 @@ Global
 		{783FD0E1-BF2C-4585-BA70-79B9F7DA6902}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{783FD0E1-BF2C-4585-BA70-79B9F7DA6902}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{783FD0E1-BF2C-4585-BA70-79B9F7DA6902}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DC0E845-06EC-40EA-B377-BE3557CAE46E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DC0E845-06EC-40EA-B377-BE3557CAE46E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DC0E845-06EC-40EA-B377-BE3557CAE46E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DC0E845-06EC-40EA-B377-BE3557CAE46E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

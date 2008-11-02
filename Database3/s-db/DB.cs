@@ -26,6 +26,7 @@ namespace Axel.Database {
 
     /// <summary> report information from matched tuples. </summary>
     public object[] Extract (Match match, Report report) {
+#warning need to replace linq extension
       // find matching tuples
       /*List<T[]> all = list.FindAll(
         (Predicate<T[]>)delegate(T[] tuple) {
@@ -42,7 +43,8 @@ namespace Axel.Database {
 
     /// <summary> remove matching tuples. </summary>
     public int Remove (Match match) {
-      /*return list.RemoveAll(
+#warning need to replace linq extension
+        /*return list.RemoveAll(
         (Predicate<T[]>)delegate(T[] tuple) {
           return match(tuple);
         });*/
