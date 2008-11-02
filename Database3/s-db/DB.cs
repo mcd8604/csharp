@@ -31,14 +31,18 @@ namespace Axel.Database {
       /*List<T[]> all = list.FindAll(
         (Predicate<T[]>)delegate(T[] tuple) {
           return match(tuple);
+        });*/
+        List<T[]> all = new List<T[]>();
+        list.ForEach(
+        (Action<T[]>)delegate(T[] tuple) {
+            if (match(tuple)) all.Add(tuple);
         });
 
       // construct report
       object[] result = new object[all.Count];
       for (int n = 0; n < result.Length; ++n)
         result[n] = report(all[n]);
-      return result;*/
-        return null;
+      return result;
     }
 
     /// <summary> remove matching tuples. </summary>

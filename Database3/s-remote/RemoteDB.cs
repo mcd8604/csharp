@@ -88,17 +88,15 @@ namespace Axel.Database {
         pending = true;
         // contact service asynchronously
         var send = new ArrayOfString();
-#warning need to replace extension method
-          //send.AddRange(keys);
+        foreach (string s in keys) send.Add(s);
         client.SearchAsync(send);
         // wait for value
         while (!gotValue) Monitor.Wait(monitor);
         // consume value
-        var receive = (ArrayOfString[])value; gotValue = false;
-        var result = new string[receive.Length][];
+        var receive = (System.Collections.ObjectModel.ObservableCollection<ArrayOfString>)value; gotValue = false;
+        var result = new string[receive.Count][];
         for (int n = 0; n < result.Length; ++n)
-#warning need to replace extension method
-            //result[n] = receive[n].ToArray();
+            receive[n].CopyTo(result[n], 0);
         // release exclusive access
         pending = false; Monitor.Pulse(monitor);
         return result;
@@ -112,8 +110,7 @@ namespace Axel.Database {
         pending = true;
         // contact service asynchronously
         var send = new ArrayOfString();
-#warning need to replace extension method
-        //send.AddRange(tuple);
+        foreach (string s in tuple) send.Add(s);
         client.EnterAsync(send);
         // wait for value
         while (!gotValue) Monitor.Wait(monitor);
@@ -132,8 +129,7 @@ namespace Axel.Database {
         pending = true;
         // contact service asynchronously
         var send = new ArrayOfString();
-#warning need to replace extension method
-        //send.AddRange(keys);
+        foreach (string s in keys) send.Add(s);
         client.RemoveAsync(send);
         // wait for value
         while (!gotValue) Monitor.Wait(monitor);
