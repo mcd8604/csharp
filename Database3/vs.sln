@@ -22,7 +22,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "service", "service\", "{E32
 		VWDPort = "1436"
 		VWDVirtualPath = "/"
 		DefaultWebSiteLanguage = "Visual C#"
-		ProjOutputReferences = ""
+		ProjOutputReferences = "{2DC0E845-06EC-40EA-B377-BE3557CAE46E}|ClientBin|false;"
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "app2", "app2\app2.csproj", "{64B24772-782E-4DC6-A165-6860E8DF3209}"
