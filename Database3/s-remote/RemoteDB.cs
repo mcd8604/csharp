@@ -96,7 +96,13 @@ namespace Axel.Database {
         var receive = (System.Collections.ObjectModel.ObservableCollection<ArrayOfString>)value; gotValue = false;
         var result = new string[receive.Count][];
         for (int n = 0; n < result.Length; ++n)
-            receive[n].CopyTo(result[n], 0);
+        {
+            result[n] = new string[receive[n].Count];
+            for (int m = 0; m < receive[n].Count; ++m)
+            {
+                result[n][m] = receive[n][m];
+            }
+        }
         // release exclusive access
         pending = false; Monitor.Pulse(monitor);
         return result;
