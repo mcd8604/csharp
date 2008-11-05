@@ -4,7 +4,7 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "service", "service\", "{E326ADEE-2937-4CCB-B8C0-BC6D2992B036}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFramework = "3.5"
-		ProjectReferences = "{4F75FB0F-3755-4D9F-A64D-B16274C26B7A}|s-db.dll;{8204F846-E2FC-4297-9D57-957B8AC5563A}|s-interfaces.dll;{4AF4A69C-1332-4240-B077-26CACCEDCE63}|s-local.dll;"
+		ProjectReferences = "{4F75FB0F-3755-4D9F-A64D-B16274C26B7A}|s-db.dll;{8204F846-E2FC-4297-9D57-957B8AC5563A}|s-interfaces.dll;{4AF4A69C-1332-4240-B077-26CACCEDCE63}|s-local.dll;{D85D9F52-93DA-4F25-A273-BF2143B8A16C}|s-remote.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/service"
 		Debug.AspNetCompiler.PhysicalPath = "service\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\service\"
